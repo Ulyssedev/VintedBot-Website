@@ -5,6 +5,64 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+  "rewrites": [
+    {
+        "source": "/index",
+        "destination": "/index.html"
+    },
+    {
+      "source": "/fonctionnement",
+      "destination": "/fonctionnement.html"
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq.html"
+    },
+    {
+      "source": "/mobile-fonctionnement",
+      "destination": "/mobile-fonctionnement.html"
+    },
+    {
+      "source": "/paypal",
+      "destination": "/paypal.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/index",
+      "type": 301
+  },
+  {
+    "source": "/fonctionnement.html",
+    "destination": "/fonctionnement",
+    "type": 301
+  },
+  {
+    "source": "/faq.html",
+    "destination": "/faq",
+    "type": 301
+  },
+  {
+    "source": "/mobile-fonctionnement.html",
+    "destination": "/mobile-fonctionnement",
+    "type": 301
+  },
+  {
+    "source": "/paypal.html",
+    "destination": "/paypal",
+    "type": 301
+  },
+  {
+    "source": "/privacy.html",
+    "destination": "/privacy",
+    "type": 301
+  }
+  ]
   }
 }
