@@ -30,6 +30,10 @@
     {
       "source": "/privacy",
       "destination": "/privacy.html"
+    },
+    {
+      "source": "/connexion",
+      "destination": "/connexion.html"
     }
   ],
   "redirects": [
@@ -56,6 +60,11 @@
   {
     "source": "/paypal.html",
     "destination": "/paypal",
+    "type": 301
+  },
+  {
+    "source": "/connexion.html",
+    "destination": "/connexion",
     "type": 301
   },
   {
