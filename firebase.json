@@ -32,6 +32,14 @@
       "destination": "/privacy.html"
     },
     {
+      "source": "/tarification",
+      "destination": "/tarification.html"
+    },
+    {
+      "source": "/mobile-tarification",
+      "destination": "/mobile-tarification.html"
+    },
+    {
       "source": "/connexion",
       "destination": "/connexion.html"
     }
@@ -66,6 +74,16 @@
     "source": "/connexion.html",
     "destination": "/connexion",
     "type": 301
+  },
+  {
+    "source": "/tarification.html",
+    "destination": "/tarification",
+    "type": 301
+  },
+  {
+  "source": "/mobile-tarification.html",
+  "destination": "/mobile-tarification",
+  "type": 301
   },
   {
     "source": "/privacy.html",
