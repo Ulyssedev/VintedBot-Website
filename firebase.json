@@ -24,10 +24,6 @@
       "destination": "/mobile-fonctionnement.html"
     },
     {
-      "source": "/paypal",
-      "destination": "/paypal.html"
-    },
-    {
       "source": "/privacy",
       "destination": "/privacy.html"
     },
@@ -63,11 +59,6 @@
   {
     "source": "/mobile-fonctionnement.html",
     "destination": "/mobile-fonctionnement",
-    "type": 301
-  },
-  {
-    "source": "/paypal.html",
-    "destination": "/paypal",
     "type": 301
   },
   {
