@@ -6,81 +6,9 @@
       "**/.*",
       "**/node_modules/**"
     ],
-  "rewrites": [
-    {
-        "source": "/index",
-        "destination": "/index.html"
+    "i18n": {
+      "root": "/localized-files"
     },
-    {
-      "source": "/fonctionnement",
-      "destination": "/fonctionnement.html"
-    },
-    {
-      "source": "/faq",
-      "destination": "/faq.html"
-    },
-    {
-      "source": "/mobile-fonctionnement",
-      "destination": "/mobile-fonctionnement.html"
-    },
-    {
-      "source": "/privacy",
-      "destination": "/privacy.html"
-    },
-    {
-      "source": "/tarification",
-      "destination": "/tarification.html"
-    },
-    {
-      "source": "/mobile-tarification",
-      "destination": "/mobile-tarification.html"
-    },
-    {
-      "source": "/connexion",
-      "destination": "/connexion.html"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/index.html",
-      "destination": "/index",
-      "type": 301
-  },
-  {
-    "source": "/fonctionnement.html",
-    "destination": "/fonctionnement",
-    "type": 301
-  },
-  {
-    "source": "/faq.html",
-    "destination": "/faq",
-    "type": 301
-  },
-  {
-    "source": "/mobile-fonctionnement.html",
-    "destination": "/mobile-fonctionnement",
-    "type": 301
-  },
-  {
-    "source": "/connexion.html",
-    "destination": "/connexion",
-    "type": 301
-  },
-  {
-    "source": "/tarification.html",
-    "destination": "/tarification",
-    "type": 301
-  },
-  {
-  "source": "/mobile-tarification.html",
-  "destination": "/mobile-tarification",
-  "type": 301
-  },
-  {
-    "source": "/privacy.html",
-    "destination": "/privacy",
-    "type": 301
-  }
-  ]
-  }
+    "cleanUrls": true
+}
 }
