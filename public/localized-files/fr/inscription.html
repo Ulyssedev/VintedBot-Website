@@ -1,14 +1,12 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Vinted Bot - Login</title>
+		<title>Vinted Bot - Inscription</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="shortcut icon" type="image/x-icon" href="images/vinted.jpg"/>
-    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
@@ -16,21 +14,20 @@
 			<!-- Header -->
 			<header id="header">
 				<h1 id="logo">
-          <a href="index.html">Vinted Bot</a><a href="signup.html" class="button small" style="margin: 10px;padding-left: 10px;padding-right: 10px; display: none;">Sign Up</a>
-          <button class="logout" style="display: none;">Logout</button>
-        </h1>
+				<a href="index.html">Vinted Bot</a><a href="inscription.html" class="button small" style="margin: 10px;padding-left: 10px;padding-right: 10px; display: none;">Inscription</a>
+				<button class="logout" style="display: none;">Déconnexion</button></h1>
 				<nav id="nav">
 					<ul>
-						<li><a href="index.html">Homepage</a></li>
+						<li><a href="index.html">Accueil</a></li>
 						<li>
 							<a href="#">Documentation</a>
 							<ul>
-								<li><a href="how-does-it-work.html">How does it work</a></li>
-								<li><a href="qna.html">QNA</a></li>
-								<li><a href="privacy.html">Privacy Policy</a></li>
+								<li><a href="fonctionnement.html">Fonctionnement</a></li>
+								<li><a href="faq.html">FAQ</a></li>
+								<li><a href="privacy.html">Politique de confidentialité</a></li>
 							</ul>
 						</li>
-						<li><a href="pricing.html" class="button primary">Buy</a></li>
+						<li><a href="tarification.html" class="button primary">Acheter</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -38,21 +35,21 @@
       <!-- Main -->
       <article id="main">
         <header class="special container">
-          <h2><span class="icon solid fa-lock"></span>Login</h2>
-          <p>Enter your credentials to login</p>
+          <h2><span class="icon solid fa-lock"></span>Inscription</h2>
+          <p>Créez des identifiants pour vous inscrire</p>
         </header>
 
-        <form class="login">
+        <form class="signup">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Your email..">
+          <input type="email" id="email" name="email" placeholder="Votre email..">
           <br>
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Your password..">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" placeholder="Votre mot de passe..">
           <br>
-          <input type="submit" value="Login">
+          <input type="submit" value="Signup">
         </form>
         <br>
-        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        <p>Vous avez déjà un compte? <a href="connexion.html">Connexion</a></p>
 
 <!-- Footer -->
 <footer id="footer">
