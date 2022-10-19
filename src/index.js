@@ -74,9 +74,13 @@ loginForm.addEventListener('submit', (e) => {
 onAuthStateChanged(auth, user => {
   if (user) {
     console.log('user logged in:', user)
-    document.querySelector('.logout').style.display = 'inline-block'
+    if (document.querySelector('.logout')) {
+      document.querySelector('.logout').style.display = 'inline-block'
+    }
   } else {
     console.log('user logged out')
-    document.querySelector('.button.small').style.display = 'inline-block'
+    if (document.querySelector('.button.small')) {
+      document.querySelector('.button.small').style.display = 'inline-block'
+    }
   }
 })
