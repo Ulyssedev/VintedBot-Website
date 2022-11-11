@@ -33,9 +33,11 @@ if (signupForm) {
       .then(cred => {
         console.log('user created:', cred.user)
         signupForm.reset()
+        window.location = 'index.html'
       })
       .catch(err => {
         console.log(err.message)
+        alert(err.message)
       })
   })
 }
@@ -46,6 +48,7 @@ if (logoutButton) {
     e.preventDefault()
     signOut(auth).then(() => {
       console.log('user signed out')
+      window.location = 'index.html'
     })
     .catch(err => {
       console.log(err.message)
@@ -64,9 +67,11 @@ loginForm.addEventListener('submit', (e) => {
   signInWithEmailAndPassword(auth, email, password)
     .then(cred => {
       loginForm.reset()
+      window.location = 'index.html'
     })
     .catch(err => {
       console.log(err.message)
+      alert(err.message)
     })
 })
 }
@@ -76,6 +81,7 @@ onAuthStateChanged(auth, user => {
     console.log('user logged in:', user)
     if (document.querySelector('.logout')) {
       document.querySelector('.logout').style.display = 'inline-block'
+      document.querySelector('.dashboard').style.display = 'inline-block'
     }
   } else {
     console.log('user logged out')
@@ -84,3 +90,19 @@ onAuthStateChanged(auth, user => {
     }
   }
 })
+
+const dashboardButton = document.querySelector('.dashboard')
+if (dashboardButton) {
+dashboardButton.addEventListener('click', (e) => {
+  e.preventDefault()
+  window.location = 'dashboard.html'
+})
+}
+
+const manageButton = document.querySelector('.manage')
+if (manageButton) {
+manageButton.addEventListener('click', (e) => {
+  e.preventDefault()
+  window.open('https://billing.stripe.com/p/login/eVa17dcQLfO82fm8ww?prefilled_email='+auth.currentUser.email)
+})
+}
