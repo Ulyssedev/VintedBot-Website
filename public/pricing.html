@@ -16,7 +16,7 @@
 			<header id="header">
 				<h1 id="logo">
           <a href="index.html">Vinted Bot</a><a href="signup.html" class="button small" style="margin: 10px;padding-left: 10px;padding-right: 10px; display: none;">Sign Up</a>
-          <button class="logout" style="display: none;">Logout</button>
+           <button class="logout" style="display: none;">Logout</button><button class="dashboard" style="display: none;">Dashboard</button>
         </h1>
 				<nav id="nav">
 					<ul>
@@ -37,17 +37,33 @@
 <body>
     <div class="container">
         <div class="silver">
+            <h1>Free</h1>
+            <h2>For new users</h2>
+            <div class="price">0€/m</div>
+            <p>Number of channels</p>
+            <span>1</span>
+            <p>Fastmode</p>
+            <span>❌</span>
+            <p>Support</p>
+            <span>🟠</span>
+            <p>Dedicated server</p>
+            <span>❌</span>
+            <button class="discordbutton"><img src="https://seeklogo.com/images/D/discord-color-logo-E5E6DFEF80-seeklogo.com.png" width="40" height="30"></button>
+        </div>
+        <div class="gold">
             <h1>Starter</h1>
             <h2>Perfect for beginners</h2>
             <div class="price">5€/m</div>
             <p>Number of channels</p>
             <span>4</span>
+            <p>Fastmode</p>
+            <span>✅</span>
             <p>Support</p>
             <span>✅</span>
             <p>Dedicated server</p>
             <span>❌</span>
-            <a href="https://buy.stripe.com/5kA15Q7gJ1gIaf6144"><button>Buy</button></a>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><button><img src="https://freepngimg.com/thumb/paypal/2-2-paypal-logo-transparent-png.png" width="40" height="30"></button>
+            <a href="https://buy.stripe.com/5kA15Q7gJ1gIaf6144"><button class="buybutton">Buy</button></a>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><button class="buybutton"><img src="https://freepngimg.com/thumb/paypal/2-2-paypal-logo-transparent-png.png" width="40" height="30"></button>
                 <input type="hidden" name="cmd" value="_s-xclick">
                 <input type="hidden" name="hosted_button_id" value="LZS2T8CGGLPZ8">
                 </form>
@@ -58,12 +74,14 @@
             <div class="price">10€/m</div>
             <p>Number of channels</p>
             <span>10</span>
+            <p>Fastmode</p>
+            <span>✅</span>
             <p>Support</p>
             <span>✅</span>
             <p>Dedicated server</p>
             <span>❌</span>
-            <a href="https://buy.stripe.com/aEU01M8kNe3u72UbIJ"><button>Buy</button></a>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><button><img src="https://freepngimg.com/thumb/paypal/2-2-paypal-logo-transparent-png.png" width="40" height="30"></button>
+            <a href="https://buy.stripe.com/aEU01M8kNe3u72UbIJ"><button class="buybutton">Buy</button></a>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><button class="buybutton"><img src="https://freepngimg.com/thumb/paypal/2-2-paypal-logo-transparent-png.png" width="40" height="30"></button>
                 <input type="hidden" name="cmd" value="_s-xclick">
                 <input type="hidden" name="hosted_button_id" value="M2XZZSQM5DQRJ">
                 </form>
@@ -75,30 +93,118 @@
             <div class="price">20€/m</div>
             <p>Number of channels</p>
             <span>∝</span>
+            <p>Fastmode</p>
+            <span>✅</span>
             <p>Support</p>
             <span>✅</span>
             <p>Dedicated server</p>
             <span>✅</span>
-            <a href="https://buy.stripe.com/8wMeWGcB3e3ugDueUW"><button>Buy</button>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"></a><button><img src="https://freepngimg.com/thumb/paypal/2-2-paypal-logo-transparent-png.png" width="40" height="30"></button>
+            <a href="https://buy.stripe.com/8wMeWGcB3e3ugDueUW"><button class="buybutton">Buy</button>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"></a><button class="buybutton"><img src="https://freepngimg.com/thumb/paypal/2-2-paypal-logo-transparent-png.png" width="40" height="30"></button>
                 <input type="hidden" name="cmd" value="_s-xclick">
                 <input type="hidden" name="hosted_button_id" value="ZDH9KHF4W8S2W">
                 </form>
         </div>
         </div>
-			<!-- Footer -->
-            <footer id="footer">
-                <ul class="icons">
-                    <li><a href="https://instagram.com/botvinted" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-                    <li><a href="https://github.com/TheLowHigh" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-                    <li><a href="https://discord.gg/W6MRNaXwQ8" class="icon brands alt fa-discord"><span class="label">Discord</span></a></li>
-                </ul>
-                <ul class="copyright">
-                    <li>&copy; Vinted Bot. All rights reserved.</li>
-                </ul>
-            </footer>
+    </div>
 
-        </div>
+<div class="wrapper style1" hidden="hidden">
+    <section id="content">
+        <header class="major">
+            <h1>Pricing</h1>
+        </header>
+        <section>
+            <h3>Free</h3>
+            <p>For new users</p>
+            <div class="row">
+                <div class="col-6 col-12-xsmall">
+                    <ul>
+                        <li>Number of channels: 1</li>
+                        <li>Fastmode: ❌</li>
+                        <li>Support: 🟠</li>
+                        <li>Dedicated server: ❌</li>
+                    </ul>
+                    <button class="discordbuttonmobile"><img src="https://seeklogo.com/images/D/discord-color-logo-E5E6DFEF80-seeklogo.com.png" width="40" height="30" ></button>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h3>Starter</h3>
+            <div class="row">
+                <div class="col-6 col-12-xsmall">
+
+                    <h4>Perfect for beginners</h4>
+                    <h4>5€/month</h4>
+                    <ul>
+                        <li>Number of channels: 4</li>
+                        <li>Fastmode: ✅</li>
+                        <li>Support: ✅</li>
+                        <li>Dedicated server: ❌</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/5kA15Q7gJ1gIaf6144"><button class="buybutton">Buy</button></a>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><button class="buybutton"><img src="https://freepngimg.com/thumb/paypal/2-2-paypal-logo-transparent-png.png" width="40" height="30"></button>
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="LZS2T8CGGLPZ8">
+                        </form>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>Classic</h3>
+            <div class="row">
+                <div class="col-6 col-12-xsmall">
+
+                    <h4>For all users</h4>
+                    <h4>10€/mois</h4>
+                    <ul>
+                        <li>Number of channels: 10</li>
+                        <li>Fastmode: ✅</li>
+                        <li>Support: ✅</li>
+                        <li>Dedicated server: ❌</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/aEU01M8kNe3u72UbIJ"><button class="buybutton">Buy</button></a>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><button class="buybutton"><img src="https://freepngimg.com/thumb/paypal/2-2-paypal-logo-transparent-png.png" width="40" height="30"></button>
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="M2XZZSQM5DQRJ">
+                        </form>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>Pro</h3>
+            <div class="row">
+                <div class="col-6 col-12-xsmall">
+                    <h4>For experts in resale</h4>
+                    <h4>20€/mois</h4>
+                    <ul>
+                        <li>Number of channels: ∝</li>
+                        <li>Fastmode: ✅</li>
+                        <li>Support: ✅</li>
+                        <li>Dedicated server: ✅</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/8wMeWGcB3e3ugDueUW"><button class="buybutton">Buy</button></a>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"></a><button class="buybutton"><img src="https://freepngimg.com/thumb/paypal/2-2-paypal-logo-transparent-png.png" width="40" height="30"></button>
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="ZDH9KHF4W8S2W">
+                        </form>
+                </div>
+            </div>
+        </section>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="https://instagram.com/botvinted" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://github.com/TheLowHigh" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+        <li><a href="https://discord.gg/W6MRNaXwQ8" class="icon brands alt fa-discord"><span class="label">Discord</span></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>&copy; Vinted Bot. All rights reserved.</li>
+    </ul>
+</footer>
 
     <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
@@ -109,21 +215,7 @@
         <script src="assets/js/breakpoints.min.js"></script>
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
-        <script src="bundle.js"></script>
-
-			<script type="text/javascript">
-
-				if (navigator.userAgent.match(/Android/i) ||
-					navigator.userAgent.match(/webOS/i) ||
-					navigator.userAgent.match(/iPhone/i) ||
-					navigator.userAgent.match(/iPad/i) ||
-					navigator.userAgent.match(/iPod/i) ||
-					navigator.userAgent.match(/BlackBerry/i) ||
-					navigator.userAgent.match(/Windows Phone/i) ){
-						self.location = "mobile-pricing.html";
-					}
-			  
-			  </script>
+        <script src="assets/js/bundle.js"></script>
 </body>
 </html>
 
