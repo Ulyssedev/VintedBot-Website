@@ -66,4 +66,4 @@ node_modules/
 .env
 
 # webpack build output
-public/bundle.js
+bundle.js
