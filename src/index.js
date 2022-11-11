@@ -106,3 +106,19 @@ manageButton.addEventListener('click', (e) => {
   window.open('https://billing.stripe.com/p/login/eVa17dcQLfO82fm8ww?prefilled_email='+auth.currentUser.email)
 })
 }
+
+const discordButton = document.querySelector('.discordbutton')
+if (discordButton) {
+discordButton.addEventListener('click', (e) => {
+  e.preventDefault()
+  window.open('https://discord.gg/W6MRNaXwQ8')
+})
+}
+
+const discordButtonMobile = document.querySelector('.discordbuttonmobile')
+if (discordButtonMobile) {
+discordButtonMobile.addEventListener('click', (e) => {
+  e.preventDefault()
+  window.open('https://discord.gg/W6MRNaXwQ8')
+})
+}
