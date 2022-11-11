@@ -107,7 +107,7 @@ span {
 
 }
 
-button {
+.buybutton {
     display: block;
     margin: 20px auto;
     width: 150px;
@@ -122,7 +122,7 @@ button {
     transition: all ease-in-out .2s;
 }
 
-button:hover {
+.buybuttonbutton:hover {
     background: #c0392b;          
 }
 
