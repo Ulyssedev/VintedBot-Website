@@ -16,6 +16,7 @@ const firebaseConfig = {
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const auth = getAuth();
+  // For emulation use : 
   // connectAuthEmulator(auth, "http://127.0.0.1:9099");
 
 
