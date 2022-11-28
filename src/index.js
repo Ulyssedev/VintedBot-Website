@@ -29,17 +29,20 @@ if (signupForm) {
 
     const email = signupForm.email.value
     const password = signupForm.password.value
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(cred => {
-        console.log('user created:', cred.user)
-        signupForm.reset()
-        window.location = 'index.html'
-      })
-      .catch(err => {
-        console.log(err.message)
-        alert(err.message)
-      })
+    if (signupForm.terms.checked) {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(cred => {
+          console.log('user created:', cred.user)
+          signupForm.reset()
+          window.location = 'index.html'
+        })
+        .catch(err => {
+          console.log(err.message)
+          alert(err.message)
+        })
+    } else {
+      alert('Please agree to terms and conditions')
+    }
   })
 }
 
