@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
+import { getPerformance } from "firebase/performance";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyCKd8gi7RIjeEIVj9GnAn4AvkBxgEmCJ2w",
@@ -16,6 +18,7 @@ const firebaseConfig = {
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const auth = getAuth();
+  const perf = getPerformance(app);
   // For emulation use : 
   // connectAuthEmulator(auth, "http://127.0.0.1:9099");
 
