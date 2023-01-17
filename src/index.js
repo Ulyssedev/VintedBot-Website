@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, signInWithCredential, signInWithCustomToken, fromJSON, OAuthProvider } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
 
@@ -20,7 +20,7 @@ const firebaseConfig = {
   const auth = getAuth();
   const perf = getPerformance(app);
   // For emulation use : 
-  // connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  connectAuthEmulator(auth, "http://127.0.0.1:9099");
 
 
 
@@ -128,4 +128,53 @@ discordButtonMobile.addEventListener('click', (e) => {
   e.preventDefault()
   window.open('https://discord.gg/W6MRNaXwQ8')
 })
+}
+
+window.loginWithDiscord = () => {
+  const clientId = "CLIENT_ID";
+  const redirectUri = `${window.location.origin}/discord`;
+  const scope = "identify";
+  const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
+  window.location.href = url;
+}
+
+window.confirmLoginWithDiscord = () => {
+  const clientId = "CLIENT_ID";
+  const clientSecret = "CLIENT_SECRET";
+  const redirectUri = `${window.location.origin}/discord`;
+  const code = new URLSearchParams(window.location.search).get("code");
+  const grant_type = "authorization_code";
+  const params = new URLSearchParams();
+  params.append("client_id", clientId);
+  params.append("client_secret", clientSecret);
+  params.append("grant_type", grant_type);
+  params.append("code", code);
+  params.append("redirect_uri", redirectUri);
+  fetch('https://discord.com/api/oauth2/token', { method: "POST", body: params })
+
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+    // Use the access token to authenticate the user with Firebase and retrieve a Firebase custom auth token.
+    const accessToken = data.access_token;
+    signInWithCustomToken(auth, accessToken)
+    .then((result) => {
+      // Signed in 
+      const user = result.user;
+      console.log(user);
+      window.location = 'index.html'
+    }
+    )
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    }
+    );
+  })
+  .catch(error => {
+    console.log(error);
+  }
+  );
 }
