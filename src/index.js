@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, signInWithCredential, signInWithCustomToken, fromJSON, OAuthProvider } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
+import { getFirestore, collection, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where, orderBy, limit, startAfter, endBefore, startAt, endAt, onSnapshot, arrayUnion, arrayRemove, increment, runTransaction, batch, connectFirestoreEmulator } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -19,10 +20,10 @@ const firebaseConfig = {
   const analytics = getAnalytics(app);
   const auth = getAuth();
   const perf = getPerformance(app);
+  const db = getFirestore(app);
   // For emulation use : 
-  connectAuthEmulator(auth, "http://127.0.0.1:9099");
-
-
+   connectAuthEmulator(auth, "http://127.0.0.1:9099");
+   connectFirestoreEmulator(db, "localhost", 8080);
 
 
 const signupForm = document.querySelector('.signup')
@@ -151,30 +152,47 @@ window.confirmLoginWithDiscord = () => {
   params.append("code", code);
   params.append("redirect_uri", redirectUri);
   fetch('https://discord.com/api/oauth2/token', { method: "POST", body: params })
-
 .then(response => response.json())
 .then(data => {
-    console.log(data);
-    // Use the access token to authenticate the user with Firebase and retrieve a Firebase custom auth token.
-    const accessToken = data.access_token;
-    signInWithCustomToken(auth, accessToken)
-    .then((result) => {
-      // Signed in 
-      const user = result.user;
-      console.log(user);
-      window.location = 'index.html'
-    }
-    )
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-    }
-    );
+  const { access_token, token_type } = data;
+  fetch('https://discord.com/api/users/@me', {
+    headers: {
+      authorization: `${token_type} ${access_token}`,
+    },
   })
-  .catch(error => {
-    console.log(error);
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    const { id, username, discriminator, avatar } = data;
+    console.log(id, username, discriminator, avatar)
+    setDoc(doc(db, "users", auth.currentUser.uid), {
+      discord: {
+        id: id,
+        username: username,
+        discriminator: discriminator,
+        avatar: avatar
+      }
+    }, { merge: true })
+    window.location = 'dashboard.html'
+  });
+});
+}
+
+window.displayavatar = () => {
+  if (localStorage.getItem("avatar")) {
+    document.getElementById("avatar").src = localStorage.getItem("avatar");
+    return;
   }
-  );
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
+        if (doc.exists()) {
+          if (doc.data().discord) {
+            document.getElementById("avatar").src = "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256";
+            localStorage.setItem("avatar", "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256");
+          }
+        }
+      })
+    }
+  })
 }
