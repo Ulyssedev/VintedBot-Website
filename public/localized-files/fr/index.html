@@ -19,28 +19,38 @@
 	<body class="is-preload">
 		<div id="page-wrapper">
 
-			<!-- Header -->
-			<header id="header">
-				<h1 id="logo">
-				<a href="index.html">Vinted Bot</a><a href="inscription.html" class="button small" style="margin: 10px;padding-left: 10px;padding-right: 10px; display: none;">Inscription</a>
-				<button class="logout" style="display: none;">Déconnexion</button><button class="dashboard" style="display: none;">Tableau de bord</button>
-            <button class="discord button" style="display: none;" onclick="loginWithDiscord()">Lier compte Discord</button></h1>
-				<nav id="nav">
-					<ul>
-						<li><a href="index.html">Accueil</a></li>
-						<li>
-							<a href="#">Documentation</a>
-							<ul>
-								<li><a href="fonctionnement.html">Fonctionnement</a></li>
-                                <li><a href="fonctionnalités.html">Fonctionnalités</a></li>
-								<li><a href="faq.html">FAQ</a></li>
-								<li><a href="privacy.html">Politique de confidentialité</a></li>
-							</ul>
-						</li>
-						<li><a href="tarification.html" class="button primary">Acheter</a></li>
+        <!-- Header -->
+		<header id="header">
+			<h1 id="logo">
+				
+				<div id="user-container">
+					<a id="avatar-link" href="#">
+						<img class="user" src="images/user.svg" alt="Avatar" id="avatar">
+					</a>
+					<ul id="user-menu">
+						<li class="sign-up" style="display: none;"><img class="icons" src="images/signup.svg"><a href="inscription">Inscription</a></li>
+						<li class="dashboard" style="display: none;"><img class="icons" src="images/dashboard.svg"><a href="dashboard">Tableau de bord</a></li>
+						<li class="discord" style="display: none;"><img class="icons" src="images/discord-small.svg"><a href ="#" onclick="loginWithDiscord()">Lier compte Discord</a></li>
+						<li class="logout" style="display: none;"><img class="icons" src="images/logout.svg"><a href="#">Déconnexion</a></li>
 					</ul>
-				</nav>
-			</header>
+				</div>
+			</h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="index">Accueil</a></li>
+					<li>
+						<a href="#">Documentation</a>
+						<ul>
+							<li><a href="fonctionnement">Fonctionnement</a></li>
+							<li><a href="fonctionnalités">Fonctionnalités</a></li>
+							<li><a href="faq">FAQ</a></li>
+							<li><a href="privacy">Politique de confidentialité</a></li>
+						</ul>
+					</li>
+					<li><a href="tarification" class="button primary">Acheter</a></li>
+				</ul>
+			</nav>
+		</header>
 
 			<!-- Banner -->
 				<section id="banner">
@@ -91,7 +101,7 @@
 						</header>
 						<p>Les requêtes d'actualisations effectuées par le Bot sont émises depuis plusieurs data centers afin de permettre une rapidité inégalable.</p>
 						<ul class="actions">
-							<li><a href="fonctionnement.html" class="button">Plus d'informations</a></li>
+							<li><a href="fonctionnement" class="button">Plus d'informations</a></li>
 						</ul>
 					</div>
 					<a href="#three" class="goto-next scrolly">Next</a>
@@ -107,7 +117,7 @@
 						</header>
 						<p>Nous offrons actuellement l'un des tarifs les plus abordables. Le prix est utilisé pour couvrir les coûts des data centers, le temps de développement et le support disponible chaque jour de la semaine.</p>
 						<ul class="actions">
-							<li><a href="tarification.html" class="button">Plus d'informations</a></li>
+							<li><a href="tarification" class="button">Plus d'informations</a></li>
 						</ul>
 					</div>
 					<a href="#four" class="goto-next scrolly">Next</a>
@@ -156,7 +166,7 @@
 						</div>
 						<footer class="major">
 							<ul class="actions special">
-								<li><a href="tarification.html" class="button">Acheter</a></li>
+								<li><a href="tarification" class="button">Acheter</a></li>
 							</ul>
 						</footer>
 					</div>

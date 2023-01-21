@@ -93,12 +93,11 @@ onAuthStateChanged(auth, user => {
     }
   } else {
     console.log('user logged out')
-    if (document.querySelector('.button.small')) {
-      document.querySelector('.button.small').style.display = 'inline-block'
+    if (document.querySelector('.sign-up')) {
+      document.querySelector('.sign-up').style.display = 'inline-block'
     }
   }
   if (user) {
-    //if the user is in the firestore database, hide discord button
     const docRef = doc(db, "users", user.uid);
     getDoc(docRef).then((doc) => {
       if (doc.exists()) {
@@ -203,21 +202,40 @@ window.confirmLoginWithDiscord = () => {
 });
 }
 
-window.displayavatar = () => {
-  if (localStorage.getItem("avatar")) {
-    document.getElementById("avatar").src = localStorage.getItem("avatar");
-    return;
-  }
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
-        if (doc.exists()) {
-          if (doc.data().discord) {
-            document.getElementById("avatar").src = "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256";
-            localStorage.setItem("avatar", "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256");
-          }
-        }
-      })
-    }
-  })
+if (localStorage.getItem("avatar")) {
+  document.querySelectorAll('[id=avatar]').forEach(element => {
+    element.src = localStorage.getItem("avatar");
+  });
 }
+else {
+onAuthStateChanged(auth, user => {
+  if (user) {
+    getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
+      if (doc.exists()) {
+        if (doc.data().discord) {
+          document.querySelectorAll('[id=avatar]').forEach(element => {
+            element.src = "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256";
+          });
+          localStorage.setItem("avatar", "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256");
+        }
+      }
+    })
+  }
+})
+}
+
+var avatarLink = document.getElementById("avatar-link");
+var userMenu = document.getElementById("user-menu");
+
+avatarLink.addEventListener("click", function() {
+    userMenu.style.display = "block";
+});
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('#user-container')) {
+      userMenu.style.display = 'none';
+  }
+});
+avatarLink.addEventListener("touchstart", function() {
+    userMenu.style.display = "block";
+}
+);
