@@ -97,6 +97,26 @@ onAuthStateChanged(auth, user => {
       document.querySelector('.button.small').style.display = 'inline-block'
     }
   }
+  if (user) {
+    //if the user is in the firestore database, hide discord button
+    const docRef = doc(db, "users", user.uid);
+    getDoc(docRef).then((doc) => {
+      if (doc.exists()) {
+        console.log("Document data:", doc.data());
+        if (document.querySelector('.discord')) {
+          document.querySelector('.discord').style.display = 'none'
+        }
+      }
+      else {
+        console.log("No such document!");
+        if (document.querySelector('.discord')) {
+          document.querySelector('.discord').style.display = 'inline-block'
+        }
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  }
 })
 
 const dashboardButton = document.querySelector('.dashboard')
@@ -173,8 +193,13 @@ window.confirmLoginWithDiscord = () => {
         avatar: avatar
       }
     }, { merge: true })
-    window.location = 'dashboard.html'
-  });
+    .then(() => {
+      console.log("Document successfully written!");
+      window.location = 'dashboard.html'
+    })
+  }).catch(err => {
+    console.log(err)
+    });
 });
 }
 
