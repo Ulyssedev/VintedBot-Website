@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, signInWithCredential, signInWithCustomToken, fromJSON, OAuthProvider } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
+import { getFirestore, collection, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where, orderBy, limit, startAfter, endBefore, startAt, endAt, onSnapshot, arrayUnion, arrayRemove, increment, runTransaction, batch, connectFirestoreEmulator } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -19,10 +20,10 @@ const firebaseConfig = {
   const analytics = getAnalytics(app);
   const auth = getAuth();
   const perf = getPerformance(app);
+  const db = getFirestore(app);
   // For emulation use : 
-  // connectAuthEmulator(auth, "http://127.0.0.1:9099");
-
-
+   connectAuthEmulator(auth, "http://127.0.0.1:9099");
+   connectFirestoreEmulator(db, "localhost", 8080);
 
 
 const signupForm = document.querySelector('.signup')
@@ -96,6 +97,26 @@ onAuthStateChanged(auth, user => {
       document.querySelector('.button.small').style.display = 'inline-block'
     }
   }
+  if (user) {
+    //if the user is in the firestore database, hide discord button
+    const docRef = doc(db, "users", user.uid);
+    getDoc(docRef).then((doc) => {
+      if (doc.exists()) {
+        console.log("Document data:", doc.data());
+        if (document.querySelector('.discord')) {
+          document.querySelector('.discord').style.display = 'none'
+        }
+      }
+      else {
+        console.log("No such document!");
+        if (document.querySelector('.discord')) {
+          document.querySelector('.discord').style.display = 'inline-block'
+        }
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  }
 })
 
 const dashboardButton = document.querySelector('.dashboard')
@@ -128,4 +149,75 @@ discordButtonMobile.addEventListener('click', (e) => {
   e.preventDefault()
   window.open('https://discord.gg/W6MRNaXwQ8')
 })
+}
+
+window.loginWithDiscord = () => {
+  const clientId = "CLIENT_ID";
+  const redirectUri = `${window.location.origin}/discord`;
+  const scope = "identify";
+  const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
+  window.location.href = url;
+}
+
+window.confirmLoginWithDiscord = () => {
+  const clientId = "CLIENT_ID";
+  const clientSecret = "CLIENT_SECRET";
+  const redirectUri = `${window.location.origin}/discord`;
+  const code = new URLSearchParams(window.location.search).get("code");
+  const grant_type = "authorization_code";
+  const params = new URLSearchParams();
+  params.append("client_id", clientId);
+  params.append("client_secret", clientSecret);
+  params.append("grant_type", grant_type);
+  params.append("code", code);
+  params.append("redirect_uri", redirectUri);
+  fetch('https://discord.com/api/oauth2/token', { method: "POST", body: params })
+.then(response => response.json())
+.then(data => {
+  const { access_token, token_type } = data;
+  fetch('https://discord.com/api/users/@me', {
+    headers: {
+      authorization: `${token_type} ${access_token}`,
+    },
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    const { id, username, discriminator, avatar } = data;
+    console.log(id, username, discriminator, avatar)
+    setDoc(doc(db, "users", auth.currentUser.uid), {
+      discord: {
+        id: id,
+        username: username,
+        discriminator: discriminator,
+        avatar: avatar
+      }
+    }, { merge: true })
+    .then(() => {
+      console.log("Document successfully written!");
+      window.location = 'dashboard.html'
+    })
+  }).catch(err => {
+    console.log(err)
+    });
+});
+}
+
+window.displayavatar = () => {
+  if (localStorage.getItem("avatar")) {
+    document.getElementById("avatar").src = localStorage.getItem("avatar");
+    return;
+  }
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
+        if (doc.exists()) {
+          if (doc.data().discord) {
+            document.getElementById("avatar").src = "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256";
+            localStorage.setItem("avatar", "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256");
+          }
+        }
+      })
+    }
+  })
 }

@@ -15,7 +15,8 @@
                         <header id="header">
                             <h1 id="logo">
                             <a href="index.html">Vinted Bot</a><a href="inscription.html" class="button small" style="margin: 10px;padding-left: 10px;padding-right: 10px; display: none;">Inscription</a>
-                            <button class="logout" style="display: none;">Déconnexion</button><button class="dashboard" style="display: none;">Tableau de bord</button></h1>
+                            <button class="logout" style="display: none;">Déconnexion</button><button class="dashboard" style="display: none;">Tableau de bord</button>
+            <button class="discord button" style="display: none;" onclick="loginWithDiscord()">Lier compte Discord</button></h1>
                             <nav id="nav">
                                 <ul>
                                     <li><a href="index.html">Accueil</a></li>
@@ -39,6 +40,7 @@
 				<header class="major">
 					<h2>Dashboard</h2>
 				</header>
+            <img class="avatar" src="images/user.svg" alt="Avatar" id="avatar"></img>
             <div class="managebutton">
                 <button class="manage">Gérer l'abonnement</button>
             </div>
@@ -71,6 +73,9 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/bundle.js"></script>
+    <script>
+        displayavatar();
+    </script>
 
     </body>
 </html>
