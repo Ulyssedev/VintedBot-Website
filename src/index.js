@@ -3,6 +3,7 @@ import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, 
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
 import { getFirestore, collection, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where, orderBy, limit, startAfter, endBefore, startAt, endAt, onSnapshot, arrayUnion, arrayRemove, increment, runTransaction, batch, connectFirestoreEmulator } from "firebase/firestore";
+import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions";
 
 
 const firebaseConfig = {
@@ -21,9 +22,11 @@ const firebaseConfig = {
   const auth = getAuth();
   const perf = getPerformance(app);
   const db = getFirestore(app);
+  const functions = getFunctions(app);
   // For emulation use : 
-   connectAuthEmulator(auth, "http://127.0.0.1:9099");
-   connectFirestoreEmulator(db, "localhost", 8080);
+  connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  connectFirestoreEmulator(db, "localhost", 8080);
+  connectFunctionsEmulator(functions, "localhost", 5001);
 
 
 const signupForm = document.querySelector('.signup')
@@ -151,55 +154,35 @@ discordButtonMobile.addEventListener('click', (e) => {
 }
 
 window.loginWithDiscord = () => {
-  const clientId = "CLIENT_ID";
+  const clientId = "963382206443704342";
   const redirectUri = `${window.location.origin}/discord`;
   const scope = "identify";
   const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
   window.location.href = url;
-}
+};
 
-window.confirmLoginWithDiscord = () => {
-  const clientId = "CLIENT_ID";
-  const clientSecret = "CLIENT_SECRET";
-  const redirectUri = `${window.location.origin}/discord`;
-  const code = new URLSearchParams(window.location.search).get("code");
-  const grant_type = "authorization_code";
-  const params = new URLSearchParams();
-  params.append("client_id", clientId);
-  params.append("client_secret", clientSecret);
-  params.append("grant_type", grant_type);
-  params.append("code", code);
-  params.append("redirect_uri", redirectUri);
-  fetch('https://discord.com/api/oauth2/token', { method: "POST", body: params })
-.then(response => response.json())
-.then(data => {
-  const { access_token, token_type } = data;
-  fetch('https://discord.com/api/users/@me', {
-    headers: {
-      authorization: `${token_type} ${access_token}`,
-    },
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
-    const { id, username, discriminator, avatar } = data;
-    console.log(id, username, discriminator, avatar)
-    setDoc(doc(db, "users", auth.currentUser.uid), {
-      discord: {
-        id: id,
-        username: username,
-        discriminator: discriminator,
-        avatar: avatar
-      }
-    }, { merge: true })
-    .then(() => {
-      console.log("Document successfully written!");
-      window.location = 'dashboard.html'
-    })
-  }).catch(err => {
-    console.log(err)
-    });
-});
+const confirmLoginWithDiscord = httpsCallable(functions, "confirmLoginWithDiscord");
+if (new URLSearchParams(window.location.search).get("code")) {
+  confirmLoginWithDiscord({ code: new URLSearchParams(window.location.search).get("code"), origin: window.location.origin })
+    .then((result) => {
+      const data = result.data;
+      const { id, username, discriminator, avatar } = data;
+        setDoc(doc(db, "users", auth.currentUser.uid), {
+          discord: {
+            id: id,
+            username: username,
+            discriminator: discriminator,
+            avatar: avatar
+        }
+      }, { merge: true })
+        .then(() => {
+          console.log("Document successfully written!");
+          window.location = 'dashboard.html'
+        })})
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    }
+  );
 }
 
 if (localStorage.getItem("avatar")) {
@@ -227,6 +210,7 @@ onAuthStateChanged(auth, user => {
 var avatarLink = document.getElementById("avatar-link");
 var userMenu = document.getElementById("user-menu");
 
+if (avatarLink) {
 avatarLink.addEventListener("click", function() {
     userMenu.style.display = "block";
 });
@@ -239,3 +223,4 @@ avatarLink.addEventListener("touchstart", function() {
     userMenu.style.display = "block";
 }
 );
+}
