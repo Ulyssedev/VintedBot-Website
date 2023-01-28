@@ -28,7 +28,7 @@
 			<h1 id="logo">
 				
 				<div id="user-container">
-					<a id="avatar-link" href="#">
+					<a id="avatar-link" href="#" onclick="return false;">
 						<img class="user" src="images/user.svg" alt="Avatar" id="avatar">
 					</a>
 					<ul id="user-menu">
@@ -53,6 +53,19 @@
 					</li>
 					<li><a href="pricing" class="button primary">Buy</a></li>
 				</ul>
+				<div id="user-container-mobile" style="display: none;">
+					<li>
+					<a id="avatar-link">
+						Account
+					</a>
+					<ul id="user-menu">
+						<li class="sign-up"><a href="signup" class="sign-up" style="display: none;">Sign Up</a></li>
+						<li class="dashboard"><a href="dashboard">Dashboard</a></li>
+						<li class="discord"><a href ="#">Link Discord</a></li>
+						<li class="logout"><a href="#">Logout</a></li>
+					</ul>
+					</li>
+				</div>
 			</nav>
 		</header>
 
@@ -68,6 +81,8 @@
 				</div>
 				<a href="#one" class="goto-next scrolly">Next</a>
 			</section>
+
+
 
 			<!-- One -->
 			<section id="one" class="spotlight style1 bottom">

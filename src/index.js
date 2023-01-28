@@ -55,17 +55,19 @@ if (signupForm) {
 
 const logoutButton = document.querySelector('.logout')
 if (logoutButton) {
-  logoutButton.addEventListener('click', (e) => {
+  document.querySelectorAll('.logout').forEach((element) => {
+  element.addEventListener('click', (e) => {
     e.preventDefault()
     signOut(auth).then(() => {
       console.log('user signed out')
       window.location = 'index.html'
-    })
-    .catch(err => {
-      console.log(err.message)
+      if (localStorage.getItem("avatar")) {
+        localStorage.removeItem("avatar")
+      }
     })
   })
-}
+  })
+  }
 
 const loginForm = document.querySelector('.login')
 if (loginForm) {
@@ -88,16 +90,57 @@ loginForm.addEventListener('submit', (e) => {
 }
 
 onAuthStateChanged(auth, user => {
+  const signupelement = document.getElementsByClassName("depth-1")[4];
+  const dashboardelement = document.getElementsByClassName("depth-1")[5];
+  const discordelement = document.getElementsByClassName("depth-1")[6];
+  const logoutelement = document.getElementsByClassName("depth-1")[7];
   if (user) {
     console.log('user logged in:', user)
     if (document.querySelector('.logout')) {
-      document.querySelector('.logout').style.display = 'inline-block'
-      document.querySelector('.dashboard').style.display = 'inline-block'
+      document.querySelectorAll('.logout').forEach((element) => {
+        element.style.display = 'inline-block'
+      })
     }
-  } else {
+
+    if (document.querySelector('.dashboard')) {
+      document.querySelectorAll('.dashboard').forEach((element) => {
+        element.style.display = 'inline-block'
+      })
+    }
+    if (signupelement) {
+    signupelement.parentNode.removeChild(signupelement);
+    }
+    if (discordelement) {
+    discordelement.addEventListener('click', (e) => {
+      e.preventDefault()
+      loginWithDiscord()
+    })}
+    if (logoutelement) {
+    logoutelement.addEventListener('click', (e) => {
+      e.preventDefault()
+      signOut(auth).then(() => {
+        console.log('user signed out')
+        window.location = 'index.html'
+        if (localStorage.getItem("avatar")) {
+          localStorage.removeItem("avatar")
+        }
+      })})}
+    }
+    else {
     console.log('user logged out')
     if (document.querySelector('.sign-up')) {
-      document.querySelector('.sign-up').style.display = 'inline-block'
+      document.querySelectorAll('.sign-up').forEach((element) => {
+        element.style.display = 'inline-block'
+      })
+    }
+    if (logoutelement) {
+    logoutelement.parentNode.removeChild(logoutelement);
+    }
+    if (discordelement) {
+    discordelement.parentNode.removeChild(discordelement);
+    }
+    if (dashboardelement) {
+    dashboardelement.parentNode.removeChild(dashboardelement);
     }
   }
   if (user) {
@@ -106,13 +149,22 @@ onAuthStateChanged(auth, user => {
       if (doc.exists()) {
         console.log("Document data:", doc.data());
         if (document.querySelector('.discord')) {
-          document.querySelector('.discord').style.display = 'none'
+          document.querySelectorAll('.discord').forEach((element) => {
+            element.style.display = 'none'
+          }
+          )
+        if (discordelement) {
+        discordelement.parentNode.removeChild(discordelement);
         }
+
+      }
       }
       else {
         console.log("No such document!");
         if (document.querySelector('.discord')) {
-          document.querySelector('.discord').style.display = 'inline-block'
+          document.querySelectorAll('.discord').forEach((element) => {
+            element.style.display = 'inline-block'
+          })
         }
       }
     }).catch((error) => {
