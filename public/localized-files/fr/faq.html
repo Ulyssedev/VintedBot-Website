@@ -6,32 +6,64 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="shortcut icon" type="image/x-icon" href="images/vinted.jpg"/>
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="manifest" href="/images/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/images/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/images/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
 
-			<!-- Header -->
-			<header id="header">
-				<h1 id="logo">
-				<a href="index.html">Vinted Bot</a><a href="inscription.html" class="button small" style="margin: 10px;padding-left: 10px;padding-right: 10px; display: none;">Inscription</a>
-				<button class="logout" style="display: none;">Déconnexion</button><button class="dashboard" style="display: none;">Tableau de bord</button></h1>
-				<nav id="nav">
-					<ul>
-						<li><a href="index.html">Accueil</a></li>
-						<li>
-							<a href="#">Documentation</a>
-							<ul>
-								<li><a href="fonctionnement.html">Fonctionnement</a></li>
-                                <li><a href="fonctionnalités.html">Fonctionnalités</a></li>
-								<li><a href="faq.html">FAQ</a></li>
-								<li><a href="privacy.html">Politique de confidentialité</a></li>
-							</ul>
-						</li>
-						<li><a href="tarification.html" class="button primary">Acheter</a></li>
+        <!-- Header -->
+		<header id="header">
+			<h1 id="logo">
+				
+				<div id="user-container">
+					<a id="avatar-link" href="#">
+						<img class="user" src="images/user.svg" alt="Avatar" id="avatar">
+					</a>
+					<ul id="user-menu">
+						<li class="sign-up" style="display: none;"><img class="icons" src="images/signup.svg"><a href="inscription">Inscription</a></li>
+						<li class="dashboard" style="display: none;"><img class="icons" src="images/dashboard.svg"><a href="dashboard">Tableau de bord</a></li>
+						<li class="discord" style="display: none;"><img class="icons" src="images/discord-small.svg"><a href ="#" onclick="loginWithDiscord()">Lier compte Discord</a></li>
+						<li class="logout" style="display: none;"><img class="icons" src="images/logout.svg"><a href="#">Déconnexion</a></li>
 					</ul>
-				</nav>
-			</header>
+				</div>
+			</h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="index">Accueil</a></li>
+					<li>
+						<a href="#">Documentation</a>
+						<ul>
+							<li><a href="fonctionnement">Fonctionnement</a></li>
+							<li><a href="fonctionnalités">Fonctionnalités</a></li>
+							<li><a href="faq">FAQ</a></li>
+							<li><a href="privacy">Politique de confidentialité</a></li>
+						</ul>
+					</li>
+					<li><a href="tarification" class="button primary">Acheter</a></li>
+				</ul>
+				<div id="user-container-mobile" style="display: none;">
+					<li>
+					<a id="avatar-link">
+						Compte
+					</a>
+					<ul id="user-menu">
+						<li class="sign-up"><a href="inscription" class="sign-up" style="display: none;">Inscription</a></li>
+						<li class="dashboard"><a href="dashboard">Tableau de bord</a></li>
+						<li class="discord"><a href ="#">Lier compte Discord</a></li>
+						<li class="logout"><a href="#">Déconnexion</a></li>
+					</ul>
+					</li>
+				</div>
+			</nav>
+		</header>
 
 			<!-- Main -->
 				<div id="main" class="wrapper style1">

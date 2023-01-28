@@ -1,7 +1,9 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, signInWithCredential, signInWithCustomToken, fromJSON, OAuthProvider } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
+import { getFirestore, collection, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where, orderBy, limit, startAfter, endBefore, startAt, endAt, onSnapshot, arrayUnion, arrayRemove, increment, runTransaction, batch, connectFirestoreEmulator } from "firebase/firestore";
+import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions";
 
 
 const firebaseConfig = {
@@ -19,10 +21,12 @@ const firebaseConfig = {
   const analytics = getAnalytics(app);
   const auth = getAuth();
   const perf = getPerformance(app);
+  const db = getFirestore(app);
+  const functions = getFunctions(app);
   // For emulation use : 
-  // connectAuthEmulator(auth, "http://127.0.0.1:9099");
-
-
+  connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  connectFirestoreEmulator(db, "localhost", 8080);
+  connectFunctionsEmulator(functions, "localhost", 5001);
 
 
 const signupForm = document.querySelector('.signup')
@@ -51,17 +55,19 @@ if (signupForm) {
 
 const logoutButton = document.querySelector('.logout')
 if (logoutButton) {
-  logoutButton.addEventListener('click', (e) => {
+  document.querySelectorAll('.logout').forEach((element) => {
+  element.addEventListener('click', (e) => {
     e.preventDefault()
     signOut(auth).then(() => {
       console.log('user signed out')
       window.location = 'index.html'
-    })
-    .catch(err => {
-      console.log(err.message)
+      if (localStorage.getItem("avatar")) {
+        localStorage.removeItem("avatar")
+      }
     })
   })
-}
+  })
+  }
 
 const loginForm = document.querySelector('.login')
 if (loginForm) {
@@ -84,17 +90,86 @@ loginForm.addEventListener('submit', (e) => {
 }
 
 onAuthStateChanged(auth, user => {
+  const signupelement = document.getElementsByClassName("depth-1")[4];
+  const dashboardelement = document.getElementsByClassName("depth-1")[5];
+  const discordelement = document.getElementsByClassName("depth-1")[6];
+  const logoutelement = document.getElementsByClassName("depth-1")[7];
   if (user) {
     console.log('user logged in:', user)
     if (document.querySelector('.logout')) {
-      document.querySelector('.logout').style.display = 'inline-block'
-      document.querySelector('.dashboard').style.display = 'inline-block'
+      document.querySelectorAll('.logout').forEach((element) => {
+        element.style.display = 'inline-block'
+      })
     }
-  } else {
+
+    if (document.querySelector('.dashboard')) {
+      document.querySelectorAll('.dashboard').forEach((element) => {
+        element.style.display = 'inline-block'
+      })
+    }
+    if (signupelement) {
+    signupelement.parentNode.removeChild(signupelement);
+    }
+    if (discordelement) {
+    discordelement.addEventListener('click', (e) => {
+      e.preventDefault()
+      loginWithDiscord()
+    })}
+    if (logoutelement) {
+    logoutelement.addEventListener('click', (e) => {
+      e.preventDefault()
+      signOut(auth).then(() => {
+        console.log('user signed out')
+        window.location = 'index.html'
+        if (localStorage.getItem("avatar")) {
+          localStorage.removeItem("avatar")
+        }
+      })})}
+    }
+    else {
     console.log('user logged out')
-    if (document.querySelector('.button.small')) {
-      document.querySelector('.button.small').style.display = 'inline-block'
+    if (document.querySelector('.sign-up')) {
+      document.querySelectorAll('.sign-up').forEach((element) => {
+        element.style.display = 'inline-block'
+      })
     }
+    if (logoutelement) {
+    logoutelement.parentNode.removeChild(logoutelement);
+    }
+    if (discordelement) {
+    discordelement.parentNode.removeChild(discordelement);
+    }
+    if (dashboardelement) {
+    dashboardelement.parentNode.removeChild(dashboardelement);
+    }
+  }
+  if (user) {
+    const docRef = doc(db, "users", user.uid);
+    getDoc(docRef).then((doc) => {
+      if (doc.exists()) {
+        console.log("Document data:", doc.data());
+        if (document.querySelector('.discord')) {
+          document.querySelectorAll('.discord').forEach((element) => {
+            element.style.display = 'none'
+          }
+          )
+        if (discordelement) {
+        discordelement.parentNode.removeChild(discordelement);
+        }
+
+      }
+      }
+      else {
+        console.log("No such document!");
+        if (document.querySelector('.discord')) {
+          document.querySelectorAll('.discord').forEach((element) => {
+            element.style.display = 'inline-block'
+          })
+        }
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+    });
   }
 })
 
@@ -128,4 +203,76 @@ discordButtonMobile.addEventListener('click', (e) => {
   e.preventDefault()
   window.open('https://discord.gg/W6MRNaXwQ8')
 })
+}
+
+window.loginWithDiscord = () => {
+  const clientId = "963382206443704342";
+  const redirectUri = `${window.location.origin}/discord`;
+  const scope = "identify";
+  const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
+  window.location.href = url;
+};
+
+const confirmLoginWithDiscord = httpsCallable(functions, "confirmLoginWithDiscord");
+if (new URLSearchParams(window.location.search).get("code")) {
+  confirmLoginWithDiscord({ code: new URLSearchParams(window.location.search).get("code"), origin: window.location.origin })
+    .then((result) => {
+      const data = result.data;
+      const { id, username, discriminator, avatar } = data;
+        setDoc(doc(db, "users", auth.currentUser.uid), {
+          discord: {
+            id: id,
+            username: username,
+            discriminator: discriminator,
+            avatar: avatar
+        }
+      }, { merge: true })
+        .then(() => {
+          console.log("Document successfully written!");
+          window.location = 'dashboard.html'
+        })})
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    }
+  );
+}
+
+if (localStorage.getItem("avatar")) {
+  document.querySelectorAll('[id=avatar]').forEach(element => {
+    element.src = localStorage.getItem("avatar");
+  });
+}
+else {
+onAuthStateChanged(auth, user => {
+  if (user) {
+    getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
+      if (doc.exists()) {
+        if (doc.data().discord) {
+          document.querySelectorAll('[id=avatar]').forEach(element => {
+            element.src = "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256";
+          });
+          localStorage.setItem("avatar", "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256");
+        }
+      }
+    })
+  }
+})
+}
+
+var avatarLink = document.getElementById("avatar-link");
+var userMenu = document.getElementById("user-menu");
+
+if (avatarLink) {
+avatarLink.addEventListener("click", function() {
+    userMenu.style.display = "block";
+});
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('#user-container')) {
+      userMenu.style.display = 'none';
+  }
+});
+avatarLink.addEventListener("touchstart", function() {
+    userMenu.style.display = "block";
+}
+);
 }
