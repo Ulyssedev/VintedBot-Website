@@ -4221,11 +4221,16 @@ input, select, textarea {
 	margin-right: 10px;
 	margin-bottom: -5px;
 }
+#user-container-mobile {
+	display: none;
+}
 
 /*TODO : For mobile users, display the menu on the top right of the screen*/
 @media screen and (max-width: 738px) {
-	#user-container {
-		position: absolute;
-		right: 20px;
-	}
+#user-container {
+	display: none;
+}
+#user-container-mobile {
+	display: block;
+}
 }
