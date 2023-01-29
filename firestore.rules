@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function hasStarterSubs() {
+      return request.auth.token.stripeRole == "starter";
+    }
+
+    function hasClassicSubs() {
+      return request.auth.token.stripeRole == "clasic";
+    }
+
+    function hasProSubs() {
+        return request.auth.token.stripeRole == "pro";
+    }
+    
+
+    match /content-starter/{doc} {
+      allow read: if hasStarterSubs() || hasClassicSubs() || hasProSubs();
+    }
+    match /content-classic/{doc} {
+        allow read: if hasClassicSubs() || hasProSubs();
+    }
+    match /content-pro/{doc} {
+        allow read: if hasProSubs();
+    }
+    match /users/{uid} {
+      	allow read, write: if request.auth.uid == uid;
+    
+
+    match /checkout_sessions/{id} {
+        allow read, write: if request.auth.uid == uid;
+      }
+    match /subscriptions/{id} {
+        allow read: if request.auth.uid == uid;
+      }
+    match /products/{id} {
+      	allow read: if true;
+        }
+
+    match /prices/{id} {
+        allow read: if true;
+      }
+
+      match /tax_rates/{id} {
+        allow read: if true;
+  }
+}
+}
+}

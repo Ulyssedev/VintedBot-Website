@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/TheLowHigh/VintedBot-Website#readme",
   "dependencies": {
+    "@stripe/firestore-stripe-payments": "^0.0.6",
     "firebase": "^9.15.0"
   },
   "devDependencies": {

@@ -34,5 +34,12 @@
         "firebase-debug.*.log"
       ]
     }
-  ]
+  ],
+  "extensions": {
+    "firestore-stripe-payments": "stripe/firestore-stripe-payments@0.3.2"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
 }
