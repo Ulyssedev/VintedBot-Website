@@ -4110,72 +4110,6 @@ input, select, textarea {
 	}
 
 
-.manage {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	background-color: transparent;
-	border-radius: 4px;
-	border: 0;
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-	color: #ffffff !important;
-	cursor: pointer;
-	display: inline-block;
-	font-weight: 300;
-	height: 3em;
-	line-height: 3em;
-	padding: 1 2.25em;
-	text-align: center;
-	text-decoration: none;
-	white-space: nowrap;
-}
-.manage:hover {
-	background: #1f2cdb;          
-}
-.managebutton {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 200px;
-}
-.managepaypal {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	background-color: transparent;
-	border-radius: 4px;
-	border: 0;
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-	color: #ffffff !important;
-	cursor: pointer;
-	display: inline-block;
-	font-weight: 300;
-	height: 3em;
-	line-height: 3em;
-	padding: 1 2.25em;
-	text-align: center;
-	text-decoration: none;
-	white-space: nowrap;
-}
-.managepaypal:hover {
-	background: #1f2cdb;          
-}
-.managepaypalbutton {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 10px;
-}
 .avatar {
 	border-radius: 50%;
 	width: 100px;
@@ -4184,6 +4118,8 @@ input, select, textarea {
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 	display: block;
 	margin: 0 auto;
+	margin-top: -50px;
+	margin-bottom: 20px;
 }
 .user {
 	border-radius: 50%;
@@ -4224,6 +4160,46 @@ input, select, textarea {
 #user-container-mobile {
 	display: none;
 }
+
+.email {
+	text-align: center;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.subscription {
+	text-align: center;
+	font-weight: bold;
+	color: green;
+}
+
+.manage {
+	background-color: #635BFF;
+	border: none;
+	border-radius: 4px;
+	color: white;
+	cursor: pointer;
+	display: block;
+	font-size: 16px;
+	padding: 8px 16px;
+	text-align: center;
+	margin: 0 auto;
+	width: fit-content;
+	height: fit-content;
+  }
+  
+  .stripe-logo {
+	background: url(images/stripe-logo.png) no-repeat;
+	background-size: contain;
+	display: inline-block;
+	height: 1.2em;
+	margin-right: 8px;
+	margin-top: -2px;
+	vertical-align: middle;
+	width: 1.2em;
+  }
+  
+
 
 /*TODO : For mobile users, display the menu on the top right of the screen*/
 @media screen and (max-width: 738px) {

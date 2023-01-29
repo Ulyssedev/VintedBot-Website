@@ -2,6 +2,7 @@ const functions = require("firebase-functions");
 
 exports.confirmLoginWithDiscord = functions
   .runWith({ secrets: ["CLIENT_SECRET"]})
+  .region("europe-west1")
   .https.onCall((data, context) => {
   const origin = data.origin;
   const clientId = "963382206443704342";

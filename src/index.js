@@ -4,7 +4,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
 import { getFirestore, collection, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where, orderBy, limit, startAfter, endBefore, startAt, endAt, onSnapshot, arrayUnion, arrayRemove, increment, runTransaction, batch, connectFirestoreEmulator, addDoc, Firestore } from "firebase/firestore";
 import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions";
-import { getStripePayments, getCurrentUserSubscriptions, createCheckoutSession  } from "@stripe/firestore-stripe-payments";
+import { getStripePayments, getCurrentUserSubscriptions, createCheckoutSession } from "@stripe/firestore-stripe-payments";
 
 
 const firebaseConfig = {
@@ -23,7 +23,7 @@ const firebaseConfig = {
   const auth = getAuth();
   const perf = getPerformance(app);
   const db = getFirestore(app);
-  const functions = getFunctions(app);
+  const functions = getFunctions(app, "europe-west1");
   // For emulation use : 
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
   connectFirestoreEmulator(db, "localhost", 8080);
@@ -184,12 +184,21 @@ dashboardButton.addEventListener('click', (e) => {
 }
 
 const manageButton = document.querySelector('.manage')
+const createPortalLink = httpsCallable(functions, 'ext-firestore-stripe-payments-createPortalLink')
 if (manageButton) {
-manageButton.addEventListener('click', (e) => {
+//call createPortalLink function asynchrnously
+manageButton.addEventListener('click', async (e) => {
   e.preventDefault()
-  window.open('https://billing.stripe.com/p/login/eVa17dcQLfO82fm8ww?prefilled_email='+auth.currentUser.email)
+  await createPortalLink({ returnUrl: window.location.origin })
+    .then((result) => {
+      window.location.assign(result.data.url)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 })
 }
+
 
 const discordButton = document.querySelector('.discordbutton')
 if (discordButton) {
@@ -318,9 +327,11 @@ onAuthStateChanged(auth, async (user) => {
     getCurrentUserSubscriptions(payments).then((subscriptions) => {
       subscriptions.forEach((subscription) => {
         console.log(subscription.role);
-        if (document.querySelector(".subscription")) {
-          //document.querySelector(".subscription").style.display = "block";
-          //document.querySelector(".subscription").innerHTML = "You are subscribed to " + subscription.plan.nickname + " for " + subscription.plan.amount / 100 + " " + subscription.plan.currency.toUpperCase() + " per " + subscription.plan.interval + ".";
+        if (document.querySelector(".user-info")) {
+          document.querySelector(".user-info").style.display = "block";
+          document.querySelector(".email").innerHTML = user.email;
+          document.querySelector(".subscription").innerHTML = subscription.role.toUpperCase();
+          document.querySelector(".managebutton").style.display = "block";
         }
       });
     });
