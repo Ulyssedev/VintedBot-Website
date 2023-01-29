@@ -1,5 +1,13 @@
 {
   "projects": {
     "default": "vintedbot-3f0d6"
+  },
+  "targets": {},
+  "etags": {
+    "vintedbot-3f0d6": {
+      "extensionInstances": {
+        "firestore-stripe-payments": "d299558ca8bedaf78903cecf9d180590cd3d75b1644d0c891048344c0e6bc294"
+      }
+    }
   }
 }

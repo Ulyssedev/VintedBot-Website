@@ -1,9 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, signInWithCredential, signInWithCustomToken, fromJSON, OAuthProvider } from "firebase/auth";
+import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, signInWithCredential, signInWithCustomToken, fromJSON, OAuthProvider, getIdTokenResult, confirmPasswordReset } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
-import { getFirestore, collection, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where, orderBy, limit, startAfter, endBefore, startAt, endAt, onSnapshot, arrayUnion, arrayRemove, increment, runTransaction, batch, connectFirestoreEmulator } from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where, orderBy, limit, startAfter, endBefore, startAt, endAt, onSnapshot, arrayUnion, arrayRemove, increment, runTransaction, batch, connectFirestoreEmulator, addDoc, Firestore } from "firebase/firestore";
 import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions";
+import { getStripePayments, getCurrentUserSubscriptions, createCheckoutSession  } from "@stripe/firestore-stripe-payments";
 
 
 const firebaseConfig = {
@@ -145,29 +146,30 @@ onAuthStateChanged(auth, user => {
   }
   if (user) {
     const docRef = doc(db, "users", user.uid);
-    getDoc(docRef).then((doc) => {
+    getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
       if (doc.exists()) {
+        if (doc.data().discord) {
+      //if the field username is in the database
         console.log("Document data:", doc.data());
-        if (document.querySelector('.discord')) {
-          document.querySelectorAll('.discord').forEach((element) => {
-            element.style.display = 'none'
+          if (document.querySelector('.discord')) {
+            document.querySelectorAll('.discord').forEach((element) => {
+              element.style.display = 'none'
+            }
+            )
           }
-          )
         if (discordelement) {
         discordelement.parentNode.removeChild(discordelement);
-        }
-
-      }
-      }
-      else {
-        console.log("No such document!");
-        if (document.querySelector('.discord')) {
-          document.querySelectorAll('.discord').forEach((element) => {
-            element.style.display = 'inline-block'
-          })
-        }
-      }
-    }).catch((error) => {
+}}
+else {
+  console.log("No such document!");
+  if (document.querySelector('.discord')) {
+    document.querySelectorAll('.discord').forEach((element) => {
+      element.style.display = 'inline-block'
+    }
+    )
+}}
+}}
+).catch((error) => {
       console.log("Error getting document:", error);
     });
   }
@@ -237,6 +239,8 @@ if (new URLSearchParams(window.location.search).get("code")) {
   );
 }
 
+const handleWebhookEvents  = httpsCallable(functions, "ext-firestore-stripe-payments-handleWebhookEvents");
+
 if (localStorage.getItem("avatar")) {
   document.querySelectorAll('[id=avatar]').forEach(element => {
     element.src = localStorage.getItem("avatar");
@@ -259,6 +263,7 @@ onAuthStateChanged(auth, user => {
 })
 }
 
+
 var avatarLink = document.getElementById("avatar-link");
 var userMenu = document.getElementById("user-menu");
 
@@ -276,3 +281,50 @@ avatarLink.addEventListener("touchstart", function() {
 }
 );
 }
+
+//stripe stuff
+const payments = getStripePayments(app, {
+  productsCollection: "products",
+  customersCollection: "users",
+});
+
+// Listen to the button
+document.querySelectorAll(".buybutton").forEach((button) => {
+  button.addEventListener("click", async () => {
+    const user = auth.currentUser;
+    if (user) {
+      await createCheckoutSession(payments, {
+        successUrl: window.location.origin + "/dashboard",
+        cancelUrl: window.location.origin + "/dashboard",
+        price: `${button.id}`,
+        customerEmail: user.email,
+      })
+        .then((session) => {
+          window.location = session.url;
+        })
+    }
+    else {
+      window.location = document.querySelector(".sign-up a").href;
+    }
+  });
+});
+
+//if subscription is done, add it to the database
+
+
+// list current subscriptions
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    getCurrentUserSubscriptions(payments).then((subscriptions) => {
+      subscriptions.forEach((subscription) => {
+        console.log(subscription.role);
+        if (document.querySelector(".subscription")) {
+          //document.querySelector(".subscription").style.display = "block";
+          //document.querySelector(".subscription").innerHTML = "You are subscribed to " + subscription.plan.nickname + " for " + subscription.plan.amount / 100 + " " + subscription.plan.currency.toUpperCase() + " per " + subscription.plan.interval + ".";
+        }
+      });
+    });
+  }
+});
+
+
