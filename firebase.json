@@ -21,6 +21,9 @@
     "ui": {
       "enabled": true
     },
+    "extensions": {
+      "enabled": true
+    },
     "singleProjectMode": true
   },
   "functions": [

@@ -189,6 +189,8 @@ if (manageButton) {
 //call createPortalLink function asynchrnously
 manageButton.addEventListener('click', async (e) => {
   e.preventDefault()
+  manageButton.innerHTML = '';
+  manageButton.classList.add('load');
   await createPortalLink({ returnUrl: window.location.origin })
     .then((result) => {
       window.location.assign(result.data.url)
@@ -302,6 +304,8 @@ document.querySelectorAll(".buybutton").forEach((button) => {
   button.addEventListener("click", async () => {
     const user = auth.currentUser;
     if (user) {
+      button.innerHTML = '';
+      button.classList.replace('buybutton', 'load');
       await createCheckoutSession(payments, {
         successUrl: window.location.origin + "/dashboard",
         cancelUrl: window.location.origin + "/dashboard",
