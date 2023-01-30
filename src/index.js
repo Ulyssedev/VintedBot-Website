@@ -337,6 +337,15 @@ onAuthStateChanged(auth, async (user) => {
           document.querySelector(".subscription").innerHTML = subscription.role.toUpperCase();
           document.querySelector(".managebutton").style.display = "block";
         }
+      // if vintedbot is in the firestore, display it in the vintedbot-info div
+      getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
+        if (doc.exists()) {
+          if (doc.data().vintedbot) {
+            document.querySelector(".vintedbot-info").style.display = "block";
+            document.querySelector(".vintedbot-subsleft").innerHTML = doc.data().vintedbot.subs_left;
+          }
+        }
+      })
       });
     });
   }
