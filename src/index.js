@@ -337,18 +337,76 @@ onAuthStateChanged(auth, async (user) => {
           document.querySelector(".subscription").innerHTML = subscription.role.toUpperCase();
           document.querySelector(".managebutton").style.display = "block";
         }
-      // if vintedbot is in the firestore, display it in the vintedbot-info div
+      const docRef = doc(db, "users", auth.currentUser.uid);
       getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
         if (doc.exists()) {
           if (doc.data().vintedbot) {
             document.querySelector(".vintedbot-info").style.display = "block";
-            document.querySelector(".vintedbot-subsleft").innerHTML = doc.data().vintedbot.subs_left;
+            document.querySelector(".vintedbot-subsleft").innerHTML = 'Available channels: ' + doc.data().vintedbot.subs_left;
+            const channelids = Object.keys(doc.data().vintedbot.channels);
+            channelids.forEach((channelid, index) => {
+              const channelurltext = doc.data().vintedbot.channels[channelid].url;
+              const channelElement = `
+              <li class="vintedbot-channel">
+              <div class="vintedbot-channel-text-and-buttons">
+                <button class="vintedbot-channel-expand-button">▶️</button>  
+                <div class="vintedbot-channel-text">Channel ${index + 1}</div>
+                <button class="vintedbot-channel-edit-button">✏️</button>
+              </div>
+              <div class="vintedbot-channel-url" style="display: none;">${channelurltext}</div>
+              </li>
+              `;
+              document.querySelector(".vintedbot-channels").innerHTML += channelElement;
+              
+              const expandButtons = document.querySelectorAll(".vintedbot-channel-expand-button");
+              expandButtons.forEach((expandButton) => {
+                expandButton.addEventListener("click", () => {
+                  const channelUrl = expandButton.parentElement.parentElement.querySelector(".vintedbot-channel-url");
+                  if (channelUrl.style.display === "none") {
+                    channelUrl.style.display = "block";
+                    expandButton.innerHTML = "🔽";
+                  } else {
+                    channelUrl.style.display = "none";
+                    expandButton.innerHTML = "▶️";
+                  }
+                });
+              });
+              const editButtons = document.querySelectorAll(".vintedbot-channel-edit-button");
+              editButtons.forEach((editButton) => {
+                editButton.addEventListener("click", () => {
+                  const channelUrl = editButton.parentElement.parentElement.querySelector(".vintedbot-channel-url");
+                  const channelUrlInput = document.createElement("input");
+                  channelUrlInput.value = channelUrl.textContent;
+                  channelUrlInput.type = "text";
+                  channelUrlInput.classList.add("vintedbot-channel-url-input");
+                  channelUrl.innerHTML = "";
+                  channelUrl.appendChild(channelUrlInput);
+                  channelUrl.style.display = "block";
+              
+                  const enterButton = document.createElement("button");
+                  enterButton.textContent = "Enter";
+                  enterButton.classList.add("vintedbot-enter-button");
+                  channelUrl.appendChild(enterButton);
+              
+                  enterButton.addEventListener("click", async () => {
+                    const newUrl = channelUrlInput.value;
+                    channelUrl.innerHTML = newUrl;
+                    channelUrl.style.display = "none";
+              
+                    const channelId = channelids[index];
+                    const newChannel = {
+                      url: newUrl,
+                    };
+                    await updateDoc(docRef, { [`vintedbot.channels.${channelId}`]: newChannel })
+                  });
+                });
+              });
+            });
           }
         }
-      })
       });
     });
-  }
+  });
+}
 });
-
 
