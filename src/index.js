@@ -175,6 +175,55 @@ else {
   }
 })
 
+//if user location is discord but there is no code=? in the url
+if (window.location.href.includes("discord") && !window.location.href.includes("code=")) {
+  //if the user is logged in
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      //if the user is logged in and has a discord account
+      const docRef = doc(db, "users", user.uid);
+      getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
+        if (doc.exists()) {
+          if (doc.data().discord) {
+            confirmLoginWithDiscord()
+          }
+          else {
+            loginWithDiscord()
+          }
+        }
+      })
+    }
+    else {
+      const userLang = navigator.language || navigator.userLanguage;
+      if (userLang.includes("fr")) {
+        window.location = "inscription"
+      }
+      if (userLang.includes("en")) {
+        window.location = "signup"
+      }
+      if (userLang.includes("pl")) {
+        window.location = "rejestracja"
+      }
+      else {
+        window.location = "signup?callback=discord"
+      }
+    }
+  })
+}
+
+//if callback is a url parameter
+if (new URLSearchParams(window.location.search).get("callback")) {
+  //if the callback is discord
+  if (new URLSearchParams(window.location.search).get("callback") == "discord") {
+    //when an input with value="Signup" is clicked
+    document.querySelector('input[value="Signup"]').addEventListener('click', (e) => {
+      e.preventDefault()
+      window.location = "discord"
+    })
+  }
+}
+  
+
 const dashboardButton = document.querySelector('.dashboard')
 if (dashboardButton) {
 dashboardButton.addEventListener('click', (e) => {
@@ -221,34 +270,73 @@ discordButtonMobile.addEventListener('click', (e) => {
 window.loginWithDiscord = () => {
   const clientId = "963382206443704342";
   const redirectUri = `${window.location.origin}/discord`;
-  const scope = "identify";
-  const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
+  const scope = "role_connections.write identify";
+  const state = auth.currentUser.uid;
+  const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}&prompt=consent`;
+  document.cookie = `clientState=${state}; max-age=${1000 * 60 * 5};`;
   window.location.href = url;
 };
 
 const confirmLoginWithDiscord = httpsCallable(functions, "confirmLoginWithDiscord");
+const pushMetadata = httpsCallable(functions, "pushMetadata");
+const getMetadata = httpsCallable(functions, "getMetadata");
 if (new URLSearchParams(window.location.search).get("code")) {
-  confirmLoginWithDiscord({ code: new URLSearchParams(window.location.search).get("code"), origin: window.location.origin })
+  confirmLoginWithDiscord({ code: new URLSearchParams(window.location.search).get("code"), origin: window.location.origin, state: new URLSearchParams(window.location.search).get("state") })
     .then((result) => {
       const data = result.data;
-      const { id, username, discriminator, avatar } = data;
+      if (data.hasOwnProperty("tokens")) {
+        const tokens = data.tokens;
+        // use the tokens
+      } else {
+        console.log("Tokens not found in the response");
+      }
+      const { id, username, discriminator, avatar, tokens } = data;
+      console.log(id, username, discriminator, avatar, tokens)
         setDoc(doc(db, "users", auth.currentUser.uid), {
           discord: {
             id: id,
             username: username,
             discriminator: discriminator,
-            avatar: avatar
+            avatar: avatar,
+            tokens: tokens,
         }
       }, { merge: true })
         .then(() => {
           console.log("Document successfully written!");
+          getCurrentUserSubscriptions(payments).then((subscriptions) => {
+            let metadata = {};
+            if (subscriptions.length > 0) {
+              if (subscriptions[0].role === "starter") {
+                metadata = {
+                  isstarter: true,
+                }
+              }
+              if (subscriptions[0].role === "classic") {
+                metadata = {
+                  isclassic: true,
+                }
+              }
+              if (subscriptions[0].role === "pro") {
+                metadata = {
+                  ispro: true,
+                }
+              }
+            }
+            else {
+              metadata = {
+                isregistered: true,
+              }
+            }
+          //get the user's token in firestore
+          pushMetadata({ userId: id, token: tokens, metadata: metadata })
           window.location = 'dashboard.html'
         })})
     .catch((error) => {
       console.error("Error writing document: ", error);
     }
   );
-}
+    })
+  }
 
 const handleWebhookEvents  = httpsCallable(functions, "ext-firestore-stripe-payments-handleWebhookEvents");
 
@@ -322,7 +410,6 @@ document.querySelectorAll(".buybutton").forEach((button) => {
   });
 });
 
-//if subscription is done, add it to the database
 
 
 // list current subscriptions
@@ -409,4 +496,3 @@ onAuthStateChanged(auth, async (user) => {
   });
 }
 });
-
