@@ -42,7 +42,10 @@ if (signupForm) {
         .then(cred => {
           console.log('user created:', cred.user)
           signupForm.reset()
-          window.location = 'index.html'
+          //if callback not in the url
+          if (window.location.href.indexOf("callback") == -1) {
+            window.location = 'index.html'
+          }
         })
         .catch(err => {
           console.log(err.message)
@@ -81,7 +84,9 @@ loginForm.addEventListener('submit', (e) => {
   signInWithEmailAndPassword(auth, email, password)
     .then(cred => {
       loginForm.reset()
-      window.location = 'index.html'
+      if (window.location.href.indexOf("callback") == -1) {
+        window.location = 'index.html'
+      }
     })
     .catch(err => {
       console.log(err.message)
@@ -175,8 +180,7 @@ else {
   }
 })
 
-//if user location is discord but there is no code=? in the url
-if (window.location.href.includes("discord") && !window.location.href.includes("code=")) {
+if (window.location.href.includes("discord") && !window.location.href.includes("code=") && !window.location.href.includes("callback="))  {
   //if the user is logged in
   onAuthStateChanged(auth, user => {
     if (user) {
@@ -185,7 +189,43 @@ if (window.location.href.includes("discord") && !window.location.href.includes("
       getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
         if (doc.exists()) {
           if (doc.data().discord) {
-            confirmLoginWithDiscord()
+            getCurrentUserSubscriptions(payments).then((subscriptions) => {
+              //set the id to the discordid
+              const id = doc.data().discord.id
+              //set the tokens to the discord tokens
+              const tokens = doc.data().discord.tokens
+              if (subscriptions.length > 0) {
+                if (subscriptions[0].role === "starter") {
+                  // set the metadata
+                  const metadata = {
+                    isstarter: 1,
+                  };
+                  pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
+                }
+                if (subscriptions[0].role === "classic") {
+                  // set the metadata
+                  const metadata = {
+                    isclassic: 1,
+                  };
+                  pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
+                }
+                if (subscriptions[0].role === "pro") {
+                  // set the metadata
+                  const metadata = {
+                    ispro: 1,
+                  };
+                  pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
+                }
+              }
+              else {
+                const metadata = {
+                  isregistered: 1,
+                };
+                pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
+                console.log(metadata)
+              }
+            })
+            window.location.href = "dashboard.html";
           }
           else {
             loginWithDiscord()
@@ -212,14 +252,30 @@ if (window.location.href.includes("discord") && !window.location.href.includes("
 }
 
 //if callback is a url parameter
-if (new URLSearchParams(window.location.search).get("callback")) {
-  //if the callback is discord
-  if (new URLSearchParams(window.location.search).get("callback") == "discord") {
-    //when an input with value="Signup" is clicked
-    document.querySelector('input[value="Signup"]').addEventListener('click', (e) => {
-      e.preventDefault()
-      window.location = "discord"
-    })
+var submitInput = document.querySelector("input[type='submit']");
+
+if (new URLSearchParams(window.location.search).get("callback") && submitInput) {
+  submitInput.addEventListener("click", function(e) {
+    var callback = getParameterByName("callback");
+    if (callback) {
+      //wait for the user to be logged in
+      onAuthStateChanged(auth, user => {
+        if (user) {
+      window.location.href = callback;
+    }
+  })
+}
+
+  });
+  
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
   }
 }
   
@@ -284,12 +340,6 @@ if (new URLSearchParams(window.location.search).get("code")) {
   confirmLoginWithDiscord({ code: new URLSearchParams(window.location.search).get("code"), origin: window.location.origin, state: new URLSearchParams(window.location.search).get("state") })
     .then((result) => {
       const data = result.data;
-      if (data.hasOwnProperty("tokens")) {
-        const tokens = data.tokens;
-        // use the tokens
-      } else {
-        console.log("Tokens not found in the response");
-      }
       const { id, username, discriminator, avatar, tokens } = data;
       console.log(id, username, discriminator, avatar, tokens)
         setDoc(doc(db, "users", auth.currentUser.uid), {
@@ -304,32 +354,38 @@ if (new URLSearchParams(window.location.search).get("code")) {
         .then(() => {
           console.log("Document successfully written!");
           getCurrentUserSubscriptions(payments).then((subscriptions) => {
-            let metadata = {};
+            // set the metadata
             if (subscriptions.length > 0) {
               if (subscriptions[0].role === "starter") {
-                metadata = {
-                  isstarter: true,
-                }
+                // set the metadata
+                const metadata = {
+                  isstarter: 1,
+                };
+                pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
               }
               if (subscriptions[0].role === "classic") {
-                metadata = {
-                  isclassic: true,
-                }
+                // set the metadata
+                const metadata = {
+                  isclassic: 1,
+                };
+                pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
               }
               if (subscriptions[0].role === "pro") {
-                metadata = {
-                  ispro: true,
-                }
+                // set the metadata
+                const metadata = {
+                  ispro: 1,
+                };
+                pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
               }
             }
             else {
-              metadata = {
-                isregistered: true,
-              }
+              const metadata = {
+                isregistered: 1,
+              };
+              pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
             }
-          //get the user's token in firestore
-          pushMetadata({ userId: id, token: tokens, metadata: metadata })
-          window.location = 'dashboard.html'
+            window.location.href = "dashboard.html";
+            
         })})
     .catch((error) => {
       console.error("Error writing document: ", error);

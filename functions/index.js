@@ -1,4 +1,5 @@
 const functions = require("firebase-functions");
+const admin = require("firebase-admin");
 
 const getAccessToken = async (userId, tokens) => {
   if (Date.now() > tokens.expires_at) {
@@ -49,6 +50,7 @@ exports.confirmLoginWithDiscord = functions
       const userData = await response.json();
       userData.tokens = oAuthResponse;
       console.log(userData);
+      userData.tokens.expires_at = Date.now() + userData.tokens.expires_in * 1000;
       return userData;
     } else {
       throw new Error(`Error fetching user data: [${response.status}] ${response.statusText}`);
