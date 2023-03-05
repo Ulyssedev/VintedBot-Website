@@ -326,7 +326,7 @@ discordButtonMobile.addEventListener('click', (e) => {
 window.loginWithDiscord = () => {
   const clientId = "963382206443704342";
   const redirectUri = `${window.location.origin}/discord`;
-  const scope = "role_connections.write identify";
+  const scope = "role_connections.write identify guilds.join";
   const state = auth.currentUser.uid;
   const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}&prompt=consent`;
   document.cookie = `clientState=${state}; max-age=${1000 * 60 * 5};`;
@@ -505,7 +505,7 @@ onAuthStateChanged(auth, async (user) => {
               expandButtons.forEach((expandButton) => {
                 expandButton.addEventListener("click", () => {
                   const channelUrl = expandButton.parentElement.parentElement.querySelector(".vintedbot-channel-url");
-                  if (channelUrl.style.display === "none") {
+                  if (channelUrl.style.display === "none") {             
                     channelUrl.style.display = "block";
                     expandButton.innerHTML = "🔽";
                   } else {

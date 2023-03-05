@@ -29,13 +29,14 @@ const getAccessToken = async (userId, tokens) => {
 }
 
 exports.confirmLoginWithDiscord = functions
-  .runWith({ secrets: ["CLIENT_SECRET"]})
+  .runWith({ secrets: ["CLIENT_SECRET", "DISCORD_TOKEN"]})
   .region("europe-west1")
   .https.onCall(async (data, context) => {
   const code = data.code;
   const clientId = "963382206443704342";
   const redirectUri = `${data.origin}/discord`;
   const clientSecret = process.env.CLIENT_SECRET;
+  const discordToken = process.env.DISCORD_TOKEN;
 
   try {
     const oAuthResponse = await getOAuthTokens(code, clientId, clientSecret, redirectUri);
@@ -51,6 +52,25 @@ exports.confirmLoginWithDiscord = functions
       userData.tokens = oAuthResponse;
       console.log(userData);
       userData.tokens.expires_at = Date.now() + userData.tokens.expires_in * 1000;
+      const guildId = "961706566116069386";
+      const guildUrl = `https://discord.com/api/v10/guilds/${guildId}/members/${userData.id}`;
+      const guildResponse = await fetch(guildUrl, {
+        method: "PUT",
+        headers: {
+          "Authorization": `Bot ${discordToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_token: `${userData.tokens.access_token}`,
+          nick: userData.username,
+        }),
+      });
+      if (guildResponse.ok) {
+        console.log(`User ${userData.username} joined guild ${guildId}`);
+      } else {
+        console.error(`Error joining guild ${guildId}: [${guildResponse.status}] ${guildResponse.statusText}`);
+      }
+    
       return userData;
     } else {
       throw new Error(`Error fetching user data: [${response.status}] ${response.statusText}`);
