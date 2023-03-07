@@ -25,9 +25,9 @@ const firebaseConfig = {
   const db = getFirestore(app);
   const functions = getFunctions(app, "europe-west1");
   // For emulation use : 
-  connectAuthEmulator(auth, "http://127.0.0.1:9099");
-  connectFirestoreEmulator(db, "localhost", 8080);
-  connectFunctionsEmulator(functions, "localhost", 5001);
+  //connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  //connectFirestoreEmulator(db, "localhost", 8080);
+  //connectFunctionsEmulator(functions, "localhost", 5001);
 
 
 const signupForm = document.querySelector('.signup')
