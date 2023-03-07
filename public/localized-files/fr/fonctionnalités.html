@@ -2,99 +2,122 @@
 <html>
 	<head>
 		<title>Vinted Bot - Fonctionnalités</title>
-        <meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,
+			user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/how-does-it-work.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-<link rel="manifest" href="/images/site.webmanifest">
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="shortcut icon" href="/images/favicon.ico">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="msapplication-config" content="/images/browserconfig.xml">
-<meta name="theme-color" content="#ffffff">
+		<link rel="apple-touch-icon" sizes="180x180"
+			href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32"
+			href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16"
+			href="/images/favicon-16x16.png">
+		<link rel="manifest" href="/images/site.webmanifest">
+		<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+		<link rel="shortcut icon" href="/images/favicon.ico">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="msapplication-config" content="/images/browserconfig.xml">
+		<meta name="theme-color" content="#ffffff">
+		<meta name="description" content="Bot Vinted rapide et abordable - Automatisez
+			vos activités Vinted">
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
 
-        <!-- Header -->
-		<header id="header">
-			<h1 id="logo">
-				
-				<div id="user-container">
-					<a id="avatar-link" href="#">
-						<img class="user" src="images/user.svg" alt="Avatar" id="avatar">
-					</a>
-					<ul id="user-menu">
-						<li class="sign-up" style="display: none;"><img class="icons-menu" src="images/signup.svg"><a href="inscription">Inscription</a></li>
-						<li class="dashboard" style="display: none;"><img class="icons-menu" src="images/dashboard.svg"><a href="dashboard">Tableau de bord</a></li>
-						<li class="discord" style="display: none;"><img class="icons-menu" src="images/discord-small.svg"><a href ="#" onclick="loginWithDiscord()">Lier compte Discord</a></li>
-						<li class="logout" style="display: none;"><img class="icons-menu" src="images/logout.svg"><a href="#">Déconnexion</a></li>
-					</ul>
-				</div>
-			</h1>
-			<nav id="nav">
-				<ul>
-					<li><a href="index">Accueil</a></li>
-					<li>
-						<a href="#">Documentation</a>
-						<ul>
-							<li><a href="fonctionnement">Fonctionnement</a></li>
-							<li><a href="fonctionnalités">Fonctionnalités</a></li>
-							<li><a href="faq">FAQ</a></li>
-							<li><a href="privacy">Politique de confidentialité</a></li>
+			<!-- Header -->
+			<header id="header">
+				<h1 id="logo">
+
+					<div id="user-container">
+						<div id="avatar-link">
+							<img class="user" src="images/user.svg" alt="Avatar" id="avatar">
+						</div>
+						<ul id="user-menu">
+							<li class="sign-up" style="display: none;"><img class="icons-menu"
+									src="images/signup.svg"><a href="inscription">Inscription</a></li>
+							<li class="dashboard" style="display: none;"><img class="icons-menu"
+									src="images/dashboard.svg"><a href="dashboard">Tableau de bord</a></li>
+							<li class="discord" style="display: none;"><img class="icons-menu"
+									src="images/discord-small.svg"><a href="#"
+									onclick="loginWithDiscord()">Lier compte Discord</a></li>
+							<li class="logout" style="display: none;"><img class="icons-menu"
+									src="images/logout.svg"><a href="#">Déconnexion</a></li>
 						</ul>
-					</li>
-					<li><a href="tarification" class="button primary">Acheter</a></li>
-				</ul>
-				<div id="user-container-mobile" style="display: none;">
-					<li>
-					<a id="avatar-link">
-						Compte
-					</a>
-					<ul id="user-menu">
-						<li class="sign-up"><a href="inscription" class="sign-up" style="display: none;">Inscription</a></li>
-						<li class="dashboard"><a href="dashboard">Tableau de bord</a></li>
-						<li class="discord"><a href ="#">Lier compte Discord</a></li>
-						<li class="logout"><a href="#">Déconnexion</a></li>
+					</div>
+				</h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index">Accueil</a></li>
+						<li>
+							<a href="#">Documentation</a>
+							<ul>
+								<li><a href="fonctionnement">Fonctionnement</a></li>
+								<li><a href="fonctionnalités">Fonctionnalités</a></li>
+								<li><a href="faq">FAQ</a></li>
+								<li><a href="privacy">Politique de confidentialité</a></li>
+							</ul>
+						</li>
+						<li><a href="tarification" class="button primary">Acheter</a></li>
 					</ul>
-					</li>
-				</div>
-			</nav>
-		</header>
+					<div id="user-container-mobile" style="display: none;">
+						<li>
+							<div id="avatar-link">
+								Compte
+							</div>
+							<ul id="user-menu">
+								<li class="sign-up"><a href="inscription" class="sign-up"
+										style="display: none;">Inscription</a></li>
+								<li class="dashboard"><a href="dashboard">Tableau de bord</a></li>
+								<li class="discord"><a href="#">Lier compte Discord</a></li>
+								<li class="logout"><a href="#">Déconnexion</a></li>
+							</ul>
+						</li>
+					</div>
+				</nav>
+			</header>
 
-            <!-- Main -->
-            <section id="main" class="container">
-                <header>
-                    <h2>Fonctionnalités</h2>
-                    <p>Voici quelques fonctionnalités du Vinted Bot</p>
-                </header>
-                <div class="box">
-                    <h3>Suivi Vinted personnalisé</h3>
-                    <p>Avec la commande /sub, vous pouvez vous abonner à un mot-clé spécifique avec les filtres souhaités. Lorsqu'une nouvelle annonce est publiée avec ce mot-clé et/ou avec les filtres sélectionnés, vous recevrez une notification dans un salon Discord.</p>
-                    <img src="images/example-fr.png" alt="example" style="width: 50%; display: block; margin-left: auto; margin-right: auto;"/>
-                    <h3>Booster de vues</h3>
-                    <p>Avec la commande /views, vous pouvez augmenter les vues d'un article. Le bot ajoutera automatiquement le nombre de vues souhaité à l'article.</p>
-                    <img src="images/views-fr.png" alt="views" style="width: 50%; display: block; margin-left: auto; margin-right: auto;"/>
-                    <h3>Informations utilisateur avancées</h3>
-                    <p>En cliquant sur le bouton "Informations vendeur" sur n'importe quelle notification, vous recevrez un message contenant une note de confiance et d'autres informations sur l'utilisateur.</p>
-                    <img src="images/userinfo-fr.png" alt="seller-info" style="width: 50%; display: block; margin-left: auto; margin-right: auto;"/>
+			<!-- Main -->
+			<section id="main" class="container">
+				<header>
+					<h2>Fonctionnalités</h2>
+					<p>Voici quelques fonctionnalités du Vinted Bot</p>
+				</header>
+				<div class="box">
+					<h3>Suivi Vinted personnalisé</h3>
+					<p>Avec la commande /sub, vous pouvez vous abonner à un mot-clé spécifique
+						avec les filtres souhaités. Lorsqu'une nouvelle annonce est publiée avec
+						ce mot-clé et/ou avec les filtres sélectionnés, vous recevrez une
+						notification dans un salon Discord.</p>
+					<img src="images/example-fr.png" alt="example" style="width: 50%; display:
+						block; margin-left: auto; margin-right: auto;"/>
+					<h3>Booster de vues</h3>
+					<p>Avec la commande /views, vous pouvez augmenter les vues d'un article. Le
+						bot ajoutera automatiquement le nombre de vues souhaité à l'article.</p>
+					<img src="images/views-fr.png" alt="views" style="width: 50%; display:
+						block; margin-left: auto; margin-right: auto;"/>
+					<h3>Informations utilisateur avancées</h3>
+					<p>En cliquant sur le bouton "Informations vendeur" sur n'importe quelle
+						notification, vous recevrez un message contenant une note de confiance et
+						d'autres informations sur l'utilisateur.</p>
+					<img src="images/userinfo-fr.png" alt="seller-info" style="width: 50%;
+						display: block; margin-left: auto; margin-right: auto;"/>
 					<h3>Analyse de recherches</h3>
-					<p>Avec la commande /analytics, vous pouvez obtenir un rapport détaillé sur le prix des articles de votre recherche.</p>
-					<img src="images/analytics-fr.png" alt="analytics" style="width: 50%; display: block; margin-left: auto; margin-right: auto;"/>
-		<!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/jquery.dropotron.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
-        <script src="assets/js/bundle.js"></script>
+					<p>Avec la commande /analytics, vous pouvez obtenir un rapport détaillé sur
+						le prix des articles de votre recherche.</p>
+					<img src="images/analytics-fr.png" alt="analytics" style="width: 50%;
+						display: block; margin-left: auto; margin-right: auto;"/>
+					<!-- Scripts -->
+					<script src="assets/js/jquery.min.js"></script>
+					<script src="assets/js/jquery.scrolly.min.js"></script>
+					<script src="assets/js/jquery.dropotron.min.js"></script>
+					<script src="assets/js/jquery.scrollex.min.js"></script>
+					<script src="assets/js/browser.min.js"></script>
+					<script src="assets/js/breakpoints.min.js"></script>
+					<script src="assets/js/util.js"></script>
+					<script src="assets/js/main.js"></script>
+					<script src="assets/js/bundle.js"></script>
 
-	</body>
-</html>
+				</body>
+			</html>
