@@ -1,12 +1,6 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic");
 
-/*
-	Landed by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -4110,72 +4104,6 @@ input, select, textarea {
 	}
 
 
-.manage {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	background-color: transparent;
-	border-radius: 4px;
-	border: 0;
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-	color: #ffffff !important;
-	cursor: pointer;
-	display: inline-block;
-	font-weight: 300;
-	height: 3em;
-	line-height: 3em;
-	padding: 1 2.25em;
-	text-align: center;
-	text-decoration: none;
-	white-space: nowrap;
-}
-.manage:hover {
-	background: #1f2cdb;          
-}
-.managebutton {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 200px;
-}
-.managepaypal {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	background-color: transparent;
-	border-radius: 4px;
-	border: 0;
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-	color: #ffffff !important;
-	cursor: pointer;
-	display: inline-block;
-	font-weight: 300;
-	height: 3em;
-	line-height: 3em;
-	padding: 1 2.25em;
-	text-align: center;
-	text-decoration: none;
-	white-space: nowrap;
-}
-.managepaypal:hover {
-	background: #1f2cdb;          
-}
-.managepaypalbutton {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 10px;
-}
 .avatar {
 	border-radius: 50%;
 	width: 100px;
@@ -4184,6 +4112,8 @@ input, select, textarea {
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 	display: block;
 	margin: 0 auto;
+	margin-top: -50px;
+	margin-bottom: 20px;
 }
 .user {
 	border-radius: 50%;
@@ -4215,7 +4145,7 @@ input, select, textarea {
     border-radius: 5px; /* rounded edges */
 }
 
-.icons {
+.icons-menu {
 	width: 25px;
 	height: 25px;
 	margin-right: 10px;
@@ -4225,7 +4155,259 @@ input, select, textarea {
 	display: none;
 }
 
-/*TODO : For mobile users, display the menu on the top right of the screen*/
+.email {
+	text-align: center;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.subscription {
+	text-align: center;
+	font-weight: bold;
+	color: green;
+}
+
+.manage {
+	background-color: #635BFF;
+	border: none;
+	border-radius: 4px;
+	color: white;
+	cursor: pointer;
+	display: block;
+	font-size: 16px;
+	padding: 8px 16px;
+	text-align: center;
+	margin: 0 auto;
+	width: fit-content;
+	height: fit-content;
+	position: relative;
+	overflow: hidden;
+  }
+  
+  .stripe-logo {
+	background: url(images/stripe-logo.png) no-repeat;
+	background-size: contain;
+	display: inline-block;
+	height: 1.2em;
+	margin-right: 8px;
+	margin-top: -2px;
+	vertical-align: middle;
+	width: 1.2em;
+  }
+  
+  @keyframes loading {
+	from {
+	  transform: rotate(0deg);
+	}
+	to {
+	  transform: rotate(360deg);
+	}
+  }
+
+  @keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to { 
+        transform: rotate(360deg);
+    }
+}
+ 
+
+ @-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to { 
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.load {
+	width: 125px;
+	height: 125px;
+	margin: 110px auto 0;
+	border:solid 10px #2b22aa;
+	border-radius: 50%;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	 -webkit-transition: all 0.5s ease-in;
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         1.0s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+    	
+    	 transition: all 0.5s ease-in;
+    animation-name:             rotate; 
+    animation-duration:         1.0s; 
+    animation-iteration-count:  infinite;
+    animation-timing-function: linear; 
+}
+
+.vintedbot-subsleft {
+	background-color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+	padding: 10px;
+	border-radius: 20px;
+	box-shadow: 0px 0px 10px black;
+	text-align: center;
+	width: fit-content;
+	margin-top: 10px;
+}
+
+.vintedbot-info {
+	display: none;
+}
+
+.vintedbot-channels {
+	list-style: none;
+	padding: 0;
+}
+
+.vintedbot-channel {
+	background-color: #282c51;
+	border-radius: 20px;
+	color: white;
+	display: flex;
+	align-items: center;
+	padding: 10px 20px;
+	margin-bottom: 10px;
+}
+
+.vintedbot-channel-text {
+	flex-grow: 1;
+	text-align: center;
+	font-weight: 800;
+}
+
+.vintedbot-channel-edit-button {
+	background-color: #282c51;
+	border: none;
+	font-size: 1.5em;
+}
+
+.vintedbot-channel-edit-button:hover {
+	cursor: pointer;
+}
+
+.vintedbot-channel-edit-button:focus {
+	outline: none;
+}
+
+.vintedbot-channel-edit-button:active {
+	transform: scale(0.9);
+}
+
+.vintedbot-channel-expand-button {
+	background-color: #282c51;
+	border: none;
+	font-size: 1.5em;
+}
+
+.vintedbot-channel-expand-button:hover {
+	cursor: pointer;
+}
+
+.vintedbot-channel-expand-button:focus {
+	outline: none;
+}
+
+.vintedbot-channel-expand-button:active {
+	transform: scale(0.9);
+}
+
+.vintedbot-channel {
+	background-color: #282c51;
+	border-radius: 20px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px 20px;
+	margin-bottom: 10px;
+  }
+  
+.vintedbot-channel-text-and-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.vintedbot-channel-text {
+	flex-grow: 1;
+	text-align: center;
+	font-weight: 800;
+}
+
+.vintedbot-channel-url {
+	margin-top: 10px;
+}
+
+.vintedbot-edit-popup {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
+  
+  .vintedbot-edit-popup-background {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .vintedbot-edit-popup-foreground {
+	background-color: white;
+	padding: 16px;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+  
+  .vintedbot-edit-input {
+	margin-bottom: 16px;
+	padding: 8px;
+	border-radius: 4px;
+	border: 1px solid grey;
+	width: 100%;
+	text-align: center;
+  }
+  
+.vintedbot-channel-url {
+	font-weight: 300;
+}
+
+.vintedbot-enter-button {
+	/* Centered, light blue good looking */
+	background-color: #4753bb;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 15%;
+}
+
+.question {
+	font-weight: bold;
+}
+
+
 @media screen and (max-width: 738px) {
 #user-container {
 	display: none;
@@ -4233,4 +4415,9 @@ input, select, textarea {
 #user-container-mobile {
 	display: block;
 }
+}
+
+/* for avatar link id, mouse hover */
+#avatar-link {
+	cursor: pointer;
 }

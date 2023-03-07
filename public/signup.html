@@ -3,117 +3,137 @@
 	<head>
 		<title>Vinted Bot - Signup</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,
+			user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-<link rel="manifest" href="/images/site.webmanifest">
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="shortcut icon" href="/images/favicon.ico">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="msapplication-config" content="/images/browserconfig.xml">
-<meta name="theme-color" content="#ffffff">
-    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+		<link rel="apple-touch-icon" sizes="180x180"
+			href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32"
+			href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16"
+			href="/images/favicon-16x16.png">
+		<link rel="manifest" href="/images/site.webmanifest">
+		<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+		<link rel="shortcut icon" href="/images/favicon.ico">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="msapplication-config" content="/images/browserconfig.xml">
+		<meta name="theme-color" content="#ffffff">
+		<meta name="description" content="Automate your Vinted activities with the
+			fast and affordable Vinted bot. Get notifications on your devices for wanted
+			items, dominate the buy-resell market, and make money easily.">
+		<script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+		<link type="text/css" rel="stylesheet"
+			href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
 
-        <!-- Header -->
-		<header id="header">
-			<h1 id="logo">
-				
-				<div id="user-container">
-					<a id="avatar-link" href="#">
-						<img class="user" src="images/user.svg" alt="Avatar" id="avatar">
-					</a>
-					<ul id="user-menu">
-						<li class="sign-up" style="display: none;"><img class="icons" src="images/signup.svg"><a href="signup">Sign Up</a></li>
-						<li class="dashboard" style="display: none;"><img class="icons" src="images/dashboard.svg"><a href="dashboard">Dashboard</a></li>
-						<li class="discord" style="display: none;"><img class="icons" src="images/discord-small.svg"><a href ="#" onclick="loginWithDiscord()">Link Discord</a></li>
-						<li class="logout" style="display: none;"><img class="icons" src="images/logout.svg"><a href="#">Logout</a></li>
-					</ul>
-				</div>
-			</h1>
-			<nav id="nav">
-				<ul>
-					<li><a href="index">Homepage</a></li>
-					<li>
-						<a href="#">Documentation</a>
-						<ul>
-							<li><a href="how-does-it-work">How does it work</a></li>
-							<li><a href="features">Features</a></li>
-							<li><a href="qna">QNA</a></li>
-							<li><a href="privacy">Privacy Policy</a></li>
+			<!-- Header -->
+			<header id="header">
+				<h1 id="logo">
+
+					<div id="user-container">
+						<div id="avatar-link">
+							<img class="user" src="images/user.svg" alt="Avatar" id="avatar">
+						</div>
+						<ul id="user-menu">
+							<li class="sign-up" style="display: none;"><img class="icons-menu"
+									src="images/signup.svg"><a href="signup">Sign Up</a></li>
+							<li class="dashboard" style="display: none;"><img class="icons-menu"
+									src="images/dashboard.svg"><a href="dashboard">Dashboard</a></li>
+							<li class="discord" style="display: none;"><img class="icons-menu"
+									src="images/discord-small.svg"><a href="#"
+									onclick="loginWithDiscord()">Link Discord</a></li>
+							<li class="logout" style="display: none;"><img class="icons-menu"
+									src="images/logout.svg"><a href="#">Logout</a></li>
 						</ul>
-					</li>
-					<li><a href="pricing" class="button primary">Buy</a></li>
-				</ul>
-				<div id="user-container-mobile" style="display: none;">
-					<li>
-					<a id="avatar-link">
-						Account
-					</a>
-					<ul id="user-menu">
-						<li class="sign-up"><a href="signup" class="sign-up" style="display: none;">Sign Up</a></li>
-						<li class="dashboard"><a href="dashboard">Dashboard</a></li>
-						<li class="discord"><a href ="#" onclick="loginWithDiscord()">Link Discord</a></li>
-						<li class="logout"><a href="#">Logout</a></li>
+					</div>
+				</h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index">Homepage</a></li>
+						<li>
+							<a href="#">Documentation</a>
+							<ul>
+								<li><a href="how-does-it-work">How does it work</a></li>
+								<li><a href="features">Features</a></li>
+								<li><a href="qna">QNA</a></li>
+								<li><a href="privacy">Privacy Policy</a></li>
+							</ul>
+						</li>
+						<li><a href="pricing" class="button primary">Buy</a></li>
 					</ul>
-					</li>
-				</div>
-			</nav>
-		</header>
+					<div id="user-container-mobile" style="display: none;">
+						<li>
+							<div id="avatar-link">
+								Account
+							</div>
+							<ul id="user-menu">
+								<li class="sign-up"><a href="signup" class="sign-up" style="display:
+										none;">Sign Up</a></li>
+								<li class="dashboard"><a href="dashboard">Dashboard</a></li>
+								<li class="discord"><a href="#" onclick="loginWithDiscord()">Link
+										Discord</a></li>
+								<li class="logout"><a href="#">Logout</a></li>
+							</ul>
+						</li>
+					</div>
+				</nav>
+			</header>
 
-      <!-- Main -->
-      <article id="main">
-        <header class="special container">
-          <h2><span class="icon solid fa-lock"></span>Signup</h2>
-          <p>Create credentials to signup</p>
-        </header>
+			<!-- Main -->
+			<article id="main">
+				<header class="special container">
+					<h2><span class="icon solid fa-lock"></span>Signup</h2>
+					<p>Create credentials to signup</p>
+				</header>
 
-        <form class="signup">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Your email..">
-          <br>
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Your password..">
-          <br>
-          <input type="checkbox" id="terms" name="terms" value="terms">
-          <label for="terms">By signing up, I agree to the <a href="privacy">Terms and Conditions</a></label>
-          <br>
-          <input type="submit" value="Signup">
-        </form>
-        <p class="error"></p>
-        <br>
-        <p>Already have an account? <a href="login">Login</a></p>
+				<form class="signup">
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" placeholder="Your email..">
+					<br>
+					<label for="password">Password</label>
+					<input type="password" id="password" name="password" placeholder="Your
+						password..">
+					<br>
+					<input type="checkbox" id="terms" name="terms" value="terms">
+					<label for="terms">By signing up, I agree to the <a href="privacy">Terms
+							and Conditions</a></label>
+					<br>
+					<input type="submit" value="Signup">
+				</form>
+				<p class="error"></p>
+				<br>
+				<p>Already have an account? <a href="login">Login</a></p>
 
-<!-- Footer -->
-<footer id="footer">
-  <ul class="icons">
-    <li><a href="https://instagram.com/botvinted" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-    <li><a href="https://github.com/TheLowHigh" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-    <li><a href="https://discord.gg/W6MRNaXwQ8" class="icon brands alt fa-discord"><span class="label">Discord</span></a></li>
-  </ul>
-  <ul class="copyright">
-    <li>&copy; Vinted Bot. All rights reserved.</li>
-  </ul>
-</footer>
+				<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="https://instagram.com/botvinted" class="icon brands alt
+								fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="https://github.com/TheLowHigh" class="icon brands alt
+								fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="https://discord.gg/W6MRNaXwQ8" class="icon brands alt
+								fa-discord"><span class="label">Discord</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Vinted Bot. All rights reserved.</li>
+					</ul>
+				</footer>
 
-</div>
+			</div>
 
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/jquery.dropotron.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/bundle.js"></script>
+			<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/bundle.js"></script>
 
-</body>
-</html>
+		</body>
+	</html>
