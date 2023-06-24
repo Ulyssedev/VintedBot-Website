@@ -1,0 +1,31 @@
+---
+export interface Props {
+  userLang: string;
+}
+const { userLang } = Astro.props;
+import lang from "../utils/lang";
+---
+<footer id="footer">
+  <ul class="icons">
+    <li>
+      <a
+        href="https://instagram.com/botvinted"
+        class="icon brands alt fa-instagram"
+        ><span class="label">Instagram</span></a
+      >
+    </li>
+    <li>
+      <a href="https://github.com/TheLowHigh" class="icon brands alt fa-github"
+        ><span class="label">GitHub</span></a
+      >
+    </li>
+    <li>
+      <a href="https://discord.gg/W6MRNaXwQ8" class="icon brands alt fa-discord"
+        ><span class="label">Discord</span></a
+      >
+    </li>
+  </ul>
+  <ul class="copyright">
+    <li>&copy; {lang[userLang]?.['footer.copyright']}</li>
+  </ul>
+</footer>

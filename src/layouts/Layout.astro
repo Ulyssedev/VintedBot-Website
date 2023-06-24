@@ -1,0 +1,80 @@
+---
+import Firebase from "../components/Firebase.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/css/main.css";
+import "../styles/css/noscript.css";
+export interface Props {
+  userLang?: string;
+  title: string;
+}
+const { userLang, title } = Astro.props;
+let description;
+if (userLang == "fr") {
+  description =
+    "Automatisez vos activités Vinted avec le bot Vinted rapide et abordable. Recevez des notifications sur vos appareils pour les articles souhaités, dominez le marché de l'achat-revente et gagnez facilement de l'argent.";
+} else if (userLang == "pl") {
+  description =
+    "Automatyzuj swoje aktywności Vinted za pomocą szybkiego i przystępnego bota Vinted. Otrzymuj powiadomienia na swoich urządzeniach o pożądanych przedmiotach, dominuj na rynku kupna i odsprzedaży i łatwo zarabiaj pieniądze.";
+} else {
+  description =
+    "Automate your Vinted activities with the fast and affordable Vinted bot. Get notifications on your devices for wanted items, dominate the buy-resell market, and make money easily.";
+}
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{title}</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,
+			user-scalable=no"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/images/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/images/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-config" content="/images/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content={description} />
+  </head>
+  <body class="is-preload">
+    <div id="page-wrapper">
+      <Header userLang={userLang ? userLang : "en"} />
+      <slot />
+      <Footer userLang={userLang ? userLang : "en"} />
+    </div>
+    <script is:inline src="/js/jquery.min.js"></script>
+    <script is:inline src="/js/jquery.scrolly.min.js"></script>
+    <script is:inline src="/js/jquery.dropotron.min.js"></script>
+    <script is:inline src="/js/jquery.scrollex.min.js"></script>
+    <script is:inline src="/js/browser.min.js"></script>
+    <script is:inline src="/js/breakpoints.min.js"></script>
+    <script is:inline src="/js/util.js"></script>
+    <script is:inline src="/js/main.js"></script>
+    <Firebase />
+  </body>
+</html>

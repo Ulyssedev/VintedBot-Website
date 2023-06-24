@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=development",
-    "prod": "webpack --mode=production"
+    "build": "astro build",
+    "dev": "astro dev & firebase emulators:start & stripe listen --forward-to http://localhost:5001/vintedbot-3f0d6/europe-west1/ext-firestore-stripe-payments-handleWebhookEvents && fg"
   },
   "repository": {
     "type": "git",
@@ -21,10 +21,12 @@
   "homepage": "https://github.com/TheLowHigh/VintedBot-Website#readme",
   "dependencies": {
     "@stripe/firestore-stripe-payments": "^0.0.6",
-    "firebase": "^9.16.0"
+    "astro": "^2.6.4",
+    "firebase": "^9.22.2"
   },
   "devDependencies": {
-    "webpack": "^5.75.0",
-    "webpack-cli": "^4.10.0"
+    "prettier": "^2.8.7",
+    "prettier-plugin-astro": "^0.8.0",
+    "sass": "^1.62.0"
   }
 }

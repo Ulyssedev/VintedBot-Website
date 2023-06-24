@@ -1,0 +1,31 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout title="Vinted Bot - Connexion" userLang="fr">
+  <!-- Main -->
+  <article id="main">
+    <header class="special container">
+      <h2><span class="icon solid fa-lock"></span>Connexion</h2>
+      <p>Entrez vos identifiants pour vous connecter</p>
+    </header>
+
+    <form class="login">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Votre email.." />
+      <br />
+      <label for="password">Mot de passe</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Votre mot
+						de passe.."
+      />
+      <br />
+      <input type="submit" value="Connexion" />
+    </form>
+    <p class="error"></p>
+    <br />
+    <p>Vous n'avez pas de compte ? <a href="inscription">Inscription</a></p>
+</Layout>

@@ -1,0 +1,39 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout title="Vinted Bot - Inscription" userLang="fr">
+  <!-- Main -->
+  <article id="main">
+    <header class="special container">
+      <h2><span class="icon solid fa-lock"></span>Inscription</h2>
+      <p>Créez des identifiants pour vous inscrire</p>
+    </header>
+
+    <form class="signup">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Votre email.." />
+      <br />
+      <label for="password">Mot de passe</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Votre mot
+						de passe.."
+      />
+      <br />
+      <input type="checkbox" id="terms" name="terms" value="terms" />
+      <label for="terms"
+        >En m'inscrivant, j'accepte les <a href="privacy"
+          >Termes et conditions</a
+        ></label
+      >
+      <br />
+      <input type="submit" value="Inscription" />
+    </form>
+    <p class="error"></p>
+    <br />
+    <p>Vous avez déjà un compte? <a href="connexion">Connexion</a></p>
+  </article>
+</Layout>

@@ -1,0 +1,207 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/css/pricing.css"
+import prices from "../utils/prices"
+---
+
+<Layout title="Vinted Bot - Pricing">
+<div class="container">
+  <div class="silver">
+    <h1>Free</h1>
+    <h2>For new users</h2>
+    <div class="price">0€/m</div>
+    <p>Number of channels</p>
+    <span>1</span>
+    <p>Boosted views per month</p>
+    <span>100</span>
+    <p>Advanced user info</p>
+    <span>❌</span>
+    <p>Fastmode</p>
+    <span>❌</span>
+    <p>Analytics</p>
+    <span>❌</span>
+    <p>Support</p>
+    <span>🟠</span>
+    <p>Dedicated server</p>
+    <span>❌</span>
+    <p>Number of allowed brands</p>
+    <span>3</span>
+    <button class="discordbutton"
+      ><img
+        src="https://seeklogo.com/images/D/discord-color-logo-E5E6DFEF80-seeklogo.com.png"
+        width="40"
+        height="30"
+        alt="Discord"
+      /></button
+    >
+  </div>
+  <div class="gold">
+    <h1>Starter</h1>
+    <h2>Perfect for beginners</h2>
+    <div class="price">5€/m</div>
+    <p>Number of channels</p>
+    <span>4</span>
+    <p>Boosted views per month</p>
+    <span>1000</span>
+    <p>Advanced user info</p>
+    <span>✅</span>
+    <p>Fastmode</p>
+    <span>✅</span>
+    <p>Analytics</p>
+    <span>✅</span>
+    <p>Support</p>
+    <span>✅</span>
+    <p>Dedicated server</p>
+    <span>❌</span>
+    <p>Number of allowed brands</p>
+    <span>∞</span>
+    <button class="buybutton" id={prices.starter}>Buy</button>
+  </div>
+  <div class="gold">
+    <h1>Classic</h1>
+    <h2>For all users</h2>
+    <div class="price">10€/m</div>
+    <p>Number of channels</p>
+    <span>10</span>
+    <p>Boosted views per month</p>
+    <span>2500</span>
+    <p>Advanced user info</p>
+    <span>✅</span>
+    <p>Fastmode</p>
+    <span>✅</span>
+    <p>Analytics</p>
+    <span>✅</span>
+    <p>Support</p>
+    <span>✅</span>
+    <p>Dedicated server</p>
+    <span>❌</span>
+    <p>Number of allowed brands</p>
+    <span>∞</span>
+    <button class="buybutton" id={prices.classic}>Buy</button>
+  </div>
+  <div class="plat">
+    <h1>Pro</h1>
+    <h2>For experts in resale</h2>
+    <div class="price">20€/m</div>
+    <p>Number of channels</p>
+    <span>∞</span>
+    <p>Boosted views per month</p>
+    <span>10000</span>
+    <p>Advanced user info</p>
+    <span>✅</span>
+    <p>Fastmode</p>
+    <span>✅</span>
+    <p>Analytics</p>
+    <span>✅</span>
+    <p>Support</p>
+    <span>✅</span>
+    <p>Dedicated server</p>
+    <span>✅</span>
+    <p>Number of allowed brands</p>
+    <span>∞</span>
+    <button class="buybutton" id={prices.pro}>Buy</button>
+  </div>
+</div>
+
+<div class="wrapper style1" hidden="hidden">
+  <section id="content">
+    <header class="major">
+      <h1>Pricing</h1>
+    </header>
+    <section>
+      <h3>Free</h3>
+      <p>For new users</p>
+      <div class="row">
+        <div class="col-6 col-12-xsmall">
+          <ul>
+            <li>Number of channels: <b>1</b></li>
+            <li>Boosted views per month: <b>100</b></li>
+            <li>Advanced user info: ❌</li>
+            <li>Fastmode: ❌</li>
+            <li>Analytics: ❌</li>
+            <li>Support: 🟠</li>
+            <li>Dedicated server: ❌</li>
+            <li>Number of allowed brands: <b>3</b></li>
+          </ul>
+          <button class="discordbuttonmobile"
+            ><img
+              src="https://seeklogo.com/images/D/discord-color-logo-E5E6DFEF80-seeklogo.com.png"
+              width="40"
+              height="30"
+              alt="Discord"
+            /></button
+          >
+        </div>
+      </div>
+    </section>
+    <section>
+      <h3>Starter</h3>
+      <div class="row">
+        <div class="col-6 col-12-xsmall">
+          <h4>Perfect for beginners</h4>
+          <h4>5€/month</h4>
+          <ul>
+            <li>Number of channels: <b>4</b></li>
+            <li>Boosted views per month: <b>1000</b></li>
+            <li>Advanced user info: ✅</li>
+            <li>Fastmode: ✅</li>
+            <li>Analytics: ✅</li>
+            <li>Support: ✅</li>
+            <li>Dedicated server: ❌</li>
+            <li>Number of allowed brands: <b>∞</b></li>
+          </ul>
+          <button class="buybutton" id={prices.starter}
+            >Buy</button
+          >
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>Classic</h3>
+      <div class="row">
+        <div class="col-6 col-12-xsmall">
+          <h4>For all users</h4>
+          <h4>10€/mois</h4>
+          <ul>
+            <li>Number of channels: <b>10</b></li>
+            <li>Boosted views per month: <b>2500</b></li>
+            <li>Advanced user info: ✅</li>
+            <li>Fastmode: ✅</li>
+            <li>Analytics: ✅</li>
+            <li>Support: ✅</li>
+            <li>Dedicated server: ❌</li>
+            <li>Number of allowed brands: <b>∞</b></li>
+          </ul>
+          <button class="buybutton" id={prices.classic}
+            >Buy</button
+          >
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>Pro</h3>
+      <div class="row">
+        <div class="col-6 col-12-xsmall">
+          <h4>For experts in resale</h4>
+          <h4>20€/mois</h4>
+          <ul>
+            <li>Number of channels: <b>∞</b></li>
+            <li>Boosted views per month: <b>10000</b></li>
+            <li>Advanced user info: ✅</li>
+            <li>Fastmode: ✅</li>
+            <li>Analytics: ✅</li>
+            <li>Support: ✅</li>
+            <li>Dedicated server: ✅</li>
+            <li>Number of allowed brands: <b>∞</b></li>
+          </ul>
+          <button class="buybutton" id={prices.pro}
+            >Buy</button
+          >
+        </div>
+      </div>
+    </section>
+  </section>
+</div>
+</Layout>

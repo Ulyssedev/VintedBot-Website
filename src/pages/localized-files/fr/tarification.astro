@@ -1,0 +1,226 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import "../../../styles/css/pricing.css";
+import prices from "../../../utils/prices"
+---
+
+<Layout title="Vinted Bot - Tarification" userLang="fr">
+  <div class="container">
+    <div class="silver">
+      <h1>Gratuit</h1>
+      <h2>Pour les nouveaux utilisateurs</h2>
+      <div class="price">0€/m</div>
+      <p>Nombre de salons</p>
+      <span>1</span>
+      <p>Vues boostées par mois</p>
+      <span>100</span>
+      <p>Informations utilisateur avancées</p>
+      <span>❌</span>
+      <p>Fastmode</p>
+      <span>❌</span>
+      <p>Analyse de recherches</p>
+      <span>❌</span>
+      <p>Support</p>
+      <span>🟠</span>
+      <p>Serveur dédié</p>
+      <span>❌</span>
+      <p>Nombre de marques autorisées</p>
+      <span>3</span>
+      <button class="discordbutton"
+        ><img
+          src="https://seeklogo.com/images/D/discord-color-logo-E5E6DFEF80-seeklogo.com.png"
+          width="40"
+          height="30"
+          alt="Discord"
+        /></button
+      >
+    </div>
+    <div class="gold">
+      <h1>Starter</h1>
+      <h2>Parfait pour débuter</h2>
+      <div class="price">5€/m</div>
+      <p>Nombre de salons</p>
+      <span>4</span>
+      <p>Vues boostées par mois</p>
+      <span>1000</span>
+      <p>Informations utilisateur avancées</p>
+      <span>✅</span>
+      <p>Fastmode</p>
+      <span>✅</span>
+      <p>Analyse de recherches</p>
+      <span>✅</span>
+      <p>Support</p>
+      <span>✅</span>
+      <p>Serveur dédié</p>
+      <span>❌</span>
+      <p>Nombre de marques autorisées</p>
+      <span>∞</span>
+      <button class="buybutton" id={prices.starter}
+        >Acheter</button
+      >
+    </div>
+    <div class="gold">
+      <h1>Classic</h1>
+      <h2>Pour tous les utilisateurs</h2>
+      <div class="price">10€/m</div>
+      <p>Nombre de salons</p>
+      <span>10</span>
+      <p>Vues boostées par mois</p>
+      <span>2500</span>
+      <p>Informations utilisateur avancées</p>
+      <span>✅</span>
+      <p>Fastmode</p>
+      <span>✅</span>
+      <p>Analyse de recherches</p>
+      <span>✅</span>
+      <p>Support</p>
+      <span>✅</span>
+      <p>Serveur dédié</p>
+      <span>❌</span>
+      <p>Nombre de marques autorisées</p>
+      <span>∞</span>
+      <button class="buybutton" id={prices.classic}
+        >Acheter</button
+      >
+    </div>
+    <div class="plat">
+      <h1>Pro</h1>
+      <h2>Pour les experts dans le domaine</h2>
+      <div class="price">20€/m</div>
+      <p>Nombre de salons</p>
+      <span>∞</span>
+      <p>Vues boostées par mois</p>
+      <span>10000</span>
+      <p>Informations utilisateur avancées</p>
+      <span>✅</span>
+      <p>Fastmode</p>
+      <span>✅</span>
+      <p>Analyse de recherches</p>
+      <span>✅</span>
+      <p>Support</p>
+      <span>✅</span>
+      <p>Serveur dédié</p>
+      <span>✅</span>
+      <p>Nombre de marques autorisées</p>
+      <span>∞</span>
+      <button class="buybutton" id={prices.pro}
+        >Acheter</button
+      >
+    </div>
+  </div>
+</Layout>
+<div class="wrapper" hidden="hidden">
+  <header class="major">
+    <h1>
+      Tarification<h1></h1>
+      <div class="row gtr-150">
+        <div class="col-4 col-12-medium">
+          <section id="content">
+            <section>
+              <h3>Gratuit</h3>
+              <p>Pour les nouveaux utilisateurs</p>
+              <div class="row">
+                <div class="col-6 col-12-xsmall">
+                  <ul>
+                    <li>Nombre de salons: <b>1</b></li>
+                    <li>Vues boostées par mois: <b>100</b></li>
+                    <li>Informations utilisateur avancées : ❌</li>
+                    <li>Fastmode: ❌</li>
+                    <li>Analyse de recherches: ❌</li>
+                    <li>Support: 🟠</li>
+                    <li>Serveur dédié: ❌</li>
+                    <li>
+                      Nombre de marques autorisées:
+                      <b>3</b>
+                    </li>
+                  </ul>
+                  <button class="discordbuttonmobile"
+                    ><img
+                      src="https://seeklogo.com/images/D/discord-color-logo-E5E6DFEF80-seeklogo.com.png"
+                      width="40"
+                      height="30"
+                      alt="Discord"
+                    /></button
+                  >
+                </div>
+              </div>
+            </section>
+            <section>
+              <section>
+                <h3>Starter</h3>
+                <div class="row">
+                  <div class="col-6 col-12-xsmall">
+                    <h4>Parfait pour débuter</h4>
+                    <h4>5€/mois</h4>
+                    <ul>
+                      <li>Nombre de salons : <b>4</b></li>
+                      <li>Vues boostées par mois : <b>1000</b></li>
+                      <li>Informations utilisateur avancées : ✅</li>
+                      <li>Fastmode: ✅</li>
+                      <li>Analyse de recherches: ✅</li>
+                      <li>Support : ✅</li>
+                      <li>Serveur dédié : ❌</li>
+                      <li>Nombre de marques autorisées : <b>∞</b></li>
+                    </ul>
+                    <button
+                      class="buybutton"
+                      id={prices.starter}>Acheter</button
+                    >
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <h3>Classic</h3>
+                <div class="row">
+                  <div class="col-6 col-12-xsmall">
+                    <h4>Pour tous les utilisateurs</h4>
+                    <h4>10€/mois</h4>
+                    <ul>
+                      <li>Nombre de salons : <b>10</b></li>
+                      <li>Vues boostées par mois : <b>2500</b></li>
+                      <li>Informations utilisateur avancées : ✅</li>
+                      <li>Fastmode: ✅</li>
+                      <li>Analyse de recherches: ✅</li>
+                      <li>Support : ✅</li>
+                      <li>Serveur dédié : ❌</li>
+                      <li>Nombre de marques autorisées : <b>∞</b></li>
+                    </ul>
+                    <button
+                      class="buybutton"
+                      id={prices.classic}>Acheter</button
+                    >
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <h3>Pro</h3>
+                <div class="row">
+                  <div class="col-6 col-12-xsmall">
+                    <h4>Pour les experts dans le domaine</h4>
+                    <h4>20€/mois</h4>
+                    <ul>
+                      <li>Nombre de salons : <b>∞</b></li>
+                      <li>Vues boostées par mois : <b>10000</b></li>
+                      <li>Informations utilisateur avancées : ✅</li>
+                      <li>Fastmode: ✅</li>
+                      <li>Analyse de recherches: ✅</li>
+                      <li>Support : ✅</li>
+                      <li>Serveur dédié : ✅</li>
+                      <li>Nombre de marques autorisées : <b>∞</b></li>
+                    </ul>
+                    <button
+                      class="buybutton"
+                      id={prices.pro}>Acheter</button
+                    >
+                  </div>
+                </div>
+              </section>
+            </section>
+          </section>
+        </div>
+      </div>
+    </h1>
+  </header>
+</div>

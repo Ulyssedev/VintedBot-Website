@@ -1,0 +1,94 @@
+---
+export interface Props {
+  userLang: string;
+}
+const { userLang } = Astro.props;
+import lang from "../utils/lang";
+---
+
+<!-- Header -->
+<header id="header">
+  <h1 id="logo">
+    <div id="user-container">
+      <div id="avatar-link">
+        <img class="user" src="/images/user.svg" alt="Avatar" id="avatar" />
+      </div>
+      <ul id="user-menu">
+        <li class="sign-up" style="display: none;">
+          <img class="icons-menu" src="/images/signup.svg" /><a
+            href={lang[userLang]?.["header.href.signUp"]}
+            >{lang[userLang]?.["header.signUp"]}</a
+          >
+        </li>
+        <li class="dashboard" style="display: none;">
+          <img class="icons-menu" src="/images/dashboard.svg" /><a
+            href="dashboard">Dashboard</a
+          >
+        </li>
+        <li class="discord" style="display: none;">
+          <img class="icons-menu" src="/images/discord-small.svg" /><a
+            href="#"
+            onclick="loginWithDiscord()">{lang[userLang]?.["header.discord"]}</a
+          >
+        </li>
+        <li class="logout" style="display: none;">
+          <img class="icons-menu" src="/images/logout.svg" /><a href="#"
+            >{lang[userLang]?.["header.logout"]}</a
+          >
+        </li>
+      </ul>
+    </div>
+  </h1>
+  <nav id="nav">
+    <ul>
+      <li><a href="index">{lang[userLang]?.["header.home"]}</a></li>
+      <li>
+        <a href="#">{lang[userLang]?.["header.docs"]}</a>
+        <ul>
+          <li>
+            <a href={lang[userLang]?.["header.href.howDoesItWork"]}
+              >{lang[userLang]?.["header.howDoesItWork"]}</a>
+          </li>
+          <li>
+            <a href={lang[userLang]?.["header.href.features"]}
+              >{lang[userLang]?.["header.features"]}</a>
+          </li>
+          <li>
+            <a href={lang[userLang]?.["header.href.qna"]}
+              >{lang[userLang]?.["header.qna"]}</a>
+          </li>
+          <li>
+            <a
+              href={lang[userLang]?.["header.href.privacy"]}>
+              {lang[userLang]?.['header.privacy']}</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href={lang[userLang]?.["header.href.pricing"]} class="button primary"
+          >{lang[userLang]?.["header.buy"]}</a>
+      </li>
+    </ul>
+    <div id="user-container-mobile" style="display: none;">
+      <li>
+        <div id="avatar-link">{lang[userLang]?.["header.account"]}</div>
+        <ul id="user-menu">
+          <li class="sign-up">
+            <a
+              href={lang[userLang]?.["header.href.signUp"]}
+              class="sign-up"
+              style="display: none;">{lang[userLang]?.["header.signUp"]}</a
+            >
+          </li>
+          <li class="dashboard"><a href="dashboard">Dashboard</a></li>
+          <li class="discord">
+            <a href="#">{lang[userLang]?.["header.discord"]}</a>
+          </li>
+          <li class="logout">
+            <a href="#">{lang[userLang]?.["header.logout"]}</a>
+          </li>
+        </ul>
+      </li>
+    </div>
+  </nav>
+</header>

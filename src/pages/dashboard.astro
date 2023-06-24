@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Vinted Bot - Dashboard">
+  <!-- Main -->
+  <div class="content">
+    <div class="wrapper style1">
+      <header class="major">
+        <h2>Dashboard</h2>
+      </header>
+      <img class="avatar" src="/images/user.svg" alt="Avatar" id="avatar" />
+      <div class="user-info" style="display: none;">
+        <h1 class="email">Email</h1>
+        <h2 class="subscription">subscription</h2>
+      </div>
+      <div class="managebutton" style="display: none;">
+        <button class="manage">
+          <span class="stripe-logo"></span>
+          Manage Subscription
+        </button>
+      </div>
+      <div class="vintedbot-info">
+        <p class="vintedbot-subsleft"></p>
+        <ul class="vintedbot-channels"></ul>
+      </div>
+    </div>
+  </div>
+</Layout>
