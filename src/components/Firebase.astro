@@ -23,7 +23,9 @@ console.log(process.env.NODE_ENV)
   connectFunctionsEmulator(functions, "localhost", 5001);
   }
 
-const signupForm = document.querySelector('.signup') as HTMLFormElement
+
+
+const signupForm = document.querySelector('.signup')
 if (signupForm) {
   signupForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -37,7 +39,7 @@ if (signupForm) {
           signupForm.reset()
           //if callback not in the url
           if (window.location.href.indexOf("callback") == -1) {
-            window.location.href = 'index.html'
+            window.location = 'index.html'
           }
         })
         .catch(err => {
@@ -57,7 +59,7 @@ if (logoutButton) {
     e.preventDefault()
     signOut(auth).then(() => {
       console.log('user signed out')
-      window.location.href = 'index.html'
+      window.location = 'index.html'
       if (localStorage.getItem("avatar")) {
         localStorage.removeItem("avatar")
       }
@@ -66,7 +68,7 @@ if (logoutButton) {
   })
   }
 
-const loginForm = document.querySelector('.login') as HTMLFormElement
+const loginForm = document.querySelector('.login')
 if (loginForm) {
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -78,7 +80,7 @@ loginForm.addEventListener('submit', (e) => {
     .then(cred => {
       loginForm.reset()
       if (window.location.href.indexOf("callback") == -1) {
-        window.location.href = 'index.html'
+        window.location = 'index.html'
       }
     })
     .catch(err => {
@@ -97,17 +99,17 @@ onAuthStateChanged(auth, user => {
     console.log('user logged in:', user)
     if (document.querySelector('.logout')) {
       document.querySelectorAll('.logout').forEach((element) => {
-        (element as HTMLElement).style.display = 'inline-block'
+        element.style.display = 'inline-block'
       })
     }
 
     if (document.querySelector('.dashboard')) {
       document.querySelectorAll('.dashboard').forEach((element) => {
-        (element as HTMLElement).style.display = 'inline-block'
+        element.style.display = 'inline-block'
       })
     }
-    if (signupelement && signupelement.parentNode) {
-      signupelement.parentNode.removeChild(signupelement);
+    if (signupelement) {
+    signupelement.parentNode.removeChild(signupelement);
     }
     if (discordelement) {
     discordelement.addEventListener('click', (e) => {
@@ -119,7 +121,7 @@ onAuthStateChanged(auth, user => {
       e.preventDefault()
       signOut(auth).then(() => {
         console.log('user signed out')
-        window.location.href = 'index.html'
+        window.location = 'index.html'
         if (localStorage.getItem("avatar")) {
           localStorage.removeItem("avatar")
         }
@@ -129,20 +131,20 @@ onAuthStateChanged(auth, user => {
     console.log('user logged out')
     if (document.querySelector('.sign-up')) {
       document.querySelectorAll('.sign-up').forEach((element) => {
-        (element as HTMLElement).style.display = 'inline-block'
+        element.style.display = 'inline-block'
       })
     }
-    if (logoutelement && logoutelement.parentNode) {
+    if (logoutelement) {
     logoutelement.parentNode.removeChild(logoutelement);
     }
-    if (discordelement && discordelement.parentNode) {
+    if (discordelement) {
     discordelement.parentNode.removeChild(discordelement);
     }
-    if (dashboardelement && dashboardelement.parentNode) {
+    if (dashboardelement) {
     dashboardelement.parentNode.removeChild(dashboardelement);
     }
   }
-  if (user && auth.currentUser) {
+  if (user) {
     const docRef = doc(db, "users", user.uid);
     getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
       if (doc.exists()) {
@@ -151,18 +153,18 @@ onAuthStateChanged(auth, user => {
         console.log("Document data:", doc.data());
           if (document.querySelector('.discord')) {
             document.querySelectorAll('.discord').forEach((element) => {
-              (element as HTMLElement).style.display = 'none'
+              element.style.display = 'none'
             }
             )
           }
-        if (discordelement && discordelement.parentNode) {
+        if (discordelement) {
         discordelement.parentNode.removeChild(discordelement);
 }}
 else {
   console.log("No such document!");
   if (document.querySelector('.discord')) {
     document.querySelectorAll('.discord').forEach((element) => {
-      (element as HTMLElement).style.display = 'inline-block'
+      element.style.display = 'inline-block'
     }
     )
 }}
@@ -176,7 +178,7 @@ else {
 if (window.location.href.includes("discord") && !window.location.href.includes("code=") && !window.location.href.includes("callback="))  {
   //if the user is logged in
   onAuthStateChanged(auth, user => {
-    if (user && auth.currentUser) {
+    if (user) {
       //if the user is logged in and has a discord account
       const docRef = doc(db, "users", user.uid);
       getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
@@ -227,18 +229,18 @@ if (window.location.href.includes("discord") && !window.location.href.includes("
       })
     }
     else {
-      const userLang = navigator.language;
+      const userLang = navigator.language || navigator.userLanguage;
       if (userLang.includes("fr")) {
-        window.location.href = "inscription"
+        window.location = "inscription"
       }
       if (userLang.includes("en")) {
-        window.location.href = "signup"
+        window.location = "signup"
       }
       if (userLang.includes("pl")) {
-        window.location.href = "rejestracja"
+        window.location = "rejestracja"
       }
       else {
-        window.location.href = "signup?callback=discord"
+        window.location = "signup?callback=discord"
       }
     }
   })
@@ -249,12 +251,12 @@ var submitInput = document.querySelector("input[type='submit']");
 
 if (new URLSearchParams(window.location.search).get("callback") && submitInput) {
   submitInput.addEventListener("click", function(e) {
-    var callback = getParameterByName("callback", window.location.href);
+    var callback = getParameterByName("callback");
     if (callback) {
       //wait for the user to be logged in
       onAuthStateChanged(auth, user => {
-        if (user && callback) {
-        window.location.href = callback;
+        if (user) {
+      window.location.href = callback;
     }
   })
 }
@@ -277,7 +279,7 @@ const dashboardButton = document.querySelector('.dashboard')
 if (dashboardButton) {
 dashboardButton.addEventListener('click', (e) => {
   e.preventDefault()
-  window.location.href = 'dashboard.html'
+  window.location = 'dashboard.html'
 })
 }
 
@@ -291,8 +293,7 @@ manageButton.addEventListener('click', async (e) => {
   manageButton.classList.add('load');
   await createPortalLink({ returnUrl: window.location.origin })
     .then((result) => {
-      const data = result.data as { url: string };
-      window.location.assign(data.url);
+      window.location.assign(result.data.url)
     })
     .catch((error) => {
       console.log(error)
@@ -317,11 +318,11 @@ discordButtonMobile.addEventListener('click', (e) => {
 })
 }
 
-function loginWithDiscord() {
+window.loginWithDiscord = () => {
   const clientId = "963382206443704342";
   const redirectUri = `${window.location.origin}/discord`;
   const scope = "role_connections.write identify guilds.join";
-  const state = auth.currentUser ? auth.currentUser.uid : null;
+  const state = auth.currentUser.uid;
   const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}&prompt=consent`;
   document.cookie = `clientState=${state}; max-age=${1000 * 60 * 5};`;
   window.location.href = url;
@@ -334,7 +335,7 @@ if (new URLSearchParams(window.location.search).get("code")) {
   confirmLoginWithDiscord({ code: new URLSearchParams(window.location.search).get("code"), origin: window.location.origin, state: new URLSearchParams(window.location.search).get("state") })
     .then((result) => {
       const data = result.data;
-      const { id, username, discriminator, avatar, tokens } = data as { id: string, username: string, discriminator: string, avatar: string, tokens: string };
+      const { id, username, discriminator, avatar, tokens } = data;
       console.log(id, username, discriminator, avatar, tokens)
         setDoc(doc(db, "users", auth.currentUser.uid), {
           discord: {
@@ -397,7 +398,7 @@ if (localStorage.getItem("avatar")) {
 }
 else {
 onAuthStateChanged(auth, user => {
-  if (user && auth.currentUser) {
+  if (user) {
     getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
       if (doc.exists()) {
         if (doc.data().discord) {
@@ -416,7 +417,7 @@ onAuthStateChanged(auth, user => {
 var avatarLink = document.getElementById("avatar-link");
 var userMenu = document.getElementById("user-menu");
 
-if (avatarLink && userMenu) {
+if (avatarLink) {
 avatarLink.addEventListener("click", function() {
     userMenu.style.display = "block";
 });
@@ -451,11 +452,11 @@ document.querySelectorAll(".buybutton").forEach((button) => {
         customerEmail: user.email,
       })
         .then((session) => {
-          window.location.href  = session.url;
+          window.location = session.url;
         })
     }
     else {
-      window.location.href = document.querySelector(".sign-up a").href;
+      window.location = document.querySelector(".sign-up a").href;
     }
   });
 });

@@ -1,5 +1,6 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const fetch = require("node-fetch");
 
 const getAccessToken = async (userId, tokens) => {
   if (Date.now() > tokens.expires_at) {
