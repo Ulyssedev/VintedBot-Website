@@ -1,322 +1,39 @@
 <script>
 import { app } from "../firebase/client";
-import { getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import {
+  getAuth,
+  connectAuthEmulator,
+  createUserWithEmailAndPassword,
+  signOut,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
-import { getFirestore, doc, setDoc, getDoc, updateDoc, connectFirestoreEmulator } from "firebase/firestore";
-import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions";
-import { getStripePayments, getCurrentUserSubscriptions, createCheckoutSession } from "@stripe/firestore-stripe-payments";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  connectFirestoreEmulator,
+} from "firebase/firestore";
+import {
+  getFunctions,
+  httpsCallable,
+  connectFunctionsEmulator,
+} from "firebase/functions";
+import {
+  getStripePayments,
+  getCurrentUserSubscriptions,
+  createCheckoutSession,
+} from "@stripe/firestore-stripe-payments";
 
-// log dev env
-console.log(process.env.NODE_ENV)
-  
-  // Initialize Firebase
-  const analytics = getAnalytics(app);
-  const auth = getAuth(app);
-  const perf = getPerformance(app);
-  const db = getFirestore(app);
-  const functions = getFunctions(app, "europe-west1");
-  if (process.env.NODE_ENV === "development") {
-    console.log("Development mode: Emulators enabled")
-  connectAuthEmulator(auth, "http://127.0.0.1:9099");
-  connectFirestoreEmulator(db, "localhost", 8080);
-  connectFunctionsEmulator(functions, "localhost", 5001);
-  }
-
-
-
-const signupForm = document.querySelector('.signup')
-if (signupForm) {
-  signupForm.addEventListener('submit', (e) => {
-    e.preventDefault()
-
-    const email = signupForm.email.value
-    const password = signupForm.password.value
-    if (signupForm.terms.checked) {
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(cred => {
-          console.log('user created:', cred.user)
-          signupForm.reset()
-          //if callback not in the url
-          if (window.location.href.indexOf("callback") == -1) {
-            window.location = 'index.html'
-          }
-        })
-        .catch(err => {
-          console.log(err.message)
-          alert(err.message)
-        })
-    } else {
-      alert('Please agree to terms and conditions')
-    }
-  })
-}
-
-const logoutButton = document.querySelector('.logout')
-if (logoutButton) {
-  document.querySelectorAll('.logout').forEach((element) => {
-  element.addEventListener('click', (e) => {
-    e.preventDefault()
-    signOut(auth).then(() => {
-      console.log('user signed out')
-      window.location = 'index.html'
-      if (localStorage.getItem("avatar")) {
-        localStorage.removeItem("avatar")
-      }
-    })
-  })
-  })
-  }
-
-const loginForm = document.querySelector('.login')
-if (loginForm) {
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault()
-
-  const email = loginForm.email.value
-  const password = loginForm.password.value
-
-  signInWithEmailAndPassword(auth, email, password)
-    .then(cred => {
-      loginForm.reset()
-      if (window.location.href.indexOf("callback") == -1) {
-        window.location = 'index.html'
-      }
-    })
-    .catch(err => {
-      console.log(err.message)
-      alert(err.message)
-    })
-})
-}
-
-onAuthStateChanged(auth, user => {
-  const signupelement = document.getElementsByClassName("depth-1")[4];
-  const dashboardelement = document.getElementsByClassName("depth-1")[5];
-  const discordelement = document.getElementsByClassName("depth-1")[6];
-  const logoutelement = document.getElementsByClassName("depth-1")[7];
-  if (user) {
-    console.log('user logged in:', user)
-    if (document.querySelector('.logout')) {
-      document.querySelectorAll('.logout').forEach((element) => {
-        element.style.display = 'inline-block'
-      })
-    }
-
-    if (document.querySelector('.dashboard')) {
-      document.querySelectorAll('.dashboard').forEach((element) => {
-        element.style.display = 'inline-block'
-      })
-    }
-    if (signupelement) {
-    signupelement.parentNode.removeChild(signupelement);
-    }
-    if (discordelement) {
-    discordelement.addEventListener('click', (e) => {
-      e.preventDefault()
-      loginWithDiscord()
-    })}
-    if (logoutelement) {
-    logoutelement.addEventListener('click', (e) => {
-      e.preventDefault()
-      signOut(auth).then(() => {
-        console.log('user signed out')
-        window.location = 'index.html'
-        if (localStorage.getItem("avatar")) {
-          localStorage.removeItem("avatar")
-        }
-      })})}
-    }
-    else {
-    console.log('user logged out')
-    if (document.querySelector('.sign-up')) {
-      document.querySelectorAll('.sign-up').forEach((element) => {
-        element.style.display = 'inline-block'
-      })
-    }
-    if (logoutelement) {
-    logoutelement.parentNode.removeChild(logoutelement);
-    }
-    if (discordelement) {
-    discordelement.parentNode.removeChild(discordelement);
-    }
-    if (dashboardelement) {
-    dashboardelement.parentNode.removeChild(dashboardelement);
-    }
-  }
-  if (user) {
-    const docRef = doc(db, "users", user.uid);
-    getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
-      if (doc.exists()) {
-        if (doc.data().discord) {
-      //if the field username is in the database
-        console.log("Document data:", doc.data());
-          if (document.querySelector('.discord')) {
-            document.querySelectorAll('.discord').forEach((element) => {
-              element.style.display = 'none'
-            }
-            )
-          }
-        if (discordelement) {
-        discordelement.parentNode.removeChild(discordelement);
-}}
-else {
-  console.log("No such document!");
-  if (document.querySelector('.discord')) {
-    document.querySelectorAll('.discord').forEach((element) => {
-      element.style.display = 'inline-block'
-    }
-    )
-}}
-}}
-).catch((error) => {
-      console.log("Error getting document:", error);
-    });
-  }
-})
-
-if (window.location.href.includes("discord") && !window.location.href.includes("code=") && !window.location.href.includes("callback="))  {
-  //if the user is logged in
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      //if the user is logged in and has a discord account
-      const docRef = doc(db, "users", user.uid);
-      getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
-        if (doc.exists()) {
-          if (doc.data().discord) {
-            getCurrentUserSubscriptions(payments).then((subscriptions) => {
-              //set the id to the discordid
-              const id = doc.data().discord.id
-              //set the tokens to the discord tokens
-              const tokens = doc.data().discord.tokens
-              if (subscriptions.length > 0) {
-                if (subscriptions[0].role === "starter") {
-                  // set the metadata
-                  const metadata = {
-                    isstarter: 1,
-                  };
-                  pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
-                }
-                if (subscriptions[0].role === "classic") {
-                  // set the metadata
-                  const metadata = {
-                    isclassic: 1,
-                  };
-                  pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
-                }
-                if (subscriptions[0].role === "pro") {
-                  // set the metadata
-                  const metadata = {
-                    ispro: 1,
-                  };
-                  pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
-                }
-              }
-              else {
-                const metadata = {
-                  isregistered: 1,
-                };
-                pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
-                console.log(metadata)
-              }
-            })
-            window.location.href = "dashboard.html";
-          }
-          else {
-            loginWithDiscord()
-          }
-        }
-      })
-    }
-    else {
-      const userLang = navigator.language || navigator.userLanguage;
-      if (userLang.includes("fr")) {
-        window.location = "inscription"
-      }
-      if (userLang.includes("en")) {
-        window.location = "signup"
-      }
-      if (userLang.includes("pl")) {
-        window.location = "rejestracja"
-      }
-      else {
-        window.location = "signup?callback=discord"
-      }
-    }
-  })
-}
-
-//if callback is a url parameter
-var submitInput = document.querySelector("input[type='submit']");
-
-if (new URLSearchParams(window.location.search).get("callback") && submitInput) {
-  submitInput.addEventListener("click", function(e) {
-    var callback = getParameterByName("callback");
-    if (callback) {
-      //wait for the user to be logged in
-      onAuthStateChanged(auth, user => {
-        if (user) {
-      window.location.href = callback;
-    }
-  })
-}
-
-  });
-  
-  function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-  }
-}
-  
-
-const dashboardButton = document.querySelector('.dashboard')
-if (dashboardButton) {
-dashboardButton.addEventListener('click', (e) => {
-  e.preventDefault()
-  window.location = 'dashboard.html'
-})
-}
-
-const manageButton = document.querySelector('.manage')
-const createPortalLink = httpsCallable(functions, 'ext-firestore-stripe-payments-createPortalLink')
-if (manageButton) {
-//call createPortalLink function asynchrnously
-manageButton.addEventListener('click', async (e) => {
-  e.preventDefault()
-  manageButton.innerHTML = '';
-  manageButton.classList.add('load');
-  await createPortalLink({ returnUrl: window.location.origin })
-    .then((result) => {
-      window.location.assign(result.data.url)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-})
-}
-
-
-const discordButton = document.querySelector('.discordbutton')
-if (discordButton) {
-discordButton.addEventListener('click', (e) => {
-  e.preventDefault()
-  window.open('https://discord.gg/W6MRNaXwQ8')
-})
-}
-
-const discordButtonMobile = document.querySelector('.discordbuttonmobile')
-if (discordButtonMobile) {
-discordButtonMobile.addEventListener('click', (e) => {
-  e.preventDefault()
-  window.open('https://discord.gg/W6MRNaXwQ8')
-})
-}
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const perf = getPerformance(app);
+const db = getFirestore(app);
+const functions = getFunctions(app, "europe-west1");
 
 window.loginWithDiscord = () => {
   const clientId = "963382206443704342";
@@ -327,6 +44,248 @@ window.loginWithDiscord = () => {
   document.cookie = `clientState=${state}; max-age=${1000 * 60 * 5};`;
   window.location.href = url;
 };
+
+if (process.env.NODE_ENV === "development") {
+  console.log("Development mode: Emulators enabled");
+  connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  connectFirestoreEmulator(db, "localhost", 8080);
+  connectFunctionsEmulator(functions, "localhost", 5001);
+}
+
+const signupForm = document.querySelector<HTMLFormElement>('.signup');
+if (signupForm) {
+  signupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const email = signupForm.email.value;
+    const password = signupForm.password.value;
+
+    if (signupForm.terms.checked) {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((cred) => {
+          console.log('user created:', cred.user);
+          signupForm.reset();
+
+          // if callback not in the URL
+          if (window.location.href.indexOf("callback") === -1) {
+            window.location.href = 'index.html';
+          }
+        })
+        .catch((err) => {
+          console.log(err.message);
+          alert(err.message);
+        });
+    } else {
+      alert('Please agree to the terms and conditions');
+    }
+  });
+}
+
+const logoutButtons = document.querySelectorAll<HTMLAnchorElement>('.logout');
+logoutButtons.forEach((logoutButton) => {
+  logoutButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    signOut(auth).then(() => {
+      console.log('user signed out');
+      window.location.href = 'index.html';
+
+      if (localStorage.getItem("avatar")) {
+        localStorage.removeItem("avatar");
+      }
+    });
+  });
+});
+
+const loginForm = document.querySelector<HTMLFormElement>('.login');
+if (loginForm) {
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const email = loginForm.email.value;
+    const password = loginForm.password.value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((cred) => {
+        loginForm.reset();
+
+        if (window.location.href.indexOf("callback") === -1) {
+          window.location.href = 'index.html';
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+        alert(err.message);
+      });
+  });
+}
+
+onAuthStateChanged(auth, (user) => {
+  const signupelement = document.getElementsByClassName("depth-1")[4] as HTMLDivElement;
+  const dashboardelement = document.getElementsByClassName("depth-1")[5] as HTMLDivElement;
+  const discordelement = document.getElementsByClassName("depth-1")[6] as HTMLDivElement;
+  const logoutelement = document.getElementsByClassName("depth-1")[7] as HTMLDivElement;
+
+  if (user) {
+    console.log('user logged in:', user);
+
+    if (document.querySelector('.logout')) {
+      const logoutElements = document.querySelectorAll('.logout');
+      logoutElements.forEach((element) => {
+        (element as HTMLElement).style.display = 'inline-block';
+      });
+    }
+
+    if (document.querySelector('.dashboard')) {
+      const dashboardElements = document.querySelectorAll('.dashboard');
+      dashboardElements.forEach((element) => {
+        (element as HTMLElement).style.display = 'inline-block';
+      });
+    }
+
+    if (signupelement) {
+      signupelement.parentNode?.removeChild(signupelement);
+    }
+
+    if (discordelement) {
+      discordelement.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginWithDiscord();
+      });
+    }
+
+    if (logoutelement) {
+      logoutelement.addEventListener('click', (e) => {
+        e.preventDefault();
+        signOut(auth).then(() => {
+          console.log('user signed out');
+          window.location.href = 'index.html';
+
+          if (localStorage.getItem("avatar")) {
+            localStorage.removeItem("avatar");
+          }
+        });
+      });
+    }
+  } else {
+    console.log('user logged out');
+
+    if (document.querySelector('.sign-up')) {
+      const signUpElements = document.querySelectorAll('.sign-up');
+      signUpElements.forEach((element) => {
+        (element as HTMLElement).style.display = 'inline-block';
+      });
+    }
+
+    if (logoutelement) {
+      logoutelement.parentNode?.removeChild(logoutelement);
+    }
+
+    if (discordelement) {
+      discordelement.parentNode?.removeChild(discordelement);
+    }
+
+    if (dashboardelement) {
+      dashboardelement.parentNode?.removeChild(dashboardelement);
+    }
+  }
+
+  if (user) {
+    const docRef = doc(db, "users", user.uid);
+
+    getDoc(doc(db, "users", auth.currentUser?.uid || "")).then((doc) => {
+      if (doc.exists()) {
+        if (doc.data()?.discord) {
+          console.log("Document data:", doc.data());
+
+          if (document.querySelector('.discord')) {
+            const discordElements = document.querySelectorAll('.discord');
+            discordElements.forEach((element) => {
+              (element as HTMLElement).style.display = 'none';
+            });
+          }
+
+          if (discordelement) {
+            discordelement.parentNode?.removeChild(discordelement);
+          }
+        } else {
+          console.log("No such document!");
+
+          if (document.querySelector('.discord')) {
+            const discordElements = document.querySelectorAll('.discord');
+            discordElements.forEach((element) => {
+              (element as HTMLElement).style.display = 'inline-block';
+            });
+          }
+        }
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  }
+});
+
+if (window.location.href.includes("discord") && !window.location.href.includes("code=") && !window.location.href.includes("callback=")) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const docRef = doc(db, "users", user.uid);
+
+      getDoc(doc(db, "users", auth.currentUser?.uid || "")).then((doc) => {
+        if (doc.exists()) {
+          if (doc.data()?.discord) {
+            getCurrentUserSubscriptions(payments).then((subscriptions) => {
+              const id = doc.data()?.discord?.id;
+              const tokens = doc.data()?.discord?.tokens;
+
+              if (subscriptions.length > 0) {
+                if (subscriptions[0].role === "starter") {
+                  const metadata = {
+                    isstarter: 1,
+                  };
+                  pushMetadata({ userId: id, tokens: tokens, metadata: metadata });
+                }
+                if (subscriptions[0].role === "classic") {
+                  const metadata = {
+                    isclassic: 1,
+                  };
+                  pushMetadata({ userId: id, tokens: tokens, metadata: metadata });
+                }
+                if (subscriptions[0].role === "pro") {
+                  const metadata = {
+                    ispro: 1,
+                  };
+                  pushMetadata({ userId: id, tokens: tokens, metadata: metadata });
+                }
+              } else {
+                const metadata = {
+                  isregistered: 1,
+                };
+                pushMetadata({ userId: id, tokens: tokens, metadata: metadata });
+                console.log(metadata);
+              }
+            });
+            window.location.href = "dashboard.html";
+          } else {
+            loginWithDiscord();
+          }
+        }
+      });
+    } else {
+      const userLang = navigator.language || navigator.userLanguage;
+
+      if (userLang.includes("fr")) {
+        window.location.href = "inscription";
+      }
+      if (userLang.includes("en")) {
+        window.location.href = "signup";
+      }
+      if (userLang.includes("pl")) {
+        window.location.href = "rejestracja";
+      } else {
+        window.location.href = "signup?callback=discord";
+      }
+    }
+  });
+}
 
 const confirmLoginWithDiscord = httpsCallable(functions, "confirmLoginWithDiscord");
 const pushMetadata = httpsCallable(functions, "pushMetadata");
@@ -389,6 +348,7 @@ if (new URLSearchParams(window.location.search).get("code")) {
     })
   }
 
+
 const handleWebhookEvents  = httpsCallable(functions, "ext-firestore-stripe-payments-handleWebhookEvents");
 
 if (localStorage.getItem("avatar")) {
@@ -397,20 +357,28 @@ if (localStorage.getItem("avatar")) {
   });
 }
 else {
-onAuthStateChanged(auth, user => {
+  onAuthStateChanged(auth, (user) => {
   if (user) {
-    getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
-      if (doc.exists()) {
-        if (doc.data().discord) {
-          document.querySelectorAll('[id=avatar]').forEach(element => {
-            element.src = "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256";
+    const userDocRef = doc(db, 'users', auth.currentUser!.uid);
+    getDoc(userDocRef).then((userDoc) => {
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        if (userData && userData.discord) {
+          const discordId = userData.discord.id;
+          const discordAvatar = userData.discord.avatar;
+          const avatarUrl = `https://cdn.discordapp.com/avatars/${discordId}/${discordAvatar}.png?size=256`;
+
+          const avatarElements = document.querySelectorAll('[id=avatar]');
+          avatarElements.forEach((element) => {
+            element.setAttribute('src', avatarUrl);
           });
-          localStorage.setItem("avatar", "https://cdn.discordapp.com/avatars/" + doc.data().discord.id + "/" + doc.data().discord.avatar + ".png?size=256");
+
+          localStorage.setItem('avatar', avatarUrl);
         }
       }
-    })
+    });
   }
-})
+});
 }
 
 
@@ -432,7 +400,6 @@ avatarLink.addEventListener("touchstart", function() {
 );
 }
 
-//stripe stuff
 const payments = getStripePayments(app, {
   productsCollection: "products",
   customersCollection: "users",
@@ -445,14 +412,13 @@ document.querySelectorAll(".buybutton").forEach((button) => {
     if (user) {
       button.innerHTML = '';
       button.classList.replace('buybutton', 'load');
-      await createCheckoutSession(payments, {
-        successUrl: window.location.origin + "/dashboard",
-        cancelUrl: window.location.origin + "/dashboard",
-        price: `${button.id}`,
-        customerEmail: user.email,
-      })
-        .then((session) => {
-          window.location = session.url;
+  await createCheckoutSession(payments, {
+    success_url: window.location.origin + "/dashboard",
+    cancel_url: window.location.origin + "/dashboard",
+    price: `${button.id}`,
+  })
+.then((session) => {
+          window.location.href = session.url;
         })
     }
     else {
@@ -460,8 +426,6 @@ document.querySelectorAll(".buybutton").forEach((button) => {
     }
   });
 });
-
-
 
 // list current subscriptions
 onAuthStateChanged(auth, async (user) => {
@@ -547,4 +511,6 @@ onAuthStateChanged(auth, async (user) => {
   });
 }
 });
+
+
 </script>

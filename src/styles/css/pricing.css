@@ -24,20 +24,20 @@
     display: none;
   }
 
-.container {
+  .container {
     max-width: 1000px;
     margin: 100px auto;
-}
+  }
 
-.silver,
-.plat {
+  .silver,
+  .plat {
     float: left;
     width: 250px;
     background: #383a51;
     text-align: center;
-}
+  }
 
-.gold {
+  .gold {
     float: left;
     position: relative;
     width: 250px;
@@ -46,41 +46,41 @@
     background: #3a4179;
     text-align: center;
     border-radius: 5px;
-}
+  }
 
-.gold > .price {
+  .gold > .price {
     background: white;
     color: rgba(0, 0, 0, 0.7);
-}
+  }
 
-.gold > h1,
-.gold > h2,
-.gold > p,
-.gold > span {
+  .gold > h1,
+  .gold > h2,
+  .gold > p,
+  .gold > span {
     color: white;
-}
+  }
 
-h1 {
+  h1 {
     margin: 20px 0 10px 0;
     font-size: 1.25em;
-    color: rgba(255, 255, 255, 0.8)
-}
+    color: rgba(255, 255, 255, 0.8);
+  }
 
-h2 {
-    font-size: .75em;
+  h2 {
+    font-size: 0.75em;
     color: rgb(255, 255, 255);
     font-weight: 100;
     letter-spacing: 1px;
-}
+  }
 
-p {
+  p {
     color: rgb(255, 255, 255);
     margin: 10px 0;
     font-weight: 100;
-    font-size: .75em;
-}
+    font-size: 0.75em;
+  }
 
-span {
+  span {
     margin-bottom: 20px;
     padding-bottom: 10px;
     display: inline-block;
@@ -90,9 +90,9 @@ span {
     letter-spacing: 1px;
     color: rgb(255, 255, 255);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
+  }
 
-.price {
+  .price {
     height: 100px;
     width: 100px;
     text-align: center;
@@ -103,52 +103,53 @@ span {
     font-size: 1.5em;
     font-weight: 100;
     margin: 20px auto;
-}
-
+  }
 }
 
 .buybutton {
-    display: block;
-    margin: 20px auto;
-    width: 150px;
-    height: 35px;
-    border-bottom: 5px solid #c0392b;
-    background: #e74c3c;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: .75em;
-    font-weight: 100;
-    transition: all ease-in-out .2s;
+  display: block;
+  margin: 20px auto;
+  width: 150px;
+  height: 35px;
+  border-bottom: 5px solid #c0392b;
+  background: #e74c3c;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.75em;
+  font-weight: 100;
+  transition: all ease-in-out 0.2s;
 }
 
 .buybutton:hover {
-    background: #c0392b;          
+  background: #c0392b;
 }
 
-.discordbutton, .discordbuttonmobile {
-    display: block;
-    margin: 20px auto;
-    width: 150px;
-    height: 35px;
-    border-bottom: 5px solid #7289da;
-    background: #99aaff;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: .75em;
-    font-weight: 100;
-    transition: all ease-in-out .2s;
+.discordbutton,
+.discordbuttonmobile {
+  display: block;
+  margin: 20px auto;
+  width: 150px;
+  height: 35px;
+  border-bottom: 5px solid #7289da;
+  background: #99aaff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.75em;
+  font-weight: 100;
+  transition: all ease-in-out 0.2s;
 }
 
-.discordbutton:hover, .discordbuttonmobile:hover {
-    background: #7289da;          
+.discordbutton:hover,
+.discordbuttonmobile:hover {
+  background: #7289da;
 }
 
 footer {
-    left: 0;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
-    overflow: hidden;
-    }
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+}
