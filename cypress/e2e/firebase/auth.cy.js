@@ -33,6 +33,8 @@ describe('test vintedbot', () => {
       },
     }).as('confirmPayment');
 
+    cy.wait(2000)
+
     cy.origin('https://checkout.stripe.com', () => {
       cy.url().should('include', 'https://checkout.stripe.com')
   })
