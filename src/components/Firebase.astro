@@ -63,7 +63,9 @@ if (signupForm) {
     if (signupForm.terms.checked) {
       createUserWithEmailAndPassword(auth, email, password)
         .then((cred) => {
+          if (process.env.NODE_ENV === "development") {
           console.log('user created:', cred.user);
+          }
           signupForm.reset();
 
           // if callback not in the URL
@@ -126,7 +128,10 @@ onAuthStateChanged(auth, (user) => {
   const logoutelement = document.getElementsByClassName("depth-1")[7] as HTMLDivElement;
 
   if (user) {
-    console.log('user logged in:', user);
+    if (process.env.NODE_ENV === "development") {
+      console.log('user logged in:', user);
+          }
+
 
     if (document.querySelector('.logout')) {
       const logoutElements = document.querySelectorAll('.logout');
@@ -195,7 +200,9 @@ onAuthStateChanged(auth, (user) => {
     getDoc(doc(db, "users", auth.currentUser?.uid || "")).then((doc) => {
       if (doc.exists()) {
         if (doc.data()?.discord) {
-          console.log("Document data:", doc.data());
+          if (process.env.NODE_ENV === "development") {
+            console.log("Document data:", doc.data());
+          }
 
           if (document.querySelector('.discord')) {
             const discordElements = document.querySelectorAll('.discord');
@@ -410,11 +417,9 @@ document.querySelectorAll(".buybutton").forEach((button) => {
   button.addEventListener("click", async () => {
     const user = auth.currentUser;
     if (user) {
-      button.innerHTML = '';
-      button.classList.replace('buybutton', 'load');
   await createCheckoutSession(payments, {
     success_url: window.location.origin + "/dashboard",
-    cancel_url: window.location.origin + "/dashboard",
+    cancel_url: window.location.origin + "/pricing",
     price: `${button.id}`,
   })
 .then((session) => {

@@ -3659,7 +3659,7 @@ body.landing #header {
     rgba(23, 24, 32, 0.95)
   );
   background-image: linear-gradient(
-    top,
+    to left,
     rgba(23, 24, 32, 0.95),
     rgba(23, 24, 32, 0.95)
   );
