@@ -73,3 +73,6 @@ dist
 
 # Cypress videos
 cypress/videos
+
+# Credentials file
+credentials.json

@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run",
+    "test": "cross-env FIREBASE_AUTH_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.auth.port)\" FIREBASE_DATABASE_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.database.port)\" FIRESTORE_EMULATOR_HOST=\"localhost:$(cat firebase.json | jq .emulators.firestore.port)\" cypress run",
     "build": "astro build",
-    "dev": "astro dev & firebase emulators:start & stripe listen --forward-to http://localhost:5001/vintedbot-3f0d6/europe-west1/ext-firestore-stripe-payments-handleWebhookEvents && fg"
+    "dev": "astro dev --host & firebase emulators:start & stripe listen --forward-to http://localhost:5001/vintedbot-3f0d6/europe-west1/ext-firestore-stripe-payments-handleWebhookEvents && fg"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,12 @@
     "@astrojs/tailwind": "^4.0.0",
     "@stripe/firestore-stripe-payments": "^0.0.6",
     "astro": "^2.8.0",
+    "cypress-firebase": "^2.2.5",
     "firebase": "^10.0.0",
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "cypress": "^12.17.0",
     "prettier": "^3.0.0",
     "prettier-plugin-astro": "^0.10.0",

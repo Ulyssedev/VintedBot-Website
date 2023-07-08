@@ -17,6 +17,7 @@ import {
   getDoc,
   updateDoc,
   connectFirestoreEmulator,
+initializeFirestore,
 } from "firebase/firestore";
 import {
   getFunctions,
@@ -28,12 +29,20 @@ import {
   getCurrentUserSubscriptions,
   createCheckoutSession,
 } from "@stripe/firestore-stripe-payments";
-
+var db
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const perf = getPerformance(app);
-const db = getFirestore(app);
+if (process.env.NODE_ENV === "development") {
+  db = initializeFirestore(app, {
+  experimentalForceLongPolling: true
+})
+}
+else {
+  db = getFirestore(app);
+}
 const functions = getFunctions(app, "europe-west1");
+
 
 window.loginWithDiscord = () => {
   const clientId = "963382206443704342";
