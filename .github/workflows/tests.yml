@@ -14,3 +14,9 @@ jobs:
         run: pnpm install && pnpm run dev &
       - name: Cypress run
         uses: cypress-io/github-action@v5
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
