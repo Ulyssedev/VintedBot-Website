@@ -16,6 +16,8 @@ jobs:
         run: pnpm run dev &
       - name: Wait for dev server to start
         run: sleep 5
+      - name: Set credentials
+        run: echo ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VINTEDBOT_3F0D6 }} > credentials.json && export GOOGLE_APPLICATION_CREDENTIALS=credentials.json
       - name: Cypress run
         uses: cypress-io/github-action@v5
       - name: Upload test results
