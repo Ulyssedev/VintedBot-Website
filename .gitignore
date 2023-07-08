@@ -70,3 +70,6 @@ bundle.js
 
 # build
 dist
+
+# Cypress videos
+cypress/videos

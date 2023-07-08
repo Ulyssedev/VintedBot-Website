@@ -6,8 +6,8 @@ import Layout from "../layouts/Layout.astro";
   <!-- Main -->
   <article id="main">
     <header class="special container">
-      <h2><span class="icon solid fa-lock"></span> Signup</h2>
-      <p>Create credentials to signup</p>
+      <h2><span class="icon solid fa-lock"></span> Sign-up</h2>
+      <p>Create credentials to sign up</p>
     </header>
 
     <form class="signup">
@@ -28,10 +28,52 @@ import Layout from "../layouts/Layout.astro";
         ></label
       >
       <br />
-      <input type="submit" value="Signup" />
+      <input type="submit" value="Sign-up" />
+      <p class="error"></p>
+      <br />
+      <p id="login" >Already have an account? <a href="login">Login</a></p>
     </form>
-    <p class="error"></p>
-    <br />
-    <p>Already have an account? <a href="login">Login</a></p>
   </article>
 </Layout>
+<style lang="scss">
+  .signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #email, #password, #terms, #login {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
+  #email, #password {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+  // make the label go on the left of the input
+  label {
+    display: inline-block;
+    width: 30%;
+    text-align: left;
+    margin: 0;
+  }
+  .special {
+    margin-top: 2%;
+    text-align: center;
+  }
+input {
+  margin-top: 16px;
+}
+
+  @media screen and (max-width: 738px) {
+    #email, #password, #terms, #login {
+      width: 80%;
+    }
+    label {
+      width: 80%;
+    }
+    
+  }
+</style>

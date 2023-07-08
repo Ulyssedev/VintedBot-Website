@@ -6,7 +6,7 @@ import Layout from "../../../layouts/Layout.astro";
   <!-- Main -->
   <article id="main">
     <header class="special container">
-      <h2><span class="icon solid fa-lock"></span>Inscription</h2>
+      <h2><span class="icon solid fa-lock"></span> Inscription</h2>
       <p>Créez des identifiants pour vous inscrire</p>
     </header>
 
@@ -19,8 +19,7 @@ import Layout from "../../../layouts/Layout.astro";
         type="password"
         id="password"
         name="password"
-        placeholder="Votre mot
-						de passe.."
+        placeholder="Votre mot de passe.."
       />
       <br />
       <input type="checkbox" id="terms" name="terms" value="terms" />
@@ -31,9 +30,51 @@ import Layout from "../../../layouts/Layout.astro";
       >
       <br />
       <input type="submit" value="Inscription" />
+      <p class="error"></p>
+      <br />
+      <p id="login">Vous avez déjà un compte? <a href="connexion">Connexion</a></p>
     </form>
-    <p class="error"></p>
-    <br />
-    <p>Vous avez déjà un compte? <a href="connexion">Connexion</a></p>
   </article>
 </Layout>
+<style lang="scss">
+  .signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #email, #password, #terms, #login {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
+  #email, #password {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+  // make the label go on the left of the input
+  label {
+    display: inline-block;
+    width: 30%;
+    text-align: left;
+    margin: 0;
+  }
+  .special {
+    margin-top: 2%;
+    text-align: center;
+  }
+input {
+  margin-top: 16px;
+}
+
+  @media screen and (max-width: 738px) {
+    #email, #password, #terms, #login {
+      width: 80%;
+    }
+    label {
+      width: 80%;
+    }
+    
+  }
+</style>

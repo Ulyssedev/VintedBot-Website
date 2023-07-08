@@ -11,7 +11,7 @@ import lang from "../utils/lang";
   <h1 id="logo">
     <div id="user-container">
       <div id="avatar-link">
-        <img class="user" src="/images/user.svg" alt="Avatar" id="avatar" />
+        <img class="user" src="/images/user.svg" id="avatar" />
       </div>
       <ul id="user-menu">
         <li class="sign-up" style="display: none;">
@@ -28,7 +28,9 @@ import lang from "../utils/lang";
         <li class="discord" style="display: none;">
           <img class="icons-menu" src="/images/discord-small.svg" /><a
             href="#"
-            onclick="loginWithDiscord()">{lang[userLang]?.["header.discord"]}</a
+            onclick="
+            loginWithDiscord()
+">{lang[userLang]?.["header.discord"]}</a
           >
         </li>
         <li class="logout" style="display: none;">

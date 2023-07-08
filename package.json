@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cypress run",
     "build": "astro build",
     "dev": "astro dev & firebase emulators:start & stripe listen --forward-to http://localhost:5001/vintedbot-3f0d6/europe-west1/ext-firestore-stripe-payments-handleWebhookEvents && fg"
   },
@@ -27,6 +27,7 @@
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
+    "cypress": "^12.17.0",
     "prettier": "^3.0.0",
     "prettier-plugin-astro": "^0.10.0",
     "sass": "^1.63.6"

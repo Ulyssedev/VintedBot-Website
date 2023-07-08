@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: ['./src/components/Pricing.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	content: ['./src/components/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	corePlugins: {
 		preflight: false,
 	  },
