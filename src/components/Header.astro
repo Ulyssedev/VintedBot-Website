@@ -30,7 +30,7 @@ import lang from "../utils/lang";
             href="#"
             onclick="
             loginWithDiscord()
-">{lang[userLang]?.["header.discord"]}</a
+            ">{lang[userLang]?.["header.discord"]}</a
           >
         </li>
         <li class="logout" style="display: none;">
@@ -43,28 +43,9 @@ import lang from "../utils/lang";
   </h1>
   <nav id="nav">
     <ul>
-      <li><a href="index">{lang[userLang]?.["header.home"]}</a></li>
+      <li><a href="/">{lang[userLang]?.["header.home"]}</a></li>
       <li>
-        <a href="#">{lang[userLang]?.["header.docs"]}</a>
-        <ul>
-          <li>
-            <a href={lang[userLang]?.["header.href.howDoesItWork"]}
-              >{lang[userLang]?.["header.howDoesItWork"]}</a>
-          </li>
-          <li>
-            <a href={lang[userLang]?.["header.href.features"]}
-              >{lang[userLang]?.["header.features"]}</a>
-          </li>
-          <li>
-            <a href={lang[userLang]?.["header.href.qna"]}
-              >{lang[userLang]?.["header.qna"]}</a>
-          </li>
-          <li>
-            <a
-              href={lang[userLang]?.["header.href.privacy"]}>
-              {lang[userLang]?.['header.privacy']}</a>
-          </li>
-        </ul>
+        <a href="https://docs.vintedbot.com" target="_blank">{lang[userLang]?.["header.docs"]}</a>
       </li>
       <li>
         <a href={lang[userLang]?.["header.href.pricing"]} class="button primary"
