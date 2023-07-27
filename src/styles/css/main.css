@@ -2994,7 +2994,7 @@ input[type="submit"]:active,
 input[type="reset"]:active,
 input[type="button"]:active,
 .button:active {
-  background-color: rgba(228, 76, 101, 0.15);
+  background-color: rgba(76, 122, 228, 0.15);
 }
 
 input[type="submit"].icon:before,
@@ -4595,7 +4595,6 @@ body.is-touch #banner {
 }
 
 .vintedbot-enter-button {
-  /* Centered, light blue good looking */
   background-color: #4753bb;
   border: none;
   color: white;

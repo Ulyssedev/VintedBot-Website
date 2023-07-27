@@ -1,5 +1,5 @@
 <script>
-import { app } from "../firebase/client";
+import { analytics, auth, db, functions, perf, app } from "../firebase/client";
 import {
   getAuth,
   connectAuthEmulator,
@@ -29,19 +29,8 @@ import {
   getCurrentUserSubscriptions,
   createCheckoutSession,
 } from "@stripe/firestore-stripe-payments";
-var db
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
-const perf = getPerformance(app);
-if (process.env.NODE_ENV === "development") {
-  db = initializeFirestore(app, {
-  experimentalForceLongPolling: true
-})
-}
-else {
-  db = getFirestore(app);
-}
-const functions = getFunctions(app, "europe-west1");
+
+
 
 
 window.loginWithDiscord = () => {
@@ -525,6 +514,7 @@ onAuthStateChanged(auth, async (user) => {
   });
 }
 });
-
+// export the auth so that it can be used in other scripts
+export { auth };
 
 </script>

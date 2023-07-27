@@ -1,0 +1,72 @@
+<div class="google button">
+    <span class="icon"></span>
+    <span class="buttonText">Google</span>
+</div>
+
+<div class="Sso__divider ">
+    <span class="Sso__dividerLine"></span>
+    <span class="Sso__dividerText">or</span>
+    <span class="Sso__dividerLine"></span>
+</div>
+
+<style>
+  body {text-align:center;}
+    span.label {
+      font-family: serif;
+      font-weight: normal;
+    }
+    span.icon {
+      background: url('/images/auth_service_google.svg') transparent 5px 50% no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+      width: 42px;
+      height: 42px;
+    }
+    span.buttonText {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .Sso__divider {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 28px 0;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.Sso__dividerLine {
+  border-top: 1px solid #8b8b8b;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%; 
+}
+  </style>
+
+<script>
+    import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+    import { auth } from "../firebase/client";
+    const provider = new GoogleAuthProvider();
+    console.log(`auth: ${auth}`)
+
+    let loginButton = document.querySelector('.google')
+    if (loginButton) {
+        loginButton.addEventListener('click', () => {
+            signInWithPopup(auth, provider)
+            .then((result) => {
+                const user = result.user;
+                window.location.href = '/pricing'
+            }).catch((error) => {
+                console.log(error)
+            });
+        })
+    }
+</script>

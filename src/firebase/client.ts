@@ -1,4 +1,16 @@
 import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+} from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
+import { getPerformance } from "firebase/performance";
+import {
+  getFirestore,
+  initializeFirestore,
+} from "firebase/firestore";
+import {
+  getFunctions,
+} from "firebase/functions";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCKd8gi7RIjeEIVj9GnAn4AvkBxgEmCJ2w",
@@ -10,4 +22,20 @@ const firebaseConfig = {
   measurementId: "G-F70EHN3FVM",
 };
 
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+var db
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const perf = getPerformance(app);
+if (process.env.NODE_ENV === "development") {
+  db = initializeFirestore(app, {
+  experimentalForceLongPolling: true
+})
+}
+else {
+  db = getFirestore(app);
+}
+const functions = getFunctions(app, "europe-west1");
+
+export { analytics, auth, db, functions, perf, app };

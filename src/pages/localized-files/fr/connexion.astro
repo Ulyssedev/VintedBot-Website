@@ -1,5 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import GoogleLogin from "../../../components/GoogleLogin.astro";
 ---
 
 <Layout title="Vinted Bot - Connexion" userLang="fr">
@@ -9,6 +10,8 @@ import Layout from "../../../layouts/Layout.astro";
       <h2><span class="icon solid fa-lock"></span> Connexion</h2>
       <p>Entrez vos identifiants pour vous connecter</p>
     </header>
+
+    <GoogleLogin />
 
     <form class="login">
       <label for="email">Email</label>

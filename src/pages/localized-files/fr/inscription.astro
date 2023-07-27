@@ -1,5 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import GoogleLogin from "../../../components/GoogleLogin.astro";
 ---
 
 <Layout title="Vinted Bot - Inscription" userLang="fr">
@@ -9,6 +10,8 @@ import Layout from "../../../layouts/Layout.astro";
       <h2><span class="icon solid fa-lock"></span> Inscription</h2>
       <p>Créez des identifiants pour vous inscrire</p>
     </header>
+
+    <GoogleLogin />
 
     <form class="signup">
       <label for="email">Email</label>
