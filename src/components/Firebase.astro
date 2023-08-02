@@ -30,6 +30,15 @@ import {
   createCheckoutSession,
 } from "@stripe/firestore-stripe-payments";
 
+import { getAffiliation, setAffiliation } from "../firebase/affiliation";
+
+const urlParams = new URLSearchParams(window.location.search);
+const ref = urlParams.get("ref");
+if (ref) {
+  setAffiliation(ref);
+  window.history.replaceState({}, document.title, "/");
+}
+
 
 
 
@@ -46,7 +55,7 @@ window.loginWithDiscord = () => {
 if (process.env.NODE_ENV === "development") {
   console.log("Development mode: Emulators enabled");
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
-  connectFirestoreEmulator(db, "localhost", 8080);
+  connectFirestoreEmulator(db, "localhost", 8181);
   connectFunctionsEmulator(functions, "localhost", 5001);
 }
 
@@ -59,22 +68,40 @@ if (signupForm) {
     const password = signupForm.password.value;
 
     if (signupForm.terms.checked) {
+      var user;
       createUserWithEmailAndPassword(auth, email, password)
         .then((cred) => {
           if (process.env.NODE_ENV === "development") {
           console.log('user created:', cred.user);
+          user = cred.user;
           }
           signupForm.reset();
-
-          // if callback not in the URL
-          if (window.location.href.indexOf("callback") === -1) {
-            window.location.href = 'index.html';
-          }
         })
         .catch((err) => {
           console.log(err.message);
           alert(err.message);
-        });
+        })
+        .then(() => {
+                if (getAffiliation()) {
+                  const docRef = doc(db, "users", user.uid);
+                  console.log('affiliation', getAffiliation())
+                  console.log('docRef', docRef)
+                  setDoc (docRef, {
+                    affiliation: getAffiliation(),
+                  }, { merge: true }).catch((error) => {
+                    console.log(error)
+                  }).then(() => {
+          if (window.location.href.indexOf("callback") === -1) {
+            window.location.href = 'pricing';
+          }
+                  });
+                }
+                else {
+                  if (window.location.href.indexOf("callback") === -1) {
+            window.location.href = 'pricing';
+          }
+                }
+            })
     } else {
       alert('Please agree to the terms and conditions');
     }
@@ -213,8 +240,6 @@ onAuthStateChanged(auth, (user) => {
             discordelement.parentNode?.removeChild(discordelement);
           }
         } else {
-          console.log("No such document!");
-
           if (document.querySelector('.discord')) {
             const discordElements = document.querySelectorAll('.discord');
             discordElements.forEach((element) => {

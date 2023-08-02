@@ -53,20 +53,35 @@
 
 <script>
     import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-    import { auth } from "../firebase/client";
+    import { auth, db } from "../firebase/client";
+    import { getAffiliation, setAffiliation } from "../firebase/affiliation";
+    import { setDoc, getDoc, doc } from "firebase/firestore";
     const provider = new GoogleAuthProvider();
-    console.log(`auth: ${auth}`)
+    var user;
 
     let loginButton = document.querySelector('.google')
     if (loginButton) {
         loginButton.addEventListener('click', () => {
             signInWithPopup(auth, provider)
             .then((result) => {
-                const user = result.user;
-                window.location.href = '/pricing'
+                user = result.user;
             }).catch((error) => {
                 console.log(error)
-            });
+            }).then(() => {
+                if (getAffiliation()) {
+                  const docRef = doc(db, "users", user.uid);
+                  setDoc (docRef, {
+                    affiliation: getAffiliation(),
+                  }, { merge: true }).catch((error) => {
+                    console.log(error)
+                  }).then(() => {
+                    window.location.href = '/pricing'
+                  });
+                }
+                else {
+                  window.location.href = '/pricing'
+                }
+            })
         })
     }
 </script>
