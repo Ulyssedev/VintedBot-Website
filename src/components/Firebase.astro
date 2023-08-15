@@ -41,7 +41,6 @@ if (ref) {
 
 
 
-
 window.loginWithDiscord = () => {
   const clientId = "963382206443704342";
   const redirectUri = `${window.location.origin}/discord`;
@@ -435,7 +434,6 @@ const payments = getStripePayments(app, {
   customersCollection: "users",
 });
 
-// Listen to the button
 document.querySelectorAll(".buybutton").forEach((button) => {
   button.addEventListener("click", async () => {
     const user = auth.currentUser;

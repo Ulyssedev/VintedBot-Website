@@ -1,0 +1,97 @@
+<h2 class="text-center text-green-400 text-7xl">Congratulations!</h1>
+    <p class="text-center mb-4 text-4xl tracking-tight font-extrabold text-white">Your submission for Vinted Bot's affiliation program was successful!</p>
+    <p class="text-center mb-4 text-4xl tracking-tight font-extrabold text-white">You can now start earning money by sharing your affiliate link:</p>
+    <div class="copy-text">
+		<input type="text" class="text font-extrabold" value="https://vintedbot.com?ref=" />
+		<button><i class="fa fa-clone"></i></button>
+	</div>
+    <p class="text-center mb-4 text-2xl tracking-tight font-extrabold text-gray-400"><i>You can always change your affiliate link if needed; just make sure to notify an admin about your new link when doing so.</i></p>
+
+    <style>
+      .copy-text {
+    position: relative;
+    padding: 10px;
+    background: #333; /* Dark background color */
+    border: 1px solid #555; /* Darker border color */
+    border-radius: 10px;
+    display: flex;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.copy-text input.text {
+    padding: 10px;
+    font-size: 18px;
+    color: #ddd; /* Lighter text color */
+    background: #444; /* Darker input background color */
+    border: none;
+    outline: none;
+}
+
+.copy-text button {
+    padding: 10px;
+    background: #1a76e4; /* Dark blue button background */
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.copy-text button:active {
+    background: #145fb8; /* Slightly darker active button background */
+}
+
+.copy-text button:before {
+    content: "Copied";
+    position: absolute;
+    top: -45px;
+    right: 0px;
+    background: #1a76e4; /* Dark blue copied message background */
+    padding: 8px 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    display: none;
+}
+
+.copy-text button:after {
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: 25px;
+    width: 10px;
+    height: 10px;
+    background: #1a76e4; /* Dark blue copied icon background */
+    transform: rotate(45deg);
+    display: none;
+}
+
+.copy-text.active button:before,
+.copy-text.active button:after {
+    display: block;
+}
+
+    </style>
+
+    <script>
+        let copyText = document.querySelector(".copy-text");
+copyText.querySelector("button").addEventListener("click", function () {
+	let input = copyText.querySelector("input.text");
+	input.select();
+	document.execCommand("copy");
+	copyText.classList.add("active");
+	window.getSelection().removeAllRanges();
+	setTimeout(function () {
+		copyText.classList.remove("active");
+	}, 2500);
+});
+
+import { auth } from "../firebase/client";
+// get username
+const user = auth.currentUser;
+if (user) {
+const link = document.querySelector(".copy-text input.text");
+link.value = link.value + user.displayName;
+}
+    </script>

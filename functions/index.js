@@ -177,3 +177,23 @@ exports.getMetadata = functions
       );
     }
   });
+
+exports.createAffiliateOnboardingUrl = functions
+  .runWith({ secrets: ["STRIPE_API_KEY"] })
+  .region("europe-west1")
+  .https.onCall(async (data, context) => {
+  const apiKey = process.env.STRIPE_API_KEY;
+  const stripe = require('stripe')(apiKey);
+
+  const account = await stripe.accounts.create({
+    type: 'standard',
+  });
+  const accountLink = await stripe.accountLinks.create({
+    account: account.id,
+    refresh_url: 'https://vintedbot.com/dashboard',
+    return_url: 'https://vintedbot.com/congrats',
+    type: 'account_onboarding',
+  });
+  return accountLink.url;
+    }
+);
