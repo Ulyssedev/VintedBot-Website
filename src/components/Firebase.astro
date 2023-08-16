@@ -464,6 +464,9 @@ onAuthStateChanged(auth, async (user) => {
           document.querySelector(".email").innerHTML = user.email;
           document.querySelector(".subscription").innerHTML = subscription.role.toUpperCase();
           document.querySelector(".managebutton").style.display = "block";
+          if (subscription.role === "pro") {
+            document.querySelector(".affiliation").classList.remove("hidden")
+          }
         }
       const docRef = doc(db, "users", auth.currentUser.uid);
       getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {

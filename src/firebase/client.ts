@@ -1,16 +1,9 @@
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-} from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
-import {
-  getFirestore,
-  initializeFirestore,
-} from "firebase/firestore";
-import {
-  getFunctions,
-} from "firebase/functions";
+import { getFirestore, initializeFirestore } from "firebase/firestore";
+import { getFunctions } from "firebase/functions";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCKd8gi7RIjeEIVj9GnAn4AvkBxgEmCJ2w",
@@ -24,16 +17,15 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-var db
+var db;
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const perf = getPerformance(app);
 if (process.env.NODE_ENV === "development") {
   db = initializeFirestore(app, {
-  experimentalForceLongPolling: true
-})
-}
-else {
+    experimentalForceLongPolling: true,
+  });
+} else {
   db = getFirestore(app);
 }
 const functions = getFunctions(app, "europe-west1");

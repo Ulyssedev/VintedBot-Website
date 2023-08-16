@@ -4389,6 +4389,7 @@ body.is-touch #banner {
   height: fit-content;
   position: relative;
   overflow: hidden;
+  margin-bottom: 32px;
 }
 
 .stripe-logo {
