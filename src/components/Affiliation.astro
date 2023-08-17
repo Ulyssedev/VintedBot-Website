@@ -1,5 +1,5 @@
 <div class="text-center">
-<a class="affiliation text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer hidden">Register to affiliate program</a>
+<a class="affiliation text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer hidden"></a>
 </div>
 <style>
     a {
@@ -13,8 +13,33 @@
 import {
   functions
 } from "../firebase/client";
+import {
+  doc,
+  getDoc
+} from "firebase/firestore";
+import {
+  db, auth
+} from "../firebase/client";
+import { onAuthStateChanged } from "firebase/auth";
 const affiliation = document.querySelector('.affiliation')
-    affiliation.addEventListener('click', () => {
+onAuthStateChanged(auth, (user) => {
+const docRef = doc(db, "users", auth.currentUser.uid);
+var url;
+var account;
+getDoc(docRef).then((doc) => {
+  if (doc.exists()) {
+    if (doc.data().affiliateAccount) {
+      affiliation.innerHTML = "Login to stripe Dashboard";
+      url = httpsCallable(functions, "createStripeDashboardUrl");
+      account = doc.data().affiliateAccount;
+    }
+    else {
+      affiliation.innerHTML = "Register to affiliate program";
+      url = httpsCallable(functions, "createAffiliateOnboardingUrl");
+      account = false;
+    }
+  }
+  affiliation.addEventListener('click', () => {
         affiliation.innerHTML = `
         <svg class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -23,9 +48,15 @@ const affiliation = document.querySelector('.affiliation')
         Processing...
         `;
           affiliation.classList.add('hover:cursor-wait');
-  const url = httpsCallable(functions, "createAffiliateOnboardingUrl");
-  url().then((result) => {
+  if (account) {
+    url({accountId: account}).then((result) => {
     window.location.href = result.data;
   });
+  }
+  else {
+  url().then((result) => {
+    window.location.href = result.data;
+  })};
     });
+})});
 </script>

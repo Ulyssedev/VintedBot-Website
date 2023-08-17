@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
-const getAccessToken = async (userId, tokens) => {
+const getAccessToken = async (_userId, tokens) => {
   if (Date.now() > tokens.expires_at) {
     const url = "https://discord.com/api/v10/oauth2/token";
     const body = new URLSearchParams({
@@ -33,7 +33,7 @@ const getAccessToken = async (userId, tokens) => {
 exports.confirmLoginWithDiscord = functions
   .runWith({ secrets: ["CLIENT_SECRET", "DISCORD_TOKEN"] })
   .region("europe-west1")
-  .https.onCall(async (data, context) => {
+  .https.onCall(async (data, _context) => {
     const code = data.code;
     const clientId = "963382206443704342";
     const redirectUri = `${data.origin}/discord`;
@@ -123,7 +123,7 @@ async function getOAuthTokens(code, clientId, clientSecret, redirectUri) {
 exports.pushMetadata = functions
   .runWith({ secrets: ["CLIENT_SECRET"] })
   .region("europe-west1")
-  .https.onCall(async (data, context) => {
+  .https.onCall(async (data, _context) => {
     const clientId = "963382206443704342";
     const userId = data.userId;
     const tokens = data.tokens;
@@ -154,7 +154,7 @@ exports.pushMetadata = functions
 
 exports.getMetadata = functions
   .region("europe-west1")
-  .https.onCall(async (data, context) => {
+  .https.onCall(async (data, _context) => {
     const userId = data.userId;
     const tokens = data.tokens;
     const clientId = "963382206443704342";
@@ -181,19 +181,38 @@ exports.getMetadata = functions
 exports.createAffiliateOnboardingUrl = functions
   .runWith({ secrets: ["STRIPE_API_KEY"] })
   .region("europe-west1")
-  .https.onCall(async (data, context) => {
+  .https.onCall(async (_data, _context) => {
   const apiKey = process.env.STRIPE_API_KEY;
   const stripe = require('stripe')(apiKey);
 
   const account = await stripe.accounts.create({
-    type: 'standard',
+    type: 'express',
+    capabilities : {
+      card_payments: {requested: false},
+      transfers: {requested: true},
+    },
+    business_type: 'individual',
   });
   const accountLink = await stripe.accountLinks.create({
     account: account.id,
     refresh_url: 'https://vintedbot.com/dashboard',
-    return_url: 'https://vintedbot.com/congrats',
+    return_url: `https://vintedbot.com/congrats?account=${account.id}`,
     type: 'account_onboarding',
   });
   return accountLink.url;
+    }
+);
+
+exports.createStripeDashboardUrl = functions
+  .runWith({ secrets: ["STRIPE_API_KEY"] })
+  .region("europe-west1")
+  .https.onCall(async (data, _context) => {
+  const apiKey = process.env.STRIPE_API_KEY;
+  const stripe = require('stripe')(apiKey);
+
+  const loginLink = await stripe.accounts.createLoginLink(
+    data.accountId,
+  );
+  return loginLink.url;
     }
 );
