@@ -23,14 +23,20 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 const affiliation = document.querySelector('.affiliation')
 onAuthStateChanged(auth, (user) => {
-const docRef = doc(db, "users", auth.currentUser.uid);
+const docRef = doc(db, "users", user.uid);
 var url;
 var account;
 getDoc(docRef).then((doc) => {
   if (doc.exists()) {
     if (doc.data().affiliateAccount) {
+      if (doc.data().active === true) {
       affiliation.innerHTML = "Login to stripe Dashboard";
       url = httpsCallable(functions, "createStripeDashboardUrl");
+      }
+      else {
+        affiliation.innerHTML = "Continue affiliate registration";
+        url = httpsCallable(functions, "continueAffiliateRegistration");
+      }
       account = doc.data().affiliateAccount;
     }
     else {

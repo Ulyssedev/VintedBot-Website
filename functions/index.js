@@ -196,7 +196,7 @@ exports.createAffiliateOnboardingUrl = functions
   const accountLink = await stripe.accountLinks.create({
     account: account.id,
     refresh_url: 'https://vintedbot.com/dashboard',
-    return_url: `https://vintedbot.com/congrats?account=${account.id}`,
+    return_url: `https://vintedbot.com/return?account=${account.id}`,
     type: 'account_onboarding',
   });
   return accountLink.url;
@@ -214,5 +214,42 @@ exports.createStripeDashboardUrl = functions
     data.accountId,
   );
   return loginLink.url;
+    }
+);
+
+exports.checkAccountStatus = functions
+  .runWith({ secrets: ["STRIPE_API_KEY"] })
+  .region("europe-west1")
+  .https.onCall(async (data, _context) => {
+    const apiKey = process.env.STRIPE_API_KEY;
+    const stripe = require('stripe')(apiKey);
+
+    const account = await stripe.accounts.retrieve(
+      data.accountId,
+    );
+
+    if (account.charges_enabled) {
+      return 'active';
+    }
+    else {
+      return 'inactive';
+    }
+  }
+);
+
+exports.continueAffiliateRegistration = functions
+  .runWith({ secrets: ["STRIPE_API_KEY"] })
+  .region("europe-west1")
+  .https.onCall(async (data, _context) => {
+  const apiKey = process.env.STRIPE_API_KEY;
+  const stripe = require('stripe')(apiKey);
+
+  const accountLink = await stripe.accountLinks.create({
+    account: data.accountId,
+    refresh_url: 'https://vintedbot.com/dashboard',
+    return_url: `https://vintedbot.com/return?account=${data.accountId}`,
+    type: 'account_onboarding',
+  });
+  return accountLink.url;
     }
 );
