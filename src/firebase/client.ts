@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
 import { getFirestore, initializeFirestore } from "firebase/firestore";
 import { getFunctions } from "firebase/functions";
@@ -18,7 +17,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 var db;
-const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const perf = getPerformance(app);
 if (process.env.NODE_ENV === "development") {
@@ -30,4 +28,4 @@ if (process.env.NODE_ENV === "development") {
 }
 const functions = getFunctions(app, "europe-west1");
 
-export { analytics, auth, db, functions, perf, app };
+export { auth, db, functions, perf, app };

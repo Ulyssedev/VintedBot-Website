@@ -1,5 +1,5 @@
 <script>
-import { analytics, auth, db, functions, perf, app } from "../firebase/client";
+import { auth, db, functions, app } from "../firebase/client";
 import {
   getAuth,
   connectAuthEmulator,
@@ -8,8 +8,6 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
-import { getPerformance } from "firebase/performance";
 import {
   getFirestore,
   doc,
