@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getPerformance } from "firebase/performance";
 import { getFirestore, initializeFirestore } from "firebase/firestore";
 import { getFunctions } from "firebase/functions";
 
@@ -18,7 +17,6 @@ const app = initializeApp(firebaseConfig);
 
 var db;
 const auth = getAuth(app);
-const perf = getPerformance(app);
 if (process.env.NODE_ENV === "development") {
   db = initializeFirestore(app, {
     experimentalForceLongPolling: true,
@@ -28,4 +26,4 @@ if (process.env.NODE_ENV === "development") {
 }
 const functions = getFunctions(app, "europe-west1");
 
-export { auth, db, functions, perf, app };
+export { auth, db, functions, app };
