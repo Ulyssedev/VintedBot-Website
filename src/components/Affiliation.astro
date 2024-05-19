@@ -1,51 +1,47 @@
+---
+import Countries from "./Countries.astro";
+---
+
 <div class="text-center">
-<a class="affiliation text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer hidden"></a>
+  <a
+    class="affiliation text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer hidden"
+  ></a>
+  <Countries />
 </div>
 <style>
-    a {
-        border-bottom: none !important;
-    }
+  a {
+    border-bottom: none !important;
+  }
 </style>
 <script>
-    import {
-  httpsCallable
-} from "firebase/functions";
-import {
-  functions
-} from "../firebase/client";
-import {
-  doc,
-  getDoc
-} from "firebase/firestore";
-import {
-  db, auth
-} from "../firebase/client";
-import { onAuthStateChanged } from "firebase/auth";
-const affiliation = document.querySelector('.affiliation')
-onAuthStateChanged(auth, (user) => {
-const docRef = doc(db, "users", user.uid);
-var url;
-var account;
-getDoc(docRef).then((doc) => {
-  if (doc.exists()) {
-    if (doc.data().affiliateAccount) {
-      if (doc.data().active === true) {
-      affiliation.innerHTML = "Login to stripe Dashboard";
-      url = httpsCallable(functions, "createStripeDashboardUrl");
+  import { httpsCallable } from "firebase/functions";
+  import { functions } from "../firebase/client";
+  import { doc, getDoc } from "firebase/firestore";
+  import { db, auth } from "../firebase/client";
+  import { onAuthStateChanged } from "firebase/auth";
+  const affiliation = document.querySelector(".affiliation");
+  onAuthStateChanged(auth, (user) => {
+    const docRef = doc(db, "users", user.uid);
+    var url;
+    var account;
+    getDoc(docRef).then((doc) => {
+      if (doc.exists()) {
+        if (doc.data().affiliateAccount) {
+          if (doc.data().active === true) {
+            affiliation.innerHTML = "Login to stripe Dashboard";
+            url = httpsCallable(functions, "createStripeDashboardUrl");
+          } else {
+            affiliation.innerHTML = "Continue affiliate registration";
+            url = httpsCallable(functions, "continueAffiliateRegistration");
+          }
+          account = doc.data().affiliateAccount;
+        } else {
+          affiliation.innerHTML = "Register to affiliate program";
+          url = httpsCallable(functions, "createAffiliateOnboardingUrl");
+          account = false;
+        }
       }
-      else {
-        affiliation.innerHTML = "Continue affiliate registration";
-        url = httpsCallable(functions, "continueAffiliateRegistration");
-      }
-      account = doc.data().affiliateAccount;
-    }
-    else {
-      affiliation.innerHTML = "Register to affiliate program";
-      url = httpsCallable(functions, "createAffiliateOnboardingUrl");
-      account = false;
-    }
-  }
-  affiliation.addEventListener('click', () => {
+      affiliation.addEventListener("click", () => {
         affiliation.innerHTML = `
         <svg class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -53,16 +49,34 @@ getDoc(docRef).then((doc) => {
         </svg>
         Processing...
         `;
-          affiliation.classList.add('hover:cursor-wait');
-  if (account) {
-    url({accountId: account}).then((result) => {
-    window.location.href = result.data;
-  });
-  }
-  else {
-  url().then((result) => {
-    window.location.href = result.data;
-  })};
+        affiliation.classList.add("hover:cursor-wait");
+        if (account) {
+          url({ accountId: account }).then((result) => {
+            window.location.href = result.data;
+          });
+        } else {
+          // Create a dropdown menu where the user can choose its country
+          document.querySelector(".countries").classList.remove("hidden");
+          affiliation?.classList.add("hidden");
+          const confirm = document.querySelector(".confirm");
+          confirm?.classList.remove("hidden");
+          confirm?.addEventListener("click", () => {
+            var selected = document.getElementById("countries");
+            const country = selected.value;
+            confirm.innerHTML = `
+        <svg class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Processing...
+        `;
+
+            url({ country: country }).then((result) => {
+              window.location.href = result.data;
+            });
+          });
+        }
+      });
     });
-})});
+  });
 </script>

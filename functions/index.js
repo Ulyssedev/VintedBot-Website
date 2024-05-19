@@ -181,7 +181,7 @@ exports.getMetadata = functions
 exports.createAffiliateOnboardingUrl = functions
   .runWith({ secrets: ["STRIPE_API_KEY"] })
   .region("europe-west1")
-  .https.onCall(async (_data, _context) => {
+  .https.onCall(async (data, _context) => {
     const apiKey = process.env.STRIPE_API_KEY;
     const stripe = require('stripe')(apiKey);
 
@@ -192,6 +192,7 @@ exports.createAffiliateOnboardingUrl = functions
         transfers: { requested: true },
       },
       business_type: 'individual',
+      country: data.country,
     });
     const accountLink = await stripe.accountLinks.create({
       account: account.id,
