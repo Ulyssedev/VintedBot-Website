@@ -290,7 +290,7 @@ if (window.location.href.includes("discord") && !window.location.href.includes("
                 console.log(metadata);
               }
             });
-            window.location.href = "dashboard.html";
+            window.location.href = "dashboard";
           } else {
             loginWithDiscord();
           }
@@ -365,7 +365,7 @@ if (new URLSearchParams(window.location.search).get("code")) {
               };
               pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
             }
-            window.location.href = "dashboard.html";
+            window.location.href = "dashboard";
             
         })})
     .catch((error) => {
