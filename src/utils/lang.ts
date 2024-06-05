@@ -12,7 +12,7 @@ export const lang = {
     "header.features": "Features",
     "header.qna": "QNA",
     "header.privacy": "Privacy policy",
-    "header.buy": "Buy",
+    "header.buy": "Pricing",
     "header.account": "Account",
 
     "header.href.signUp": "signup",
@@ -37,7 +37,7 @@ export const lang = {
     "header.features": "Fonctionnalités",
     "header.qna": "FAQ",
     "header.privacy": "Politique de confidentialité",
-    "header.buy": "Acheter",
+    "header.buy": "Tarification",
     "header.account": "Mon compte",
 
     "header.href.signUp": "inscription",
