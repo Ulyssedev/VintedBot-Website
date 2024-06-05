@@ -1,17 +1,33 @@
 ---
-import prices from "../utils/prices"
+import prices from "../utils/prices";
+const OOS: boolean = true;
 ---
+
 <section class="bg-darkgrey">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-white">Adapté pour la meilleure expérience</h2>
-            <p class="mb-5 font-light sm:text-xl text-gray-400">Chez vintedbot, nous sommes spécialisés dans la fourniture de la meilleure solution de suivi des articles. Notre bot assure un suivi rapide et efficace, garantissant des résultats rentables.</p>
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-white">
+                Adapté pour la meilleure expérience
+            </h2>
+            <p class="mb-5 font-light sm:text-xl text-gray-400">
+                Chez vintedbot, nous sommes spécialisés dans la fourniture de la
+                meilleure solution de suivi des articles. Notre bot assure un
+                suivi rapide et efficace, garantissant des résultats rentables.
+            </p>
         </div>
-        <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+        <div
+            class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0"
+        >
             <!-- Carte de tarification -->
-            <div class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow border-gray-600 xl:p-8 bg-gray-800 text-white">
+            <div
+                class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow border-gray-600 xl:p-8 bg-gray-800 text-white"
+            >
                 <h3 class="mb-4 text-2xl font-semibold">Starter</h3>
-                <p class="font-light sm:text-lg text-gray-400">Idéal pour les débutants, ce niveau ouvre les portes de la revente avec des informations précieuses et des bases solides.</p>
+                <p class="font-light sm:text-lg text-gray-400">
+                    Idéal pour les débutants, ce niveau ouvre les portes de la
+                    revente avec des informations précieuses et des bases
+                    solides.
+                </p>
                 <div class="flex justify-center items-baseline my-8">
                     <span class="mr-2 text-5xl font-extrabold">5€</span>
                     <span class="text-gray-400">/mois</span>
@@ -20,31 +36,87 @@ import prices from "../utils/prices"
                 <ul role="list" class="mb-8 space-y-4 text-left">
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        <span onclick='window.open("https://docs.vintedbot.com/docs/features-starter/start-a-tracking#receive-notifications", "_blank");' class="cursor-pointer font-medium">Suivi vinted sans délai</span>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span
+                            onclick='window.open("https://docs.vintedbot.com/docs/features-starter/start-a-tracking#receive-notifications", "_blank");'
+                            class="cursor-pointer font-medium"
+                            >Suivi vinted sans délai</span
+                        >
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        <span onclick='window.open("https://docs.vintedbot.com/docs/features-starter/basic-analytics", "_blank");' class="cursor-pointer font-medium">Analytiques de base</span>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span
+                            onclick='window.open("https://docs.vintedbot.com/docs/features-starter/basic-analytics", "_blank");'
+                            class="cursor-pointer font-medium"
+                            >Analytiques de base</span
+                        >
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
                         <span class="font-medium">Assistance</span>
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        <span class="font-medium">Salons : <span class="font-semibold">4</span></span>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span class="font-medium"
+                            >Salons : <span class="font-semibold">4</span></span
+                        >
                     </li>
                 </ul>
-                <a id={prices.starter} class="text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer buybutton">Acheter</a>
+                <a
+                    id={prices.starter}
+                    class={`text-white font-bold rounded-lg text-sm px-5 py-2.5 text-center ${OOS ? "bg-gray-400 hover:cursor-not-allowed" : "bg-primary-600 hover:cursor-pointer buybutton"}`}
+                >
+                    {OOS ? "Rupture De Stock" : "Acheter"}
+                </a>
             </div>
             <!-- Carte de tarification -->
-            <div class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow border-gray-600 xl:p-8 bg-gray-800 text-white">
+            <div
+                class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow border-gray-600 xl:p-8 bg-gray-800 text-white"
+            >
                 <h3 class="mb-4 text-2xl font-semibold">Classic</h3>
-                <p class="font-light sm:text-lg text-gray-400">Cette option intermédiaire convient à tous les utilisateurs, permettant une immersion dans le monde de l'achat-revente.</p>
+                <p class="font-light sm:text-lg text-gray-400">
+                    Cette option intermédiaire convient à tous les utilisateurs,
+                    permettant une immersion dans le monde de l'achat-revente.
+                </p>
                 <div class="flex justify-center items-baseline my-8">
                     <span class="mr-2 text-5xl font-extrabold">10€</span>
                     <span class="text-gray-400">/mois</span>
@@ -53,31 +125,92 @@ import prices from "../utils/prices"
                 <ul role="list" class="mb-8 space-y-4 text-left">
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        <span class="cursor-pointer font-medium" onclick='window.open("https://docs.vintedbot.com/docs/category/features---starter", "_blank");'>Fonctionnalités Starter</span>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span
+                            class="cursor-pointer font-medium"
+                            onclick='window.open("https://docs.vintedbot.com/docs/category/features---starter", "_blank");'
+                            >Fonctionnalités Starter</span
+                        >
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        <span class="cursor-pointer font-medium" onclick='window.open("https://docs.vintedbot.com/docs/features-classic/advanced-analytics", "_blank");'>Analytiques avancées</span>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span
+                            class="cursor-pointer font-medium"
+                            onclick='window.open("https://docs.vintedbot.com/docs/features-classic/advanced-analytics", "_blank");'
+                            >Analytiques avancées</span
+                        >
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        <span class="cursor-pointer font-medium" onclick='window.open("https://docs.vintedbot.com/docs/features-classic/autobuy", "_blank");'>Autobuy</span>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span
+                            class="cursor-pointer font-medium"
+                            onclick='window.open("https://docs.vintedbot.com/docs/features-classic/autobuy", "_blank");'
+                            >Autobuy</span
+                        >
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        <span class="font-medium">Salons : <span class="font-semibold">10</span></span>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span class="font-medium"
+                            >Salons : <span class="font-semibold">10</span
+                            ></span
+                        >
                     </li>
                 </ul>
-                <a id={prices.classic} class="text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer buybutton">Acheter</a>
+                <a
+                    id={prices.classic}
+                    class={`text-white font-bold rounded-lg text-sm px-5 py-2.5 text-center ${OOS ? "bg-gray-400 hover:cursor-not-allowed" : "bg-primary-600 hover:cursor-pointer buybutton"}`}
+                >
+                    {OOS ? "Rupture De Stock" : "Acheter"}
+                </a>
             </div>
             <!-- Carte de tarification -->
-            <div class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow border-gray-600 xl:p-8 bg-gray-800 text-white">
+            <div
+                class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow border-gray-600 xl:p-8 bg-gray-800 text-white"
+            >
                 <h3 class="mb-4 text-2xl font-semibold">Pro</h3>
-                <p class="font-light sm:text-lg text-gray-400">Conçu pour les experts, ce choix premium perfectionne les compétences et débloque des stratégies de revente avancées.</p>
+                <p class="font-light sm:text-lg text-gray-400">
+                    Conçu pour les experts, ce choix premium perfectionne les
+                    compétences et débloque des stratégies de revente avancées.
+                </p>
                 <div class="flex justify-center items-baseline my-8">
                     <span class="mr-2 text-5xl font-extrabold">20€</span>
                     <span class="text-gray-400">/mois</span>
@@ -86,51 +219,104 @@ import prices from "../utils/prices"
                 <ul role="list" class="mb-8 space-y-4 text-left">
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        <span onclick='window.open("https://docs.vintedbot.com/docs/category/features---classic", "_blank");' class="cursor-pointer font-medium">Fonctionnalités Classic</span>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span
+                            onclick='window.open("https://docs.vintedbot.com/docs/category/features---classic", "_blank");'
+                            class="cursor-pointer font-medium"
+                            >Fonctionnalités Classic</span
+                        >
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        <span onclick='window.open("https://docs.vintedbot.com/docs/features-pro/dedicated-server", "_blank");' class="cursor-pointer font-medium">Performances améliorées</span>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span
+                            onclick='window.open("https://docs.vintedbot.com/docs/features-pro/dedicated-server", "_blank");'
+                            class="cursor-pointer font-medium"
+                            >Performances améliorées</span
+                        >
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        <span onclick='window.open("https://docs.vintedbot.com/docs/features-pro/affiliation-program", "_blank");' class="cursor-pointer font-medium">Programme d'affiliation</span>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span
+                            onclick='window.open("https://docs.vintedbot.com/docs/features-pro/affiliation-program", "_blank");'
+                            class="cursor-pointer font-medium"
+                            >Programme d'affiliation</span
+                        >
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icône -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        <span class="font-medium">Salons : <span class="font-semibold">∞</span></span>
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span class="font-medium"
+                            >Salons : <span class="font-semibold">∞</span></span
+                        >
                     </li>
                 </ul>
-                <a id={prices.pro} class="text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer buybutton">Acheter</a>
+                <a
+                    id={prices.pro}
+                    class="text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer buybutton"
+                    >Acheter</a
+                >
             </div>
         </div>
     </div>
-  </section>
-  <style>
+</section>
+<style>
     a {
         border-bottom: none !important;
     }
-  </style>
-  <script lang="js">
-  const buybuttons = document.querySelectorAll('.buybutton');
-  buybuttons.forEach(buybutton => {
-      buybutton.addEventListener('click', () => {
-          buybutton.innerHTML = `
+</style>
+<script lang="js">
+    const buybuttons = document.querySelectorAll(".buybutton");
+    buybuttons.forEach((buybutton) => {
+        buybutton.addEventListener("click", () => {
+            buybutton.innerHTML = `
         <svg class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
         Traitement en cours...
         `;
-          buybutton.classList.add('hover:cursor-wait');
-          setTimeout(() => {
-              buybutton.innerHTML = 'Acheter';
-          }, 3000);
-      });
-  });
-
-  </script>
+            buybutton.classList.add("hover:cursor-wait");
+            setTimeout(() => {
+                buybutton.innerHTML = "Acheter";
+            }, 3000);
+        });
+    });
+</script>
