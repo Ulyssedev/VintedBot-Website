@@ -454,6 +454,9 @@ document.querySelectorAll(".buybutton").forEach((button) => {
 // list current subscriptions
 onAuthStateChanged(auth, async (user) => {
   if (user) {
+    if (document.querySelector(".user-info")) {
+    document.querySelector(".affiliation").classList.remove("hidden")
+    }
     getCurrentUserSubscriptions(payments).then((subscriptions) => {
       subscriptions.forEach((subscription) => {
         console.log(subscription.role);
@@ -462,9 +465,6 @@ onAuthStateChanged(auth, async (user) => {
           document.querySelector(".email").innerHTML = user.email;
           document.querySelector(".subscription").innerHTML = subscription.role.toUpperCase();
           document.querySelector(".managebutton").style.display = "block";
-          if (subscription.role === "pro") {
-            document.querySelector(".affiliation").classList.remove("hidden")
-          }
         }
       const docRef = doc(db, "users", auth.currentUser.uid);
       getDoc(doc(db, "users", auth.currentUser.uid)).then((doc) => {
