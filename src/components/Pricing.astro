@@ -1,12 +1,13 @@
 ---
 import prices from "../utils/prices";
 const OOS: boolean = true;
+// TODO: Make sure that the docs are written and that each link is correct
 ---
 
 <section class="bg-darkgrey">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 font-body">
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-white">
+            <h2 class="mb-4 text-4xl tracking-tight font-bold text-white">
                 Tailored for the best experience
             </h2>
             <p class="mb-5 font-light sm:text-xl text-gray-400">
@@ -28,7 +29,7 @@ const OOS: boolean = true;
                     valuable insights and a strong foundation.
                 </p>
                 <div class="flex justify-center items-baseline my-8">
-                    <span class="mr-2 text-5xl font-extrabold">5€</span>
+                    <span class="mr-2 text-5xl font-bold">10€</span>
                     <span class='text-gray-400"'>/month</span>
                 </div>
                 <!-- List -->
@@ -48,7 +49,7 @@ const OOS: boolean = true;
                         <span
                             onclick='window.open("https://docs.vintedbot.com/docs/features-starter/start-a-tracking#receive-notifications", "_blank");'
                             class="cursor-pointer font-medium"
-                            >0 delay vinted trackings</span
+                            >0 delay Vinted trackings</span
                         >
                     </li>
                     <li class="flex items-center space-x-3">
@@ -65,8 +66,7 @@ const OOS: boolean = true;
                         >
                         <span
                             onclick='window.open("https://docs.vintedbot.com/docs/features-starter/basic-analytics", "_blank");'
-                            class="cursor-pointer font-medium"
-                            >Basic analytics</span
+                            class="cursor-pointer font-medium">Analytics</span
                         >
                     </li>
                     <li class="flex items-center space-x-3">
@@ -96,108 +96,26 @@ const OOS: boolean = true;
                                 clip-rule="evenodd"></path></svg
                         >
                         <span class="font-medium"
-                            >Channels: <span class="font-semibold">4</span
-                            ></span
+                            >Access to shared trackings</span
                         >
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span class="font-medium">Autobuy</span>
                     </li>
                 </ul>
                 <a
                     id={prices.starter}
-                    class={`text-white font-bold rounded-lg text-sm px-5 py-2.5 text-center ${OOS ? "bg-gray-400 hover:cursor-not-allowed" : "bg-primary-600 hover:cursor-pointer buybutton"}`}
-                >
-                    {OOS ? "Out Of Stock" : "Buy"}
-                </a>
-            </div>
-            <!-- Pricing Card -->
-            <div
-                class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow border-gray-600 xl:p-8 bg-gray-800 text-white"
-            >
-                <h3 class="mb-4 text-2xl font-semibold">Classic</h3>
-                <p class="font-light sm:text-lg text-gray-400">
-                    This versatile mid-tier option suits all users, enabling
-                    exploration of reselling with valuable knowledge and
-                    experience.
-                </p>
-                <div class="flex justify-center items-baseline my-8">
-                    <span class="mr-2 text-5xl font-extrabold">10€</span>
-                    <span class='text-gray-400"' text-gray-400>/month</span>
-                </div>
-                <!-- List -->
-                <ul role="list" class="mb-8 space-y-4 text-left">
-                    <li class="flex items-center space-x-3">
-                        <!-- Icon -->
-                        <svg
-                            class="flex-shrink-0 w-5 h-5 text-green-400"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path
-                                fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path></svg
-                        >
-                        <span
-                            class="cursor-pointer font-medium"
-                            onclick='window.open("https://docs.vintedbot.com/docs/category/features---starter", "_blank");'
-                            >All starter features</span
-                        >
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <!-- Icon -->
-                        <svg
-                            class="flex-shrink-0 w-5 h-5 text-green-400"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path
-                                fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path></svg
-                        >
-                        <span
-                            class="cursor-pointer font-medium"
-                            onclick='window.open("https://docs.vintedbot.com/docs/features-classic/advanced-analytics", "_blank");'
-                            >Advanced analytics</span
-                        >
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <!-- Icon -->
-                        <svg
-                            class="flex-shrink-0 w-5 h-5 text-green-400"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path
-                                fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path></svg
-                        >
-                        <span
-                            class="cursor-pointer font-medium"
-                            onclick='window.open("https://docs.vintedbot.com/docs/features-classic/autobuy", "_blank");'
-                            >Autobuy</span
-                        >
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <!-- Icon -->
-                        <svg
-                            class="flex-shrink-0 w-5 h-5 text-green-400"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path
-                                fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path></svg
-                        >
-                        <span class="font-medium"
-                            >Channels: <span class="font-semibold">10</span
-                            ></span
-                        >
-                    </li>
-                </ul>
-                <a
-                    id={prices.classic}
                     class={`text-white font-bold rounded-lg text-sm px-5 py-2.5 text-center ${OOS ? "bg-gray-400 hover:cursor-not-allowed" : "bg-primary-600 hover:cursor-pointer buybutton"}`}
                 >
                     {OOS ? "Out Of Stock" : "Buy"}
@@ -213,7 +131,7 @@ const OOS: boolean = true;
                     skills and unlocks advanced reselling strategies.
                 </p>
                 <div class="flex justify-center items-baseline my-8">
-                    <span class="mr-2 text-5xl font-extrabold">20€</span>
+                    <span class="mr-2 text-5xl font-bold">20€</span>
                     <span class='text-gray-400"'>/month</span>
                 </div>
                 <!-- List -->
@@ -232,7 +150,7 @@ const OOS: boolean = true;
                         >
                         <span
                             onclick='window.open("https://docs.vintedbot.com/docs/category/features---classic", "_blank");'
-                            class="cursor-pointer font-medium"
+                            class="cursor-pointer font-semibold"
                             >All classic features</span
                         >
                     </li>
@@ -251,7 +169,7 @@ const OOS: boolean = true;
                         <span
                             onclick='window.open("https://docs.vintedbot.com/docs/features-pro/dedicated-server", "_blank");'
                             class="cursor-pointer font-medium"
-                            >Improved performance</span
+                            >Private server</span
                         >
                     </li>
                     <li class="flex items-center space-x-3">
@@ -285,8 +203,23 @@ const OOS: boolean = true;
                                 clip-rule="evenodd"></path></svg
                         >
                         <span class="font-medium"
-                            >Channels: <span class="font-semibold">∞</span
-                            ></span
+                            >Unlimited custom channels</span
+                        >
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span class="font-medium"
+                            >Additional custom filters</span
                         >
                     </li>
                 </ul>
@@ -296,9 +229,146 @@ const OOS: boolean = true;
                     >Buy</a
                 >
             </div>
+            <!-- Pricing Card -->
+            <div
+                class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow border-gray-600 xl:p-8 bg-gray-800 text-white"
+            >
+                <h3 class="mb-4 text-2xl font-semibold">Ultra</h3>
+                <p class="font-light sm:text-lg text-gray-400">
+                    The ultimate choice for resellers. The Ultra plan offers
+                    premium tools and features, giving you the highest edge in
+                    reselling.
+                </p>
+                <div class="flex justify-center items-baseline my-8">
+                    <span class="mr-2 text-5xl font-bold">50€</span>
+                    <span class='text-gray-400"'>/month</span>
+                </div>
+                <!-- List -->
+                <ul role="list" class="mb-8 space-y-4 text-left">
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span
+                            onclick='window.open("https://docs.vintedbot.com/docs/category/features---classic", "_blank");'
+                            class="cursor-pointer font-semibold"
+                            >All pro features</span
+                        >
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span
+                            onclick='window.open("https://docs.vintedbot.com/docs/features-pro/dedicated-server", "_blank");'
+                            class="cursor-pointer font-medium"
+                        >
+                            Sniper <span class="text-gray-500"
+                                >(Automatic purchase)</span
+                            >
+                        </span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span
+                            onclick='window.open("https://docs.vintedbot.com/docs/features-pro/affiliation-program", "_blank");'
+                            class="cursor-pointer font-medium"
+                            >One-click offer</span
+                        >
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span class="font-medium">Instant repost</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span class="font-medium">Real-Time status alerts</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span class="font-medium">Improved autobuy</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                        <span class="font-medium">Beta server access</span>
+                    </li>
+                </ul>
+                <a
+                    id={prices.ultra}
+                    class="text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer buybutton"
+                    >Buy</a
+                >
+            </div>
         </div>
     </div>
 </section>
+
 <style>
     a {
         border-bottom: none !important;
