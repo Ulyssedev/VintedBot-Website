@@ -1,6 +1,5 @@
 let prices = {
   starter: "",
-  classic: "",
   pro: "",
   ultra: "",
 };

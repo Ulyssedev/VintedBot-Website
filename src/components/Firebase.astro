@@ -276,6 +276,12 @@ if (window.location.href.includes("discord") && !window.location.href.includes("
                   };
                   pushMetadata({ userId: id, tokens: tokens, metadata: metadata });
                 }
+                if (subscriptions[0].role === "ultra") {
+                  const metadata = {
+                    isultra: 1,
+                  };
+                  pushMetadata({ userId: id, tokens: tokens, metadata: metadata });
+                }
                 if (subscriptions[0].role === "pro") {
                   const metadata = {
                     ispro: 1,
@@ -351,6 +357,12 @@ if (new URLSearchParams(window.location.search).get("code")) {
                 };
                 pushMetadata({ userId: id, tokens: tokens, metadata: metadata })
               }
+              if (subscriptions[0].role === "ultra") {
+                  const metadata = {
+                    isultra: 1,
+                  };
+                  pushMetadata({ userId: id, tokens: tokens, metadata: metadata });
+                }
               if (subscriptions[0].role === "pro") {
                 // set the metadata
                 const metadata = {
