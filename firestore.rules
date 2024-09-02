@@ -12,6 +12,10 @@ service cloud.firestore {
     function hasProSubs() {
         return request.auth.token.stripeRole == "pro";
     }
+
+    function hasUltraSubs() {
+        return request.auth.token.stripeRole == "ultra";
+    }
     
 
     match /content-starter/{doc} {
