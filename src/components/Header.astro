@@ -30,7 +30,8 @@ import lang from "../utils/lang";
             href="#"
             onclick="
             loginWithDiscord()
-            ">{lang[userLang]?.["header.discord"]}</a
+            "
+            >{lang[userLang]?.["header.discord"]}</a
           >
         </li>
         <li class="logout" style="display: none;">
@@ -45,12 +46,17 @@ import lang from "../utils/lang";
     <ul>
       <li><a href="/">{lang[userLang]?.["header.home"]}</a></li>
       <li>
-        <a href="https://docs.vintedbot.com" target="_blank">{lang[userLang]?.["header.docs"]}</a>
+        <a href="https://docs.vintedbot.com" target="_blank"
+          >{lang[userLang]?.["header.docs"]}</a
+        >
       </li>
-      <li><a href="https://discord.gg/W6MRNaXwQ8" target="_blank">Discord</a></li>
+      <li>
+        <a href="https://discord.gg/W6MRNaXwQ8" target="_blank">Discord</a>
+      </li>
       <li>
         <a href={lang[userLang]?.["header.href.pricing"]} class="button primary"
-          >{lang[userLang]?.["header.buy"]}</a>
+          >{lang[userLang]?.["header.buy"]}</a
+        >
       </li>
     </ul>
     <div id="user-container-mobile" style="display: none;">
