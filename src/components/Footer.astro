@@ -5,6 +5,7 @@ export interface Props {
 const { userLang } = Astro.props;
 import lang from "../utils/lang";
 ---
+
 <footer id="footer">
   <ul class="icons">
     <li>
@@ -19,6 +20,8 @@ import lang from "../utils/lang";
     </li>
   </ul>
   <ul class="copyright">
-    <li>&copy; {lang[userLang]?.['footer.copyright']}</li>
+    <li>&copy; {lang[userLang]?.["footer.copyright"]}</li>
+    <br />
+    <a href="/privacy">Terms and conditions</a>
   </ul>
 </footer>
