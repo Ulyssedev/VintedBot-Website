@@ -18,19 +18,22 @@ importers:
         version: 3.1.6
       '@astrojs/tailwind':
         specifier: ^5.1.0
-        version: 5.1.0(astro@4.15.3(@types/node@22.5.4)(rollup@4.21.2)(sass@1.78.0)(typescript@5.5.4))(tailwindcss@3.4.10)
+        version: 5.1.0(astro@4.15.4(@types/node@22.5.4)(rollup@4.21.2)(sass@1.78.0)(typescript@5.5.4))(tailwindcss@3.4.10)
       '@stripe/firestore-stripe-payments':
         specifier: ^0.0.6
         version: 0.0.6
       astro:
-        specifier: ^4.15.3
-        version: 4.15.3(@types/node@22.5.4)(rollup@4.21.2)(sass@1.78.0)(typescript@5.5.4)
+        specifier: ^4.15.4
+        version: 4.15.4(@types/node@22.5.4)(rollup@4.21.2)(sass@1.78.0)(typescript@5.5.4)
       firebase:
         specifier: ^10.13.1
         version: 10.13.1
       firebase-admin:
         specifier: ^12.4.0
         version: 12.4.0
+      sharp:
+        specifier: ^0.33.5
+        version: 0.33.5
       tailwindcss:
         specifier: ^3.4.10
         version: 3.4.10
@@ -994,8 +997,8 @@ packages:
     resolution: {integrity: sha512-3duEwti880xqi4eAMN8AyR4a0ByT90zoYdLlevfrvU43vb0YZwZVfxOgxWrLXXXpyugL0hNZc9G6BiB5B3nUug==}
     engines: {node: '>=8'}
 
-  astro@4.15.3:
-    resolution: {integrity: sha512-zwO8H+vnNYbrdKz0Pkh2a4B/JK06JUvI18w+FxL3B5u4jqPB/SU+LH9XVUUWdNQsyJ/DBHKAf0LDK0RmwxXQEw==}
+  astro@4.15.4:
+    resolution: {integrity: sha512-wqy+m3qygt9DmCSqMsckxyK4ccCUFtti2d/WlLkEpAlqHgyDIg20zRTLHO2v/H4YeSlJ8sAcN0RW2FhOeYbINg==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -2700,9 +2703,9 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.23.8
 
-  '@astrojs/tailwind@5.1.0(astro@4.15.3(@types/node@22.5.4)(rollup@4.21.2)(sass@1.78.0)(typescript@5.5.4))(tailwindcss@3.4.10)':
+  '@astrojs/tailwind@5.1.0(astro@4.15.4(@types/node@22.5.4)(rollup@4.21.2)(sass@1.78.0)(typescript@5.5.4))(tailwindcss@3.4.10)':
     dependencies:
-      astro: 4.15.3(@types/node@22.5.4)(rollup@4.21.2)(sass@1.78.0)(typescript@5.5.4)
+      astro: 4.15.4(@types/node@22.5.4)(rollup@4.21.2)(sass@1.78.0)(typescript@5.5.4)
       autoprefixer: 10.4.20(postcss@8.4.45)
       postcss: 8.4.45
       postcss-load-config: 4.0.2(postcss@8.4.45)
@@ -3738,7 +3741,7 @@ snapshots:
   arrify@2.0.1:
     optional: true
 
-  astro@4.15.3(@types/node@22.5.4)(rollup@4.21.2)(sass@1.78.0)(typescript@5.5.4):
+  astro@4.15.4(@types/node@22.5.4)(rollup@4.21.2)(sass@1.78.0)(typescript@5.5.4):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.4.1
@@ -3957,13 +3960,11 @@ snapshots:
     dependencies:
       color-name: 1.1.4
       simple-swizzle: 0.2.2
-    optional: true
 
   color@4.2.3:
     dependencies:
       color-convert: 2.0.1
       color-string: 1.9.1
-    optional: true
 
   combined-stream@1.0.8:
     dependencies:
@@ -4007,8 +4008,7 @@ snapshots:
 
   dequal@2.0.3: {}
 
-  detect-libc@2.0.3:
-    optional: true
+  detect-libc@2.0.3: {}
 
   deterministic-object-hash@2.0.2:
     dependencies:
@@ -4467,8 +4467,7 @@ snapshots:
 
   inherits@2.0.4: {}
 
-  is-arrayish@0.3.2:
-    optional: true
+  is-arrayish@0.3.2: {}
 
   is-binary-path@2.1.0:
     dependencies:
@@ -5484,7 +5483,6 @@ snapshots:
       '@img/sharp-wasm32': 0.33.5
       '@img/sharp-win32-ia32': 0.33.5
       '@img/sharp-win32-x64': 0.33.5
-    optional: true
 
   shebang-command@2.0.0:
     dependencies:
@@ -5503,7 +5501,6 @@ snapshots:
   simple-swizzle@0.2.2:
     dependencies:
       is-arrayish: 0.3.2
-    optional: true
 
   sisteransi@1.0.5: {}
 
