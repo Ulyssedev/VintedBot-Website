@@ -53,9 +53,7 @@
 
 <script>
     import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-    import { auth, db } from "../firebase/client";
-    import { getAffiliation, setAffiliation } from "../firebase/affiliation";
-    import { setDoc, getDoc, doc } from "firebase/firestore";
+    import { auth } from "../firebase/client";
     const provider = new GoogleAuthProvider();
     var user;
 
@@ -68,19 +66,7 @@
             }).catch((error) => {
                 console.log(error)
             }).then(() => {
-                if (getAffiliation()) {
-                  const docRef = doc(db, "users", user.uid);
-                  setDoc (docRef, {
-                    affiliation: getAffiliation(),
-                  }, { merge: true }).catch((error) => {
-                    console.log(error)
-                  }).then(() => {
-                    window.location.href = '/pricing'
-                  });
-                }
-                else {
                   window.location.href = '/pricing'
-                }
             })
         })
     }

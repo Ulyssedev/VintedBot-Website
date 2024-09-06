@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import vintedlogo from "../images/vinted.webp";
+import { Image } from "astro:assets";
 ---
 
 <Layout
@@ -16,11 +18,10 @@ import Layout from "../layouts/Layout.astro";
         </p>
       </header>
       <span class="image"
-        ><img
-          src="/images/vinted.webp"
-          alt="vintedlogo"
-          width="100%"
-          height="100%"
+        ><Image
+          src={vintedlogo}
+          alt="Vinted Bot logo"
+          loading={"eager"}
         /></span
       >
     </div>
