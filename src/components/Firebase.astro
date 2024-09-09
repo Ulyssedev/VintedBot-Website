@@ -501,6 +501,7 @@
         await createCheckoutSession(payments, {
           success_url: window.location.origin + "/dashboard",
           cancel_url: window.location.origin + "/pricing",
+          allow_promotion_codes: true,
           price: `${button.id}`,
           ...(window.Rewardful &&
             window.Rewardful.referral && {
