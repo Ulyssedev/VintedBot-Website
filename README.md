@@ -1,6 +1,6 @@
 # VintedBot-Website
 
-Source code of https://vintedbot.com
+Source code of https://thebotbay.com
 
 `npm run build` to build \
 `firebase emulators:start` to run locally\

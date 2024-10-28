@@ -12,12 +12,12 @@ export default defineConfig({
       }
     }
   },
-  site: 'https://vintedbot.com',
+  site: 'https://thebotbay.com',
   integrations: [tailwind(), sitemap({
     filter: (page) =>
-      page !== 'https://vintedbot.com/return/' &&
-      page !== 'https://vintedbot.com/congrats/' &&
-      !page.startsWith('https://vintedbot.com/localized-files/') &&
-      page !== 'https://vintedbot.com/discord/',
+      page !== 'https://thebotbay.com/return/' &&
+      page !== 'https://thebotbay.com/congrats/' &&
+      !page.startsWith('https://thebotbay.com/localized-files/') &&
+      page !== 'https://thebotbay.com/discord/',
   }),]
 });

@@ -196,8 +196,8 @@ exports.createAffiliateOnboardingUrl = functions
     });
     const accountLink = await stripe.accountLinks.create({
       account: account.id,
-      refresh_url: 'https://vintedbot.com/dashboard',
-      return_url: `https://vintedbot.com/return?account=${account.id}`,
+      refresh_url: 'https://thebotbay.com/dashboard',
+      return_url: `https://thebotbay.com/return?account=${account.id}`,
       type: 'account_onboarding',
     });
     return accountLink.url;
@@ -247,8 +247,8 @@ exports.continueAffiliateRegistration = functions
 
     const accountLink = await stripe.accountLinks.create({
       account: data.accountId,
-      refresh_url: 'https://vintedbot.com/dashboard',
-      return_url: `https://vintedbot.com/return?account=${data.accountId}`,
+      refresh_url: 'https://thebotbay.com/dashboard',
+      return_url: `https://thebotbay.com/return?account=${data.accountId}`,
       type: 'account_onboarding',
     });
     return accountLink.url;
