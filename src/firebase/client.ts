@@ -5,7 +5,7 @@ import { getFunctions } from "firebase/functions";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCKd8gi7RIjeEIVj9GnAn4AvkBxgEmCJ2w",
-  authDomain: "vintedbot-3f0d6.firebaseapp.com",
+  authDomain: "auth.thebotbay.com",
   projectId: "vintedbot-3f0d6",
   storageBucket: "vintedbot-3f0d6.appspot.com",
   messagingSenderId: "495357704111",
