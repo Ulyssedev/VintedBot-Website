@@ -24,7 +24,7 @@ export const lang = {
     "header.href.privacy": "privacy",
     "header.href.pricing": "pricing",
 
-    "footer.copyright": `${year} Vinted Bot. All rights reserved.`,
+    "footer.copyright": `${year} The Bot Bay. All rights reserved.`,
   },
   fr: {
     "header.signUp": "Inscription",
@@ -49,7 +49,7 @@ export const lang = {
     "header.href.privacy": "privacy",
     "header.href.pricing": "tarification",
 
-    "footer.copyright": `${year} Vinted Bot. Tous droits réservés.`,
+    "footer.copyright": `${year} The Bot Bay Bot. Tous droits réservés.`,
   },
 };
 
