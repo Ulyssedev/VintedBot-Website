@@ -1,375 +1,271 @@
 ---
-import prices from "../utils/prices";
-const OOS: boolean = true;
+// import prices from "../utils/prices"; // This import might need adjustment or removal if prices object is no longer used for these IDs.
 // TODO: Make sure that the docs are written and that each link is correct
+const tickIconSVG = `
+  <svg class="flex-shrink-0 w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+  </svg>
+`;
+
+const crossIconSVG = `
+  <svg class="flex-shrink-0 w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+  </svg>
+`;
 ---
 
 <section class="bg-darkgrey">
   <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 font-body">
     <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
       <h2 class="mb-4 text-4xl tracking-tight font-bold text-white">
-        Tailored for the best experience
+        The Bot Bay X VintiePlus: Upgraded Webapp Now Available!
       </h2>
       <p class="mb-5 font-light sm:text-xl text-gray-400">
-        At vintedbot, we specialize in providing the best item tracking
-        solution. Our bot ensures fast and efficient tracking, guaranteeing
-        profitable results.
+        Discover the enhanced power of VintiePlus, now as a streamlined web
+        application. We've updated our plans to offer you the best value and
+        features for your reselling journey.
       </p>
     </div>
     <div
       class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0"
     >
-      <!-- Pricing Card -->
+      <!-- Pricing Card: Basic Plan -->
       <div
         class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow border-gray-600 xl:p-8 bg-gray-800 text-white"
       >
-        <h3 class="mb-4 text-2xl font-semibold">Starter</h3>
-        <p class="font-light sm:text-lg text-gray-400">
-          Ideal for beginners, this tier opens doors to reselling with valuable
-          insights and a strong foundation.
-        </p>
+        <h3 class="mb-4 text-2xl font-semibold">Basic Plan</h3>
+        <p class="font-light sm:text-lg text-gray-400">For the confirmed</p>
         <div class="flex justify-center items-baseline my-8">
-          <span class="mr-2 text-5xl font-bold">10€</span>
-          <span class='text-gray-400"'>/month</span>
+          <span class="mr-2 text-5xl font-bold">29.95€</span>
+          <span class="text-gray-400">/month</span>
         </div>
-        <!-- List -->
         <ul role="list" class="mb-8 space-y-4 text-left">
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span
-              onclick='window.open("https://docs.thebotbay.com/docs/features-pro/manage-trackings#receive-notifications", "_blank");'
-              class="cursor-pointer font-medium">0 delay Vinted trackings</span
-            >
+            <Fragment set:html={tickIconSVG} />
+            <span>10 custom filters</span>
           </li>
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span
-              onclick='window.open("https://docs.thebotbay.com/docs/features-starter/analytics", "_blank");'
-              class="cursor-pointer font-medium">Analytics</span
-            >
+            <Fragment set:html={tickIconSVG} />
+            <span>Auto Buy</span>
           </li>
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span class="font-medium">Support</span>
+            <Fragment set:html={tickIconSVG} />
+            <span>Basic analytics</span>
           </li>
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span class="font-medium">Access to shared trackings</span>
+            <Fragment set:html={tickIconSVG} />
+            <span>Discord Community access</span>
           </li>
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span class="font-medium">Autobuy</span>
+            <Fragment set:html={tickIconSVG} />
+            <span>24/7 Support (Just chatting)</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>One-click repost</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>One-click offer button</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>One-click cancel button</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>Reshipper included</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>Batch label-printing</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>Generate unlimited accounts</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>Buying items once they are processed</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>Auto-message sellers on item favorites</span>
           </li>
         </ul>
         <a
-          id={prices.starter}
-          class={`text-white font-bold rounded-lg text-sm px-5 py-2.5 text-center ${OOS ? "bg-gray-400 hover:cursor-not-allowed" : "bg-primary-600 hover:cursor-pointer buybutton"}`}
+          href="https://app.vintieplus.com"
+          target="_blank"
+          class="text-white bg-primary-600 hover:bg-primary-700 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer"
         >
-          {OOS ? "Out Of Stock" : "Buy"}
+          Purchase
         </a>
       </div>
-      <!-- Pricing Card -->
+
+      <!-- Pricing Card: Pro Plan -->
       <div
         class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow border-gray-600 xl:p-8 bg-gray-800 text-white"
       >
-        <h3 class="mb-4 text-2xl font-semibold">Pro</h3>
-        <p class="font-light sm:text-lg text-gray-400">
-          Tailored for experts, this premium-tier choice refines skills and
-          unlocks advanced reselling strategies.
-        </p>
+        <h3 class="mb-4 text-2xl font-semibold">Pro Plan</h3>
+        <p class="font-light sm:text-lg text-gray-400">For the experts</p>
         <div class="flex justify-center items-baseline my-8">
-          <span class="mr-2 text-5xl font-bold">20€</span>
-          <span class='text-gray-400"'>/month</span>
+          <span class="mr-2 text-5xl font-bold">69.95€</span>
+          <span class="text-gray-400">/month</span>
         </div>
-        <!-- List -->
         <ul role="list" class="mb-8 space-y-4 text-left">
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span
-              onclick='window.open("https://docs.thebotbay.com/docs/category/features---classic", "_blank");'
-              class="cursor-pointer font-semibold">All classic features</span
-            >
+            <Fragment set:html={tickIconSVG} />
+            <span>Unlimited custom filters</span>
           </li>
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span
-              onclick='window.open("https://docs.thebotbay.com/docs/features-pro/dedicated-server", "_blank");'
-              class="cursor-pointer font-medium">Private server</span
-            >
+            <Fragment set:html={tickIconSVG} />
+            <span>Auto Buy and low-priority sniper</span>
           </li>
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span
-              onclick='window.open("https://docs.thebotbay.com/docs/features-pro/affiliation-program", "_blank");'
-              class="cursor-pointer font-medium">Affiliation program</span
-            >
+            <Fragment set:html={tickIconSVG} />
+            <span>Full analytics</span>
           </li>
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span class="font-medium">Unlimited custom channels</span>
+            <Fragment set:html={tickIconSVG} />
+            <span>Discord Community access</span>
           </li>
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span
-              onclick='window.open("https://docs.thebotbay.com/docs/features-pro/custom-filters", "_blank");'
-              class="cursor-pointer font-medium">Additional custom filters</span
-            >
+            <Fragment set:html={tickIconSVG} />
+            <span>24/7 Support (Calls if needed)</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
+            <span>One-click repost</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
+            <span>One-click offer button</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
+            <span>One-click cancel button</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>Reshipper included</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>Batch label-printing</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>Generate unlimited accounts</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>Buying items once they are processed</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={crossIconSVG} />
+            <span>Auto-message sellers on item favorites</span>
           </li>
         </ul>
         <a
-          id={prices.pro}
-          class="text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer buybutton"
-          >Buy</a
+          href="https://app.vintieplus.com"
+          target="_blank"
+          class="text-white bg-primary-600 hover:bg-primary-700 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer"
+          >Purchase</a
         >
       </div>
-      <!-- Pricing Card -->
+
+      <!-- Pricing Card: Ultimate Plan -->
       <div
         class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow border-gray-600 xl:p-8 bg-gray-800 text-white"
       >
-        <h3 class="mb-4 text-2xl font-semibold">Ultra</h3>
-        <p class="font-light sm:text-lg text-gray-400">
-          The ultimate choice for resellers. The Ultra plan offers premium tools
-          and features, giving you the highest edge in reselling.
-        </p>
+        <h3 class="mb-4 text-2xl font-semibold">Ultimate Plan</h3>
+        <p class="font-light sm:text-lg text-gray-400">For the professionals</p>
         <div class="flex justify-center items-baseline my-8">
-          <span class="mr-2 text-5xl font-bold">50€</span>
-          <span class='text-gray-400"'>/month</span>
+          <span class="mr-2 text-5xl font-bold">109.95€</span>
+          <span class="text-gray-400">/month</span>
         </div>
-        <!-- List -->
         <ul role="list" class="mb-8 space-y-4 text-left">
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
+            <Fragment set:html={tickIconSVG} />
+            <span>Unlimited custom filters</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
+            <span>Auto Buy and high-priority sniper</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
+            <span>Full analytics</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
+            <span>Discord Community access</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
+            <span>24/7 Support (Calls if needed)</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
+            <span>One click repost</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
+            <span>One click offer button</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
+            <span>One click cancel button</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
+            <span>Reshipper included</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <Fragment set:html={tickIconSVG} />
             <span
-              onclick='window.open("https://docs.thebotbay.com/docs/category/features---pro", "_blank");'
-              class="cursor-pointer font-semibold">All pro features</span
+              >Batch label printing <span class="text-gray-400"
+                >(Coming soon)</span
+              ></span
             >
           </li>
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
+            <Fragment set:html={tickIconSVG} />
             <span
-              onclick='window.open("https://docs.thebotbay.com/docs/features-ultra/sniper", "_blank");'
-              class="cursor-pointer font-medium"
-            >
-              Sniper <span class="text-gray-500">(Automatic purchase)</span>
-            </span>
-          </li>
-          <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span
-              onclick='window.open("https://docs.thebotbay.com/docs/features-ultra/one-click-offer", "_blank");'
-              class="cursor-pointer font-medium">One-click offer</span
+              >Generate unlimited accounts <span class="text-gray-400"
+                >(Coming soon)</span
+              ></span
             >
           </li>
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
+            <Fragment set:html={tickIconSVG} />
             <span
-              onclick='window.open("https://docs.thebotbay.com/docs/features-ultra/instant-repost", "_blank");'
-              class="cursor-pointer font-medium">Instant repost</span
+              >Buying items once they are processed <span class="text-gray-400"
+                >(Coming soon)</span
+              ></span
             >
           </li>
           <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
+            <Fragment set:html={tickIconSVG} />
             <span
-              onclick='window.open("https://docs.thebotbay.com/docs/features-ultra/status-updates", "_blank");'
-              class="cursor-pointer font-medium">Real-Time status alerts</span
-            >
-          </li>
-          <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span
-              onclick='window.open("https://docs.thebotbay.com/docs/features-ultra/improved-autobuy", "_blank");'
-              class="cursor-pointer font-medium">Improved autobuy</span
-            >
-          </li>
-          <li class="flex items-center space-x-3">
-            <!-- Icon -->
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-green-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path></svg
-            >
-            <span
-              onclick='window.open("https://docs.thebotbay.com/docs/features-ultra/beta-access", "_blank");'
-              class="cursor-pointer font-medium">Beta server access</span
+              >Auto-message sellers on item favorites <span
+                class="text-gray-400">(Coming soon)</span
+              ></span
             >
           </li>
         </ul>
         <a
-          id={prices.ultra}
-          class="text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer buybutton"
-          >Buy</a
+          href="https://app.vintieplus.com"
+          target="_blank"
+          class="text-white bg-primary-600 hover:bg-primary-700 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer"
+          >Purchase</a
         >
       </div>
     </div>
     <p class="font-light sm:text-xl text-gray-400 text-center pt-8">
       Every feature is explained in detail in our
       <a
-        href="https://docs.thebotbay.com/docs/intro"
+        href="https://docs.vintieplus.com"
         class="text-primary-600"
         target="_blank">documentation</a
       >.
@@ -389,7 +285,7 @@ const OOS: boolean = true;
       <a
         href="https://discord.gg/W6MRNaXwQ8"
         target="_blank"
-        class="text-white bg-primary-600 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer"
+        class="text-white bg-primary-600 hover:bg-primary-700 font-bold rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer"
         >Contact Us</a
       >
     </div>
@@ -401,22 +297,3 @@ const OOS: boolean = true;
     border-bottom: none !important;
   }
 </style>
-
-<script lang="js">
-  const buybuttons = document.querySelectorAll(".buybutton");
-  buybuttons.forEach((buybutton) => {
-    buybutton.addEventListener("click", () => {
-      buybutton.innerHTML = `
-        <svg class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        Processing...
-        `;
-      buybutton.classList.add("hover:cursor-wait");
-      setTimeout(() => {
-        buybutton.innerHTML = "Buy";
-      }, 3000);
-    });
-  });
-</script>
